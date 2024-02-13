@@ -4,17 +4,29 @@ import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async'; // pageTitle 설정
+import ErrorPage from './pages/commons/ErrorPage';
+
+import { UserProvider } from './modules/user';
+import { MainClassProvider } from './modules/mainClass';
+
 import reportWebVitals from './reportWebVitals';
+
 import './i18n'; // 다국어 설정
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <HelmetProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </HelmetProvider>
+    <UserProvider>
+      <HelmetProvider>
+        <BrowserRouter>
+          <MainClassProvider>
+            <ErrorPage>
+              <App />
+            </ErrorPage>
+          </MainClassProvider>
+        </BrowserRouter>
+      </HelmetProvider>
+    </UserProvider>
   </React.StrictMode>,
 );
 

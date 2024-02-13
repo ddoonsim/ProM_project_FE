@@ -8,7 +8,7 @@ export default function apiRequest(
   headers = null,
 ) {
   if (!/^https[s]?/i.test(url)) {
-    // 외부 API인 경우 https(s)로 시작, 내부 API인 경우 localhost:3001 고정
+    // 외부 API인 경우 https(s)로 시작, 내부 API인 경우 localhost:2000 고정
     url = process.env.REACT_APP_API_URL + url;
   }
 
