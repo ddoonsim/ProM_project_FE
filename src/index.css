@@ -1,13 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+/* 기본 스타일 초기화 */
+* { 
+  box-sizing: border-box; 
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #000;
+  outline: none;
+}
+html {
+  font-size: 13px;
+}
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+}
+a {
+  text-decoration: none;
+}
+ul, ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+dl, dt, dd, li {
+  margin: 0;
+  padding: 0;
+}
+main {
+  background: #dbe5e7;
+  padding-top: 50px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* 공통 여백 */
+.mt5 {
+  margin-top: 5px;
+}
+.mb5 {
+  margin-bottom: 5px;
+}
+.mt10 {
+  margin-top: 10px;
+}
+.mb10 {
+  margin-bottom: 10px;
+}
+
+/* 로그인 페이지 */
+.login_page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  padding-top: 50px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
