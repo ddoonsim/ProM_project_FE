@@ -1,16 +1,21 @@
-import { InputText } from '../commons/InputStyles';
+import { InputText } from '../commons/InputStyle';
 import { BigButton } from '../commons/ButtonStyle';
+import React, { useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { FiLock, FiKey, FiUserPlus } from 'react-icons/fi';
 import styled from 'styled-components';
-import React, { useRef, useEffect, useState } from 'react';
 import loadable from '@loadable/component';
 
-// 에러메세지 지연 로딩
-const ErrorMessages = loadable(() => import('../commons/ErrorMessages'));
+const Message = loadable(() => import('../commons/ErrorMsgStyle'));
 
-// 로그인폼 스타일시트 설정
+const LoginText = styled(InputText)`
+  display: block;
+  & + & {
+    margin-top: 5px;
+  }
+`;
+
 const FormBox = styled.form`
   width: 300px;
   padding-bottom: 80px;
@@ -35,16 +40,7 @@ const FormBox = styled.form`
   }
 `;
 
-// input 태그 스타일시트 설정
-const LoginText = styled(InputText)`
-  display: block;
-  & + & {
-    margin-top: 5px;
-  }
-`;
-
-// 로그인 메인 폼
-const LoginForm = ({ onSubmit, onChange, form, errors }) => {
+const LoginForm = ({ onSubmit, onChange, errors }) => {
   const { t } = useTranslation();
 
   errors = errors || {};
@@ -60,25 +56,25 @@ const LoginForm = ({ onSubmit, onChange, form, errors }) => {
       <LoginText
         type="text"
         name="email"
-        value={form.email}
-        onChange={onChange}
         placeholder={t('이메일')}
         ref={refEmail}
+        onChange={onChange}
       />
-      <ErrorMessages errors={errors} field="email" />
+      {errors.email && <Message>{errors.email}</Message>}
 
       <LoginText
         type="password"
         name="password"
-        value={form.password}
-        onChange={onChange}
         placeholder={t('비밀번호')}
+        onChange={onChange}
       />
-      <ErrorMessages errors={errors} field="password" />
+      {errors.password && <Message>{errors.password}</Message>}
 
-      <BigButton type="submit" size="medium" className="mt10">
+      <BigButton type="submit" size="medium" className="mt5">
         {t('로그인')}
       </BigButton>
+
+      {errors.global && <Message>{errors.global}</Message>}
 
       <div className="links">
         <Link to="/find_id">
@@ -91,9 +87,6 @@ const LoginForm = ({ onSubmit, onChange, form, errors }) => {
           <FiUserPlus /> {t('회원가입')}
         </Link>
       </div>
-      {errors.global && errors.global.message && (
-        <ErrorMessages>{errors.global.message}</ErrorMessages>
-      )}
     </FormBox>
   );
 };
