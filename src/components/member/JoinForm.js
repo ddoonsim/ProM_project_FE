@@ -10,7 +10,7 @@ import React from 'react';
 
 const ErrorMessages = loadable(() => import('../commons/ErrorMessages'));
 
-const { small, medium, big } = sizeNames;
+const { medium, big } = sizeNames;
 
 const FormBox = styled.form`
   dl {
@@ -20,8 +20,6 @@ const FormBox = styled.form`
 
     dt {
       width: 130px;
-      font-size: ${medium};
-      font-weight: bold;
     }
 
     dd {
@@ -42,7 +40,6 @@ const FormBox = styled.form`
     height: 150px;
     padding: 10px;
     overflow: auto;
-    font-size: ${small};
   }
 
   .agree_terms {
@@ -54,6 +51,7 @@ const FormBox = styled.form`
     svg {
       font-size: ${big};
       vertical-align: middle;
+      margin-right: 5px;
     }
   }
 `;
