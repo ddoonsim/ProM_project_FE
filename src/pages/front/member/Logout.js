@@ -12,10 +12,9 @@ const Logout = () => {
 
   cookies.remove('token', { path: '/' });
   const {
-    action: { setIsLogin, setIsAdmin, setUserInfo },
+    action: { setIsLogin, setUserInfo },
   } = useContext(UserContext);
   setIsLogin(false);
-  setIsAdmin(false);
   setUserInfo(false);
 
   return <Navigate to="/login" replace={true} />;

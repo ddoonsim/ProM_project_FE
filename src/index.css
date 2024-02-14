@@ -25,6 +25,7 @@ dl, dt, dd, li {
   padding: 0;
 }
 main {
+  display: flex;
   background: #dbe5e7;
   padding-top: 50px;
   padding-bottom: 100px;

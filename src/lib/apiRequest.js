@@ -21,7 +21,7 @@ export default function apiRequest(
   const token = cookies.load('token');
   if (token) {
     headers = headers || {};
-    headers.Authorization = `Beaner ${token}`;
+    headers.Authorization = `Bearer ${token}`;
   }
 
   return axios({
@@ -29,6 +29,6 @@ export default function apiRequest(
     url,
     data,
     headers,
-    validateStatus: (state) => state < 500, 
+    validateStatus: (state) => state < 500,
   });
 }
