@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 // 푸터 스타일시트 설정
 const OuterBox = styled.footer`
-  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;

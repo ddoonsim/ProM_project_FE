@@ -14,7 +14,6 @@ const OuterBox = styled.header`
   align-items: center;
   height: 50px;
   padding: 0 15px;
-  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
