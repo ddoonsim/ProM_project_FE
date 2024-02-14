@@ -29,9 +29,9 @@ const App = () => {
         <Route path="/logout" element={<Logout />} />
         <Route path="/mypage" element={<Mypage />} />
       </Route>
-      <Route path="*" element={<Layout />}>
+      
         <Route path="*" element={<NotFound />} />
-      </Route>
+
     </Routes>
   );
 };
