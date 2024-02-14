@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import colorNames from '../../styles/colors';
 import sizeNames from '../../styles/sizes';
 
-const { info } = colorNames;
-const { small } = sizeNames;
 
 const Message = styled.div`
   padding: 5px 15px;
