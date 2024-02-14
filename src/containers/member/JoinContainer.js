@@ -68,6 +68,7 @@ const JoinContainer = () => {
     [form, t, navigate],
   );
 
+  // OnChange 함수
   const onChange = useCallback((e) => {
     const target = e.currentTarget;
     setForm(
@@ -75,8 +76,13 @@ const JoinContainer = () => {
         draft[target.name] = target.value;
       }),
     );
+
+    if (target.name == 'mobile') {
+      autoHyphen(target);  // 자동 하이픈 추가
+    }
   }, []);
 
+  // onToggle 함수
   const onToggle = useCallback((e) => {
     setForm(
       produce((draft) => {
@@ -84,6 +90,34 @@ const JoinContainer = () => {
       }),
     );
   }, []);
+
+  // 자동 하이픈 추가 함수
+  const autoHyphen = (target) => {
+    console.log('자동 하이픈 함수');
+    const rawPhone = target.value.replace(/-/g, '');
+    let formattedPhone = '';
+
+    if (rawPhone.length < 4) {
+      formattedPhone = rawPhone;
+    } else if (rawPhone.length < 8) {
+      formattedPhone = `${rawPhone.slice(0, 3)}-${rawPhone.slice(3)}`;
+    } else if (rawPhone.length < 11) {
+      formattedPhone = `${rawPhone.slice(0, 3)}-${rawPhone.slice(
+        3,
+        7,
+      )}-${rawPhone.slice(7)}`;
+    } else {
+      formattedPhone = `${rawPhone.slice(0, 3)}-${rawPhone.slice(
+        3,
+        7,
+      )}-${rawPhone.slice(7, 11)}`;
+    }
+
+    console.log(formattedPhone);
+    console.log(target.value);
+    target.value = formattedPhone;
+  };
+
 
   return (
     <JoinForm

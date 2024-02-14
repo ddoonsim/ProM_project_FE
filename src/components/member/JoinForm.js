@@ -56,6 +56,7 @@ const FormBox = styled.form`
   }
 `;
 
+
 const JoinForm = ({ onSubmit, onChange, onToggle, form, errors }) => {
   const { t } = useTranslation();
 
@@ -138,6 +139,7 @@ const JoinForm = ({ onSubmit, onChange, onToggle, form, errors }) => {
           bcolor="black"
           height="50px"
           size="medium"
+          fsize="medium"
         >
           {t('가입하기')}
         </BigButton>
@@ -147,6 +149,7 @@ const JoinForm = ({ onSubmit, onChange, onToggle, form, errors }) => {
           bcolor="black"
           height="50px"
           size="medium"
+          fsize="medium"
           fcolor="black"
         >
           {t('다시입력')}
