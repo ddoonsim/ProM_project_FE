@@ -6,8 +6,6 @@ const { primary } = colorNames;
 const { normal } = sizeNames;
 
 const ErrorMsgStyle = styled.div`
-  box-shadow: 2px 2px 5px
-  ${({ bcolor }) => (bcolor ? colorNames[bcolor] : primary)};
   padding: 5px 15px;
   width: 100%;
   text-align: center;
