@@ -1,12 +1,20 @@
-import E404 from '../../images/errors/404.png'
+import E404 from '../../images/errors/404.png';
+import styled from 'styled-components';
+
+const NotFoundPage = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 150px;
+`;
 
 const NotFound = () => {
-    return (
-        <>
-            <img src={E404} alt="error 404" />
-            <h1>페이지 없음</h1>
-        </>
-    );
+  return (
+    <NotFoundPage>
+      <img src={E404} alt="error 404" />
+    </NotFoundPage>
+  );
 };
 
 export default NotFound;
