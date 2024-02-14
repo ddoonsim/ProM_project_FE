@@ -1,3 +1,5 @@
+import React, { useContext } from 'react';
+import UserContext from '../../modules/user';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -43,26 +45,47 @@ const OuterBox = styled.header`
 // 헤더
 const Header = () => {
   const { t } = useTranslation();
+  const {
+    state : { isLogin },
+  } = useContext(UserContext);
 
   return (
     <OuterBox>
       <div className="left">
         <NavLink to="/">로고</NavLink>
       </div>
-
       <div className="right">
-        <NavLink
-          to="/login"
-          className={({ isActive }) => classNames({ on: isActive })}
-        >
-          {t('로그인')}
-        </NavLink>
-        <NavLink
-          to="/join"
-          className={({ isActive }) => classNames({ on: isActive })}
-        >
-          {t('회원가입')}
-        </NavLink>
+        {isLogin ? (
+          <>
+            <NavLink
+              to="/logout"
+              className={({ isActive }) => classNames({ on: isActive })}
+            >
+              {t('로그아웃')}
+            </NavLink>
+            <NavLink
+              to="/mypage"
+              className={({ isActive }) => classNames({ on: isActive })}
+            >
+              {t('마이페이지')}
+            </NavLink>
+          </>
+        ) : (
+          <>
+            <NavLink
+              to="/login"
+              className={({ isActive }) => classNames({ on: isActive })}
+            >
+              {t('로그인')}
+            </NavLink>
+            <NavLink
+              to="/join"
+              className={({ isActive }) => classNames({ on: isActive })}
+            >
+              {t('회원가입')}
+            </NavLink>
+          </>
+        )}
       </div>
     </OuterBox>
   );
