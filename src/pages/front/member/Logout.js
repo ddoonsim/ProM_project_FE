@@ -16,7 +16,7 @@ const Logout = () => {
   } = useContext(UserContext);
   setIsLogin(false);
   setIsAdmin(false);
-  setUserInfo(false);
+  setUserInfo({});
 
   return <Navigate to="/login" replace={true} />;
 };

@@ -28,6 +28,7 @@ main {
   background: #dbe5e7;
   padding-top: 50px;
   padding-bottom: 100px;
+  min-height: 1000px;
 }
 
 /* 공통 여백 */
