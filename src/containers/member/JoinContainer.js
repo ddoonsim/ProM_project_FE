@@ -93,7 +93,6 @@ const JoinContainer = () => {
 
   // 자동 하이픈 추가 함수
   const autoHyphen = (target) => {
-    console.log('자동 하이픈 함수');
     const rawPhone = target.value.replace(/-/g, '');
     let formattedPhone = '';
 
@@ -113,8 +112,6 @@ const JoinContainer = () => {
       )}-${rawPhone.slice(7, 11)}`;
     }
 
-    console.log(formattedPhone);
-    console.log(target.value);
     target.value = formattedPhone;
   };
 

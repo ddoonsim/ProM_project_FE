@@ -11,6 +11,7 @@ import Login from './pages/front/member/Login';
 import Join from './pages/front/member/Join';
 import Logout from './pages/front/member/Logout';
 import Mypage from './pages/front/member/Mypage';
+// import Home from './pages/front/Home';
 
 const App = () => {
   const {
@@ -28,7 +29,9 @@ const App = () => {
         <Route path="/logout" element={<Logout />} />
         <Route path="/mypage" element={<Mypage />} />
       </Route>
-      <Route path="*" element={<NotFound />} />
+      <Route path="*" element={<Layout />}>
+        <Route path="*" element={<NotFound />} />
+      </Route>
     </Routes>
   );
 };

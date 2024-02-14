@@ -45,9 +45,15 @@ main {
   margin-bottom: 10px;
 }
 
+/* 인덱스 페이지 */
+.main_page {
+  background: #fff;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 /* 로그인 페이지 */
 .login_page {
-  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
