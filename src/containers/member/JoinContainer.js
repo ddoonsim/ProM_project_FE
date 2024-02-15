@@ -59,6 +59,7 @@ const JoinContainer = () => {
       requestJoin(form)
         .then(() => {
           // 회원 가입 성공시 처리
+          alert(t('join_ok'));
           setForm(() => {}); // 양식 초기화
 
           // 로그인 페이지 이동
@@ -117,9 +118,10 @@ const JoinContainer = () => {
   };
 
   const onClick = useCallback((e) => {
-    sendEmail(form.email);  // 이메일 전송
+    console.log(form);
+    sendEmail(form.email); // 이메일 전송
+    alert(t('sendEmail_ok'));
   });
-
 
   return (
     <JoinForm
