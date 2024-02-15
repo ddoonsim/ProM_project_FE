@@ -1,7 +1,6 @@
 import apiRequest from '../../lib/apiRequest';
 
 export default function sendEmail(email) {
-
   return new Promise((resolve, reject) => {
     apiRequest(`/email/verify?email=${email}`, 'GET')
       .then((res) => {
