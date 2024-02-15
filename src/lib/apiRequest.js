@@ -29,6 +29,6 @@ export default function apiRequest(
     url,
     data,
     headers,
-    validateStatus: (state) => state < 500, 
+    validateStatus: (state) => state < 500,
   });
 }
