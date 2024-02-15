@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { SubTitle } from '../commons/TitleStyle';
 import { InputText } from '../commons/InputStyle';
 import { FiSquare, FiCheckSquare } from 'react-icons/fi';
-import { ButtonGroup, BigButton } from '../commons/ButtonStyle';
+import { ButtonGroup, BigButton, Btn } from '../commons/ButtonStyle';
 import sizeNames from '../../styles/sizes';
 import styled from 'styled-components';
 import loadable from '@loadable/component';
@@ -24,6 +24,7 @@ const FormBox = styled.form`
 
     dd {
       flex-grow: 1;
+      width: 300px;
     }
   }
 
@@ -33,6 +34,21 @@ const FormBox = styled.form`
 
   dl:last-of-type {
     margin-bottom: 15px;
+  }
+
+  .email_box {
+    display: flex;
+  }
+
+  .auth_box {
+    display: flex;
+    margin: 5px 0;
+  }
+
+  .count {
+    margin-left: 5px;
+    font-size: initial;
+    line-height: 35px;
   }
 
   .terms {
@@ -56,8 +72,7 @@ const FormBox = styled.form`
   }
 `;
 
-
-const JoinForm = ({ onSubmit, onChange, onToggle, form, errors }) => {
+const JoinForm = ({ onSubmit, onChange, onToggle, onClick, form, errors }) => {
   const { t } = useTranslation();
 
   return (
@@ -65,13 +80,37 @@ const JoinForm = ({ onSubmit, onChange, onToggle, form, errors }) => {
       <dl>
         <dt>{t('이메일')}</dt>
         <dd>
-          <InputText
-            type="email"
-            name="email"
-            value={form.email}
-            onChange={onChange}
-          />
-          <ErrorMessages errors={errors} field="email" />
+          <div className="email_box">
+            <InputText
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={onChange}
+            />
+            <ErrorMessages errors={errors} field="email" />
+            <Btn type="button" name="sendCodeBtn" onClick={onClick}>
+              인증코드 전송
+            </Btn>
+          </div>
+          <div className="auth_box">
+            <InputText
+              type="number"
+              name="codeNum"
+              placeholder="인증코드 입력"
+            />
+            <div className="count" name="count">
+              03:00
+            </div>
+            <Btn type="button" name="confirmBtn" disabled>
+              확인
+            </Btn>
+            <Btn type="button" name="reSendBtn" disabled>
+              재전송
+            </Btn>
+          </div>
+          <div className="confirmed_msg" name="confirmed">
+            ✅ 확인된 이메일입니다.
+          </div>
         </dd>
       </dl>
       <dl>
