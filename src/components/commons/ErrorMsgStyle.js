@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import colorNames from '../../styles/colors';
-import sizeNames from '../../styles/sizes';
 
 
 const Message = styled.div`

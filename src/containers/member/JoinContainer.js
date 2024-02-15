@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import JoinForm from '../../components/member/JoinForm';
 import requestJoin from '../../api/member/join';
+import sendEmail from '../../api/commons/sendEmail';
 
 const JoinContainer = () => {
   const { t } = useTranslation();
@@ -78,7 +79,7 @@ const JoinContainer = () => {
     );
 
     if (target.name == 'mobile') {
-      autoHyphen(target);  // 자동 하이픈 추가
+      autoHyphen(target); // 자동 하이픈 추가
     }
   }, []);
 
@@ -115,12 +116,17 @@ const JoinContainer = () => {
     target.value = formattedPhone;
   };
 
+  const onClick = useCallback((e) => {
+    sendEmail(form.email);  // 이메일 전송
+  });
+
 
   return (
     <JoinForm
       onSubmit={onSubmit}
       onChange={onChange}
       onToggle={onToggle}
+      onClick={onClick} /* 이메일 인증코드 전송 클릭 이벤트 */
       form={form}
       errors={errors}
     />
