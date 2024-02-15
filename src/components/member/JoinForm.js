@@ -95,7 +95,7 @@ const JoinForm = ({ onSubmit, onChange, onToggle, onClick, form, errors }) => {
           <div className="auth_box">
             <InputText
               type="number"
-              name="codeNum"
+              name="authNum"
               placeholder="인증코드 입력"
             />
             <div className="count" name="count">

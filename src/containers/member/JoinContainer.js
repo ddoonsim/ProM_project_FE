@@ -4,7 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import JoinForm from '../../components/member/JoinForm';
 import requestJoin from '../../api/member/join';
-import sendEmail from '../../api/commons/sendEmail';
+import { sendVerifyEmail } from '../../api/commons/sendEmail';
+import apiRequest from '../../lib/apiRequest';
 
 const JoinContainer = () => {
   const { t } = useTranslation();
@@ -118,9 +119,28 @@ const JoinContainer = () => {
   };
 
   const onClick = useCallback((e) => {
-    console.log(form);
-    sendEmail(form.email); // 이메일 전송
-    alert(t('sendEmail_ok'));
+    
+    if (!form.email) {
+      alert('이메일을 입력하세요!');
+      return;
+    }
+
+    new Promise(() => {
+      apiRequest(`/member/email_dup_check?email=${form.email}`, 'GET')
+        .then((data) => {
+          if (data.data.success) {
+            // 중복이메일인 경우
+            alert('❌ 이미 가입된 이메일입니다.');
+            // form.email.focus();
+          } else {
+            // 중복이메일이 아닌 경우
+            sendVerifyEmail(form.email); // 이메일 전송
+
+            // 인증코드 일치 여부 확인
+          }
+        })
+        .catch((err) => console.error(err));
+    });
   });
 
   return (
