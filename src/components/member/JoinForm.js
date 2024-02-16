@@ -36,6 +36,10 @@ const FormBox = styled.form`
     margin-bottom: 15px;
   }
 
+  .dn {
+    display: none;
+  }
+
   .email_box {
     display: flex;
   }
@@ -43,6 +47,11 @@ const FormBox = styled.form`
   .auth_box {
     display: flex;
     margin: 5px 0;
+
+    [disabled] {
+      background-color: #aeaeae;
+      border: 1px solid #aeaeae;
+    }
   }
 
   .count {
@@ -72,7 +81,21 @@ const FormBox = styled.form`
   }
 `;
 
-const JoinForm = ({ onSubmit, onChange, onToggle, onClick, form, errors }) => {
+const JoinForm = ({
+  onSubmit,
+  onChange,
+  onToggle,
+  onClick,
+  form,
+  errors,
+  setEmailRef,
+  setSendCodeBtnRef,
+  setConfirmBtnRef,
+  setReSendBtnRef,
+  setAuthNum,
+  setCountEl,
+  setConfirmedMsgRef,
+}) => {
   const { t } = useTranslation();
 
   return (
@@ -84,31 +107,46 @@ const JoinForm = ({ onSubmit, onChange, onToggle, onClick, form, errors }) => {
             <InputText
               type="email"
               name="email"
+              ref={(ref) => setEmailRef(ref)}
               value={form.email}
               onChange={onChange}
             />
-            <ErrorMessages errors={errors} field="email" />
-            <Btn type="button" name="sendCodeBtn" onClick={onClick}>
+            <Btn
+              type="button"
+              name="sendCodeBtn"
+              ref={(ref) => setSendCodeBtnRef(ref)}
+              onClick={onClick}
+            >
               인증코드 전송
             </Btn>
           </div>
+          <ErrorMessages errors={errors} field="email" />
+
           <div className="auth_box">
-            <InputText
-              type="number"
-              name="authNum"
-              placeholder="인증코드 입력"
-            />
-            <div className="count" name="count">
+            <InputText type="text" name="authNum" ref={(ref) => setAuthNum(ref)} placeholder="인증코드 입력" />
+            <div className="count" name="countEl" ref={(ref) => setCountEl(ref)}>
               03:00
             </div>
-            <Btn type="button" name="confirmBtn" disabled>
+            <Btn
+              type="button"
+              name="confirmBtn"
+              ref={(ref) => setConfirmBtnRef(ref)}
+              onClick={onClick}
+              // disabled
+            >
               확인
             </Btn>
-            <Btn type="button" name="reSendBtn" disabled>
+            <Btn
+              type="button"
+              name="reSendBtn"
+              ref={(ref) => setReSendBtnRef(ref)}
+              onClick={onClick}
+              // disabled
+            >
               재전송
             </Btn>
           </div>
-          <div className="confirmed_msg" name="confirmed">
+          <div className="confirmed_msg dn" name="confirmedMsg" ref={(ref) => setConfirmedMsgRef(ref)}>
             ✅ 확인된 이메일입니다.
           </div>
         </dd>
