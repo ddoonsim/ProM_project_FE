@@ -45,7 +45,7 @@ const OuterBox = styled.header`
 const Header = () => {
   const { t } = useTranslation();
   const {
-    state : { isLogin },
+    state: { isLogin },
   } = useContext(UserContext);
 
   return (

@@ -11,6 +11,8 @@ import Login from './pages/front/member/Login';
 import Join from './pages/front/member/Join';
 import Logout from './pages/front/member/Logout';
 import Mypage from './pages/front/member/Mypage';
+import RoomContainer from './containers/chatting/RoomContainer';
+import ChatContainer from './containers/chatting/ChatContainer';
 // import Home from './pages/front/Home';
 
 const App = () => {
@@ -28,6 +30,8 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/mypage" element={<Mypage />} />
+        <Route path="/chatroom" element={<ChatContainer />} />
+        <Route path="/chatlist" element={<RoomContainer />} />
       </Route>
       <Route path="*" element={<Layout />}>
         <Route path="*" element={<NotFound />} />
