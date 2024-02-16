@@ -1,13 +1,10 @@
-import React, { useState, useCallback, useRef, useEffect } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import { produce } from 'immer';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import JoinForm from '../../components/member/JoinForm';
 import requestJoin from '../../api/member/join';
-import {
-  sendVerifyEmail,
-  sendEmailVerifyCheck,
-} from '../../api/commons/sendEmail';
+import { sendVerifyEmail } from '../../api/commons/sendEmail';
 import apiRequest from '../../lib/apiRequest';
 
 const JoinContainer = () => {
@@ -20,6 +17,7 @@ const JoinContainer = () => {
 
   const [errors, setErrors] = useState({});
 
+  // 회원가입 폼의 필요한 요소 가져오기
   const [emailRef, setEmailRef] = useState(useRef()); // 이메일 입력란 요소 useRef()
   // 확인, 재전송 버튼 요소 useRef()
   const [sendCodeBtnRef, setSendCodeBtnRef] = useState(useRef());
@@ -87,15 +85,16 @@ const JoinContainer = () => {
   // OnChange 함수
   const onChange = useCallback((e) => {
     const target = e.currentTarget;
+
+    if (target.name === 'mobile') {
+      autoHyphen(target); // 자동 하이픈 추가
+    }
+
     setForm(
       produce((draft) => {
         draft[target.name] = target.value;
       }),
     );
-
-    if (target.name == 'mobile') {
-      autoHyphen(target); // 자동 하이픈 추가
-    }
   }, []);
 
   // onToggle 함수
@@ -129,6 +128,7 @@ const JoinContainer = () => {
     }
 
     target.value = formattedPhone;
+    console.log(target.value);
   };
 
   const onClick = useCallback((e) => {
