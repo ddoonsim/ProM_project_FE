@@ -199,6 +199,15 @@ const JoinForm = ({
           <ErrorMessages errors={errors} field="mobile" />
         </dd>
       </dl>
+      <dt>{t('프로필이미지')}</dt>
+      <dd>
+        <input
+          type="file"
+          name="profile"
+          value={form.profile}
+          onChange={onChange}
+        />
+      </dd>
       <SubTitle align="center" border_width={1}>
         {t('회원가입 약관')}
       </SubTitle>
