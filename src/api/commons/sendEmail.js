@@ -15,19 +15,3 @@ export const sendVerifyEmail = function (email) {
       .catch((err) => console.error(err));
   });
 };
-
-// 인증코드 일치 여부 확인
-export const sendEmailVerifyCheck = function (authNum) {
-  return new Promise(() => {
-    apiRequest(`/email/auth_check?authNum=${authNum}`, 'GET')
-      .then((data) => {
-        console.log('인증코드 일치 여부 확인', data.data.success);
-        if (data.data.succeess) {
-          alert('이메일이 인증되었습니다😁');
-        } else {
-          alert('이메일 인증에 실패했습니다😢');
-        }
-      })
-      .catch((err) => console.error(err));
-  });
-};
