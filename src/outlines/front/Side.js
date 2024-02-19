@@ -44,6 +44,7 @@ const Nav = styled.nav`
       background: ${primary};
       color: ${white};
     }
+
   }
   ul {
     text-align: center;
