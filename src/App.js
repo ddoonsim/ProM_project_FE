@@ -13,6 +13,7 @@ import Logout from './pages/front/member/Logout';
 import Mypage from './pages/front/member/Mypage';
 import RoomContainer from './containers/chatting/RoomContainer';
 import ChatContainer from './containers/chatting/ChatContainer';
+import NewProject from './pages/front/project/NewProject';
 // import Home from './pages/front/Home';
 
 const App = () => {
@@ -32,6 +33,7 @@ const App = () => {
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/chatroom" element={<ChatContainer />} />
         <Route path="/chatlist" element={<RoomContainer />} />
+        <Route path="/newProject" element={<NewProject />} />
       </Route>
       <Route path="*" element={<Layout />}>
         <Route path="*" element={<NotFound />} />
