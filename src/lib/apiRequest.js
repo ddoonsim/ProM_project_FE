@@ -18,11 +18,23 @@ export default function apiRequest(
     url += `?${searchParams.toString()}`;
     data = null;
   }
+
+  headers = headers || {};
+
   const token = cookies.load('token');
   if (token) {
-    headers = headers || {};
     headers.Authorization = `Bearer ${token}`;
   }
+
+  let browserId = cookies.load('browserId');
+  if (!browserId) {
+    browserId = Date.now();
+    cookies.save('browserId', browserId, {
+      path: '/',
+    });
+  }
+
+  headers.browserId = browserId;
 
   return axios({
     method,

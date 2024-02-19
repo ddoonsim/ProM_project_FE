@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import classNames from '../../../node_modules/classnames/index';
 import colorNames from '../../styles/colors';
+import { BsChat } from 'react-icons/bs';
 
 const { info } = colorNames;
 
@@ -38,6 +39,10 @@ const OuterBox = styled.header`
         color: #fff;
       }
     }
+    .btn_chat {
+      width: 30px;
+      color: #fff;
+    }
   }
 `;
 
@@ -67,6 +72,9 @@ const Header = () => {
               className={({ isActive }) => classNames({ on: isActive })}
             >
               {t('마이페이지')}
+            </NavLink>
+            <NavLink to="/chatlist" className="btn_chat">
+              <BsChat />
             </NavLink>
           </>
         ) : (

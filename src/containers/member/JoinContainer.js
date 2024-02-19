@@ -187,7 +187,7 @@ const JoinContainer = () => {
           .then((data) => {
             console.log(data);
             console.log('인증코드 일치 여부 확인', data.data.success);
-            if (data.data.succeess) {
+            if (data.data.success) {
               alert('이메일이 인증되었습니다😁');
               if (authCount.intervalId) clearInterval(authCount.intervalId);
               confirmBtnRef.disabled = true;

@@ -20,7 +20,6 @@ const ChatContainer = () => {
     };
 
     webSocket.onclose = (e) => {
-      console.log(webSocket);
       console.log('연결 종료');
     };
 

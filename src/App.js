@@ -11,9 +11,10 @@ import Login from './pages/front/member/Login';
 import Join from './pages/front/member/Join';
 import Logout from './pages/front/member/Logout';
 import Mypage from './pages/front/member/Mypage';
+import NewProject from './pages/front/project/NewProject';
 import RoomContainer from './containers/chatting/RoomContainer';
 import ChatContainer from './containers/chatting/ChatContainer';
-import NewProject from './pages/front/project/NewProject';
+import ChatRoomCreate from './pages/chatting/ChatRoomCreate';
 // import Home from './pages/front/Home';
 
 const App = () => {
@@ -31,9 +32,12 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/mypage" element={<Mypage />} />
-        <Route path="/chatroom" element={<ChatContainer />} />
-        <Route path="/chatlist" element={<RoomContainer />} />
         <Route path="/newProject" element={<NewProject />} />
+        <Route Route path="/chatroom" element={<ChatContainer />}>
+          <Route path=":roomId" element={<ChatContainer />} />
+        </Route>
+        <Route path="/chatlist" element={<RoomContainer />} />
+        <Route path="/chatroom/create" element={<ChatRoomCreate />} />
       </Route>
       <Route path="*" element={<Layout />}>
         <Route path="*" element={<NotFound />} />
