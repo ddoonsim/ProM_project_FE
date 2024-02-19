@@ -1,3 +1,4 @@
+import ProjectListContainer from '../../containers/project/ProjectListContainer';
 import styled from 'styled-components';
 import UserContext from '../../modules/user';
 import { useContext } from 'react';
@@ -50,9 +51,7 @@ const Side = () => {
       <Link to="/mypage/edit">수정하기</Link>
       <hr />
       <Link to="/newProject">새 프로젝트</Link>
-      <ul>
-        <li>프로젝트 목록</li>
-      </ul>
+      <ProjectListContainer />
     </Nav>
   );
 };
