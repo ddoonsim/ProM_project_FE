@@ -27,6 +27,7 @@ dl, dt, dd, li {
 main {
   display: flex;
   background: #dbe5e7;
+  min-height: 1000px;
 }
 
 /* 공통 여백 */
