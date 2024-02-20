@@ -27,8 +27,7 @@ dl, dt, dd, li {
 main {
   display: flex;
   background: #dbe5e7;
-  padding-top: 50px;
-  padding-bottom: 100px;
+  min-height: 1000px;
 }
 
 /* 공통 여백 */
@@ -64,4 +63,9 @@ main {
   justify-content: center;
   flex-direction: column;
   align-items: center;
+}
+
+/* 메인 내용 */
+.container {
+  margin: 50px;
 }

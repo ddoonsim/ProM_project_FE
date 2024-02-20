@@ -128,13 +128,11 @@ const JoinContainer = () => {
     }
 
     target.value = formattedPhone;
-    console.log(target.value);
   };
 
   const onClick = useCallback((e) => {
     // 버튼을 클릭했을 때
     const target = e.currentTarget.name;
-    console.log(target, '버튼 클릭!!');
 
     if (target === 'sendCodeBtn') {
       if (!form.email) {
@@ -172,7 +170,6 @@ const JoinContainer = () => {
       authCount.start();
     } else if (target === 'confirmBtn') {
       // 확인버튼을 클릭했을 때
-      console.log(authNum.value);
       if (!authNum.value.trim()) {
         // 인증코드를 입력하지 않고 확인을 클릭했을 때
         alert('인증코드를 입력하세요.');
@@ -180,13 +177,9 @@ const JoinContainer = () => {
       }
 
       // 인증코드 일치 여부 확인
-      console.log(authNum.value);
-      // sendEmailVerifyCheck(authNum.value);
       new Promise(() => {
         apiRequest(`/email/auth_check?authNum=${authNum.value}`, 'GET')
           .then((data) => {
-            console.log(data);
-            console.log('인증코드 일치 여부 확인', data.data.success);
             if (data.data.success) {
               alert('이메일이 인증되었습니다😁');
               if (authCount.intervalId) clearInterval(authCount.intervalId);

@@ -1,10 +1,16 @@
+import ProjectListContainer from '../../containers/project/ProjectListContainer';
 import styled from 'styled-components';
 import UserContext from '../../modules/user';
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
 import colorNames from '../../styles/colors';
+import { SubTitle } from '../../components/commons/TitleStyle';
+import { NavLink } from 'react-router-dom';
+import classNames from '../../../node_modules/classnames/index';
+import sizeNames from '../../styles/sizes';
 
-const { info } = colorNames;
+const { primary, info, white } = colorNames;
+const { medium, big } = sizeNames;
+
 const Nav = styled.nav`
   text-align: center;
   width: 250px;
@@ -17,25 +23,39 @@ const Nav = styled.nav`
 
   hr {
     width: 70%;
-    color: black;
+    border-color: ${white};
+    border-width: thin;
+    margin: 30px;
   }
-  a {
+  .btn {
     display: inline-block;
     border: 1px solid ${info};
-    width: 90px;
-    height: 28px;
+    width: 150px;
+    height: 40px;
+    line-height: 35px;
     border-radius: 3px;
-    line-height: 26px;
     color: ${info};
-    background: #fff;
+    background: ${white};
+    font-size: ${medium};
+    font-weight: 500;
+    cursor: pointer;
 
     &.on {
-      background: ${info};
-      color: #fff;
+      background: ${primary};
+      color: ${white};
     }
+
   }
   ul {
-    text-align: left;
+    text-align: center;
+  }
+
+  .list {
+    display: block;
+    padding: 10px 0;
+    font-size: ${medium};
+    color: ${white};
+    background: ${primary};
   }
 `;
 
@@ -46,13 +66,23 @@ const Side = () => {
   return (
     <Nav>
       <div>프로필 이미지</div>
-      <div>{userInfo.name}</div>
-      <Link to="/mypage/edit">수정하기</Link>
+      <SubTitle align="center" color="white">
+        {userInfo.name}
+      </SubTitle>
+      <NavLink
+        to="/mypage/edit"
+        className={({ isActive }) => classNames({ on: isActive }) + ' btn'}
+      >
+        수정하기
+      </NavLink>
       <hr />
-      <Link to="/newProject">새 프로젝트</Link>
-      <ul>
-        <li>프로젝트 목록</li>
-      </ul>
+      <NavLink
+        to="/newProject"
+        className={({ isActive }) => classNames({ on: isActive }) + ' btn'}
+      >
+        새 프로젝트
+      </NavLink>
+      <ProjectListContainer />
     </Nav>
   );
 };
