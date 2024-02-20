@@ -6,6 +6,7 @@ const validation = {
   NotBlank_mobile: '⚠️전화번호를 입력하세요.',
   AssertTrue_join_agree: '⚠️가입 약관에 동의하세요.',
   Login_fail: '⚠️아이디 또는 비밀번호가 일치하지 않습니다.',
+  Find_fail: '⚠️이메일 또는 아이디가 일치하지 않습니다.',
 };
 
 export default validation;
