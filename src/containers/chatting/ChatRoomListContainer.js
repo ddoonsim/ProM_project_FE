@@ -1,6 +1,6 @@
 import { getRooms } from '../../api/chatting/chat';
 import { useState, useCallback, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 const ChatRoomListContainer = () => {
   const [form, setForm] = useState({ roomNm: '', max: '' });
   const [rooms, setRooms] = useState([]);
@@ -12,7 +12,6 @@ const ChatRoomListContainer = () => {
       .then((res) => {
         setRooms(res.data.data);
         setLoading(false);
-        console.log(rooms);
       })
       .catch((err) => {
         console.error(err);

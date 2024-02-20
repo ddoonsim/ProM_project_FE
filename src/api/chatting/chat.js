@@ -4,7 +4,11 @@ import apiRequest from '../../lib/apiRequest';
 export const getRooms = () => apiRequest('/chat/rooms');
 
 /** 방정보  */
-export const getRoom = (roomNo) => apiRequest(`/chat/room/${roomNo}`);
+export const getRoom = (roomNo) => {
+  return new Promise((resolve, reject) => {
+    apiRequest(`/chat/room/${roomNo}`).then((res) => {});
+  });
+};
 
 /** 방등록 */
 export const registerRoom = (form) => {
@@ -20,5 +24,11 @@ export const registerRoom = (form) => {
 };
 
 /** 채팅 메세지 기록 */
-export const registerMessage = (form) =>
-  apiRequest('/chat/message', 'POST', form);
+export const registerMessage = (form) => {
+  console.log('form====', form);
+  return new Promise((resolve, reject) => {
+    apiRequest('/chat/message', 'POST', form).then((res) => {
+      console.log('message res ===============', res);
+    });
+  });
+};
