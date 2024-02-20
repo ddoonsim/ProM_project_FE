@@ -7,6 +7,7 @@ import sizeNames from '../../styles/sizes';
 import styled from 'styled-components';
 import loadable from '@loadable/component';
 import React from 'react';
+import FileUpload from '../commons/FileUpload';
 
 const ErrorMessages = loadable(() => import('../commons/ErrorMessages'));
 
@@ -95,6 +96,7 @@ const JoinForm = ({
   setAuthNum,
   setCountEl,
   setConfirmedMsgRef,
+  fileUploadCallback,
 }) => {
   const { t } = useTranslation();
 
@@ -123,8 +125,17 @@ const JoinForm = ({
           <ErrorMessages errors={errors} field="email" />
 
           <div className="auth_box">
-            <InputText type="text" name="authNum" ref={(ref) => setAuthNum(ref)} placeholder="인증코드 입력" />
-            <div className="count" name="countEl" ref={(ref) => setCountEl(ref)}>
+            <InputText
+              type="text"
+              name="authNum"
+              ref={(ref) => setAuthNum(ref)}
+              placeholder="인증코드 입력"
+            />
+            <div
+              className="count"
+              name="countEl"
+              ref={(ref) => setCountEl(ref)}
+            >
               03:00
             </div>
             <Btn
@@ -146,7 +157,11 @@ const JoinForm = ({
               재전송
             </Btn>
           </div>
-          <div className="confirmed_msg dn" name="confirmedMsg" ref={(ref) => setConfirmedMsgRef(ref)}>
+          <div
+            className="confirmed_msg dn"
+            name="confirmedMsg"
+            ref={(ref) => setConfirmedMsgRef(ref)}
+          >
             ✅ 확인된 이메일입니다.
           </div>
         </dd>
@@ -199,15 +214,19 @@ const JoinForm = ({
           <ErrorMessages errors={errors} field="mobile" />
         </dd>
       </dl>
-      <dt>{t('프로필이미지')}</dt>
-      <dd>
-        <input
-          type="file"
-          name="profile"
-          value={form.profile}
-          onChange={onChange}
-        />
-      </dd>
+      <dl>
+        <dt>{t('프로필이미지')}</dt>
+        <dd>
+          <FileUpload
+            gid="testgid"
+            imageOnly={true}
+            singleFile={true}
+            fileUploadCallback={fileUploadCallback}
+          >
+            {t('이미지_업로드')}
+          </FileUpload>
+        </dd>
+      </dl>
       <SubTitle align="center" border_width={1}>
         {t('회원가입 약관')}
       </SubTitle>
