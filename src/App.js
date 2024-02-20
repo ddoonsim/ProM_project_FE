@@ -29,7 +29,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/mypage" element={<Mypage />} />
-        <Route path="/newProject" element={<NewProject />} />
+                <Route path="/newProject" element={<NewProject />} />
         <Route path="/project/:projectSeq" element={<ProjectMain />} />
       </Route>
       <Route path="*" element={<Layout />}>
