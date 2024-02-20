@@ -1,8 +1,8 @@
 import apiRequest from '../../lib/apiRequest';
 
-export default function getList() {
+export default function getProjectInfo(projectSeq) {
   return new Promise((resolve, reject) => {
-    apiRequest('/project/list', 'GET')
+    apiRequest(`/project?projectSeq=${projectSeq}`, 'GET')
       .then((res) => {
         if (!res.data.success) {
           reject(res.data);
