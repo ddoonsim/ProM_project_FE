@@ -45,16 +45,28 @@ const SideNav = styled.nav`
     background: ${white};
     font-size: ${medium};
     font-weight: 500;
-    cursor: pointer;
-
-    &.on {
-      background: ${primary};
-      color: ${white};
-    }
-
-  }
-  ul {
+    text-decoration: none;
     text-align: center;
+transition: background-color 0.3s ease;
+
+    &:hover {
+      background: ${white};
+      color: ${primary};
+    }
+  }
+
+  hr {
+    width: 80%;
+    border-color: ${white};
+    border-width: thin;
+    margin: 30px 0;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
   }
 
   .list {
@@ -87,7 +99,7 @@ const Side = () => {
         {userInfo.name}
       </SubTitle>
       <NavLink
-        to="/mypage/profile"
+        to="/mypage/edit"
         className={({ isActive }) => classNames({ on: isActive }) + ' btn'}
       >
         수정하기
