@@ -44,7 +44,6 @@ const Nav = styled.nav`
       background: ${primary};
       color: ${white};
     }
-
   }
   ul {
     text-align: center;
@@ -70,7 +69,7 @@ const Side = () => {
         {userInfo.name}
       </SubTitle>
       <NavLink
-        to="/mypage/edit"
+        to="/mypage/profile"
         className={({ isActive }) => classNames({ on: isActive }) + ' btn'}
       >
         수정하기
