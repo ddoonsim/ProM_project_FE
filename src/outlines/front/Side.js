@@ -7,34 +7,41 @@ import { SubTitle } from '../../components/commons/TitleStyle';
 import { NavLink } from 'react-router-dom';
 import classNames from '../../../node_modules/classnames/index';
 import sizeNames from '../../styles/sizes';
+import { Link } from '../../../node_modules/react-router-dom/dist/index';
 
 const { primary, info, white } = colorNames;
 const { medium, big } = sizeNames;
 
-const Nav = styled.nav`
-  text-align: center;
+const SideNav = styled.nav`
   width: 250px;
-  background: #88b0bf;
-  min-height: 700px;
+  height: auto;
+  background: #3e768c;
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  button {
-    height: 30px;
+  .profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: ${white};
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: ${medium};
+    color: ${primary};
+    font-weight: bold;
   }
 
-  hr {
-    width: 70%;
-    border-color: ${white};
-    border-width: thin;
-    margin: 30px;
-  }
   .btn {
-    display: inline-block;
-    border: 1px solid ${info};
     width: 150px;
     height: 40px;
-    line-height: 35px;
+    line-height: 40px;
+    margin-bottom: 10px;
     border-radius: 3px;
-    color: ${info};
+    color: ${primary};
     background: ${white};
     font-size: ${medium};
     font-weight: 500;
@@ -44,6 +51,7 @@ const Nav = styled.nav`
       background: ${primary};
       color: ${white};
     }
+
   }
   ul {
     text-align: center;
@@ -51,19 +59,29 @@ const Nav = styled.nav`
 
   .list {
     display: block;
-    padding: 10px 0;
+    padding: 10px;
     font-size: ${medium};
     color: ${white};
-    background: ${primary};
+    transition: background-color 0.3s ease;
+    text-align: center;
+
+    &:hover {
+      background-color: ${white};
+      color: ${primary};
+    }
+  }
+
+  .on {
+    background: ${white};
+    color: ${primary};
   }
 `;
-
 const Side = () => {
   const {
     state: { isLogin, userInfo },
   } = useContext(UserContext);
   return (
-    <Nav>
+    <SideNav>
       <div>프로필 이미지</div>
       <SubTitle align="center" color="white">
         {userInfo.name}
@@ -77,12 +95,14 @@ const Side = () => {
       <hr />
       <NavLink
         to="/newProject"
-        className={({ isActive }) => classNames({ on: isActive }) + ' btn'}
+        className={({ isActive }) =>
+          classNames({ on: isActive }) + ' btn new-project'
+        }
       >
-        새 프로젝트
+        + 새 프로젝트
       </NavLink>
       <ProjectListContainer />
-    </Nav>
+    </SideNav>
   );
 };
 

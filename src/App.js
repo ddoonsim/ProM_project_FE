@@ -11,10 +11,8 @@ import Login from './pages/front/member/Login';
 import Join from './pages/front/member/Join';
 import Logout from './pages/front/member/Logout';
 import Mypage from './pages/front/member/Mypage';
-import Profile from './pages/front/member/ProfileEdit';
 import NewProject from './pages/front/project/NewProject';
-import ProfileEdit from './pages/front/member/ProfileEdit';
-// import Home from './pages/front/Home';
+import ProjectMain from './pages/front/project/ProjectMain';
 
 const App = () => {
   const {
@@ -31,8 +29,8 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/mypage" element={<Mypage />} />
-        <Route path="/mypage/profile" element={<ProfileEdit />} />
-        <Route path="/newProject" element={<NewProject />} />
+                <Route path="/newProject" element={<NewProject />} />
+        <Route path="/project/:projectSeq" element={<ProjectMain />} />
       </Route>
       <Route path="*" element={<Layout />}>
         <Route path="*" element={<NotFound />} />
