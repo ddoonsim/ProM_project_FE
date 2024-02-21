@@ -33,7 +33,7 @@ const ProjectDashBoard = styled.div`
         font-weight: 500;
       }
 
-      a {
+      .btn {
         margin-left: 530px;
         padding: 5px 20px;
         background-color: ${info};
@@ -62,7 +62,7 @@ const ProjectDashBoard = styled.div`
         width: 300px;
 
         p {
-            font-size: ${medium};
+          font-size: ${medium};
         }
       }
 
@@ -136,7 +136,9 @@ const ProjectMainForm = ({ item }) => {
       <div className="project_info_box">
         <div className="info_box">
           <MainTitle borderBottom="none">
-            <FiMoreVertical />
+            <Link to="/">
+              <FiMoreVertical />
+            </Link>
             &nbsp;&nbsp;{pname}
           </MainTitle>
 
@@ -144,16 +146,15 @@ const ProjectMainForm = ({ item }) => {
 
           <h3>
             📣 공지사항
-            <Link>새 글 등록</Link>
+            <Link className="btn">새 글 등록</Link>
           </h3>
           <div className="notice_box"></div>
         </div>
         <div className="team_member_box">
           <div className="team_member">
             <h2>팀 구성원</h2>
-            {item.member && item.member.map(({ seq, name }) => (
-              <p key={seq}>{name}</p>
-            ))}
+            {item.member &&
+              item.member.map(({ seq, name }) => <p key={seq}>{name}</p>)}
           </div>
           <div className="btns">
             <Link className="btn" name="invite_member">
