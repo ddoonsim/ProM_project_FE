@@ -13,6 +13,8 @@ const JoinContainer = () => {
 
   const [form, setForm] = useState({
     agree: false,
+    gid: '' + Date.now(),
+    profileImage : null,
   });
 
   const [errors, setErrors] = useState({});
@@ -249,7 +251,11 @@ const JoinContainer = () => {
   };
 
   const fileUploadCallback = useCallback((files) => {
-    console.log(files);
+    if (files && files.length > 0) {
+      setForm(produce(draft => {
+        draft.profileImage = files[0];
+      }))
+    }
   }, []);
 
   return (

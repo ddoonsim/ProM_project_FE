@@ -67,8 +67,7 @@ const LoginContainer = () => {
           }));
         });
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [form],
+    [form, t, navigate, updateUserInfo],
   );
 
   const onChange = useCallback((e) => {
