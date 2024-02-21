@@ -47,7 +47,7 @@ const SideNav = styled.nav`
     font-weight: 500;
     text-decoration: none;
     text-align: center;
-transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease;
 
     &:hover {
       background: ${white};
@@ -92,31 +92,32 @@ const Side = () => {
   const {
     state: { isLogin, userInfo },
   } = useContext(UserContext);
+  console.log(isLogin);
   return (
     <SideNav>
       {isLogin && (
-      <>
-        <div>프로필 이미지</div>
-        <SubTitle align="center" color="white">
-          {userInfo.name}
-        </SubTitle>
-        <NavLink
-          to="/mypage/edit"
-          className={({ isActive }) => classNames({ on: isActive }) + ' btn'}
-        >
-          수정하기
-        </NavLink>
-        <hr />
-        <NavLink
-          to="/newProject"
-          className={({ isActive }) =>
-            classNames({ on: isActive }) + ' btn new-project'
-          }
-        >
-          + 새 프로젝트
-        </NavLink>
-        <ProjectListContainer />
-      </>
+        <>
+          <div>프로필 이미지</div>
+          <SubTitle align="center" color="white">
+            {userInfo.name}
+          </SubTitle>
+          <NavLink
+            to="/mypage/edit"
+            className={({ isActive }) => classNames({ on: isActive }) + ' btn'}
+          >
+            수정하기
+          </NavLink>
+          <hr />
+          <NavLink
+            to="/newProject"
+            className={({ isActive }) =>
+              classNames({ on: isActive }) + ' btn new-project'
+            }
+          >
+            + 새 프로젝트
+          </NavLink>
+          <ProjectListContainer />
+        </>
       )}
     </SideNav>
   );
