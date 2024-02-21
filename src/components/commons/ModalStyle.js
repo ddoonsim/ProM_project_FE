@@ -22,6 +22,7 @@ export const ModalStyle = styled.div`
   }
 `;
 
+// 모달 창 스타일
 export const customStyles = {
   overlay: {
     zIndex: 1000,
@@ -38,6 +39,7 @@ export const customStyles = {
   },
 };
 
+// 닫기 버튼 
 export const closeBtn = {
   display: 'contents',
   fontSize: 'xx-large',
@@ -45,6 +47,7 @@ export const closeBtn = {
   cursor: 'pointer',
 };
 
+// X svg 요소 위치 고정
 export const closeSvg = {
   position: 'absolute',
   right: '5px',
