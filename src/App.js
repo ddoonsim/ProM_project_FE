@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import UserContext from './modules/user';
 
 import Layout from './layouts/front/CommonLayout';
+import Modal from 'react-modal';
 
 /* 소비자 페이지 */
 import NotFound from './pages/commons/NotFound';
@@ -13,6 +14,8 @@ import Logout from './pages/front/member/Logout';
 import Mypage from './pages/front/member/Mypage';
 import NewProject from './pages/front/project/NewProject';
 import ProjectMain from './pages/front/project/ProjectMain';
+
+Modal.setAppElement('#root');
 
 const App = () => {
   const {

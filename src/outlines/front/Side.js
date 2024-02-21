@@ -1,13 +1,16 @@
 import ProjectListContainer from '../../containers/project/ProjectListContainer';
 import styled from 'styled-components';
 import UserContext from '../../modules/user';
-import { useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
+import Modal from 'react-modal';
 import colorNames from '../../styles/colors';
 import { SubTitle } from '../../components/commons/TitleStyle';
 import { NavLink } from 'react-router-dom';
+import { CgClose } from "react-icons/cg";
 import classNames from '../../../node_modules/classnames/index';
 import sizeNames from '../../styles/sizes';
-import { Link } from '../../../node_modules/react-router-dom/dist/index';
+import NewProject from '../../pages/front/project/NewProject';
+import { customStyles, closeBtn, closeSvg } from '../../components/commons/ModalStyle';
 
 const { primary, info, white } = colorNames;
 const { medium, big } = sizeNames;
@@ -38,20 +41,22 @@ const SideNav = styled.nav`
   .btn {
     width: 150px;
     height: 40px;
-    line-height: 40px;
+    line-height: 38px;
     margin-bottom: 10px;
     border-radius: 3px;
+    border: none;
     color: ${primary};
     background: ${white};
     font-size: ${medium};
     font-weight: 500;
     text-decoration: none;
     text-align: center;
-transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease;
 
     &:hover {
       background: ${white};
       color: ${primary};
+      cursor: pointer;
     }
   }
 
@@ -87,11 +92,23 @@ transition: background-color 0.3s ease;
     background: ${white};
     color: ${primary};
   }
+
+  .ReactModal__Content--after-open {
+    width: 500px;
+    height: 500px;
+  }
 `;
 const Side = () => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  useEffect(() => {
+    setModalIsOpen(modalIsOpen);
+  }, [modalIsOpen]);
+
   const {
     state: { isLogin, userInfo },
   } = useContext(UserContext);
+
+
   return (
     <SideNav>
       <div>프로필 이미지</div>
@@ -105,15 +122,16 @@ const Side = () => {
         수정하기
       </NavLink>
       <hr />
-      <NavLink
-        to="/newProject"
-        className={({ isActive }) =>
-          classNames({ on: isActive }) + ' btn new-project'
-        }
-      >
+      <button className="btn" onClick={() => setModalIsOpen(true)}>
+        {' '}
         + 새 프로젝트
-      </NavLink>
+      </button>
       <ProjectListContainer />
+
+      <Modal style={customStyles} isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+        <button style={closeBtn} onClick={() => setModalIsOpen(false)}><CgClose style={closeSvg} /></button>
+        <NewProject />
+      </Modal>
     </SideNav>
   );
 };

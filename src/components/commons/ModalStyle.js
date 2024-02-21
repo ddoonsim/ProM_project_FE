@@ -23,3 +23,31 @@ export const ModalStyle = styled.div`
     top: 10px;
   }
 `;
+
+export const customStyles = {
+  overlay: {
+    zIndex: 1000,
+    backgroundColor: '#00000070',
+  },
+  content: {
+    width: '800px',
+    inset: 'unset',
+    margin: '50vh auto',
+    padding: '0 10px',
+    transform: 'translateY(-50%)',
+    position: 'relative',
+    textAlign: 'center',
+  },
+};
+
+export const closeBtn = {
+  display: 'contents',
+  fontSize: 'xx-large',
+  position: 'absolute',
+  cursor: 'pointer',
+};
+
+export const closeSvg = {
+  position: 'absolute',
+  right: '5px',
+};
