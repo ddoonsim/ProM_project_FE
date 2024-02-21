@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# 🗃️프롬ProM
+## - 프로젝트 관리 협업 툴 플랫폼 개발 프로젝트
+### 📍목차
+[1. 프로젝트 개요](#프로젝트-개요)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[2. 기획 내용](#기획-내용)
 
-## Available Scripts
+[3. 화면 구성](#화면-구성)
 
-In the project directory, you can run:
+[4. 역할 및 담당 업무](#역할-및-담당-업무)
 
-### `yarn start`
+[5. 자체 총평](#자체-총평-및-소감)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 프로젝트 개요
+### 💡주제 선정 배경
+팀 프로젝트를 진행하면서 팀원들 간의 유기적인 커뮤니케이션의 필요성을 느꼈고,
 
-### `yarn test`
+프로젝트의 전체적인 진행 상황을 모든 팀원이 시각적으로 확인할 수 있는 협업 툴을 적극 활용했습니다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+개발 프로젝트 기획 당시 많이 활용하는 팀 프로젝트를 관리하는 플랫폼을 구현하고자 하였습니다.
 
-### `yarn build`
+### 🛠️Skills
+![그림1](https://github.com/ddoonsim/ProM_project_FE/assets/143992194/3915e612-d4cc-49ec-86b3-3423de39cbbc)
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 기획 내용
+<details>
+  <summary>공통</summary>
+  <ul>
+    <li>파일 업로드</li>
+  </ul>
+</details>
+<details>
+  <summary> 로그인 및 회원가입</summary>
+  <ul>
+    <li>스프링 시큐리티를 이용한 로그인 및 회원가입</li>
+    <li>회원가입 시 이메일 인증</li>
+    <li>JWT 토큰 방식을 이용한 로그인 및 로그인 유지</li>
+    <li>비밀번호 찾기 ➡️ 비밀번호 초기화 및 임시 발급 비밀번호 이메일 전송</li>
+  </ul>
+</details>
+<details>
+  <summary>프로젝트</summary>
+  <ul>
+    <li>프로젝트 생성 ➡️ 생성자 : 팀원 초대 가능, 모든 팀원이 참여하는 단체 채팅방 생성</li>
+    <li>프로젝트 하위에 업무, 업무 하위에 To Do 구조</li>
+    <li>공지사항 등록 가능</li>
+    <li>프로젝트 진행 상황에 따른 시각적 대시보드 구현</li>
+  </ul>
+</details>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 화면 구성
+(추후 추가)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 역할 및 담당 업무
+(추후 추가)
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 자체 총평 및 소감
+(추후 추가)

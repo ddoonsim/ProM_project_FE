@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import UserContext from './modules/user';
 
 import Layout from './layouts/front/CommonLayout';
+import Modal from 'react-modal';
 
 /* 소비자 페이지 */
 import NotFound from './pages/commons/NotFound';
@@ -17,6 +18,8 @@ import ChatContainer from './containers/chatting/ChatContainer';
 import ChatRoomCreate from './pages/chatting/ChatRoomCreate';
 // import Home from './pages/front/Home';
 import ProjectMain from './pages/front/project/ProjectMain';
+
+Modal.setAppElement('#root');
 
 const App = () => {
   const {
