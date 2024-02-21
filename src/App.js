@@ -15,6 +15,10 @@ import FindId from './pages/front/member/FindId';
 import FindPw from './pages/front/member/FindPw';
 import Mypage from './pages/front/member/Mypage';
 import NewProject from './pages/front/project/NewProject';
+import RoomContainer from './containers/chatting/RoomContainer';
+import ChatContainer from './containers/chatting/ChatContainer';
+import ChatRoomCreate from './pages/chatting/ChatRoomCreate';
+// import Home from './pages/front/Home';
 import ProjectMain from './pages/front/project/ProjectMain';
 
 Modal.setAppElement('#root');
@@ -36,6 +40,12 @@ const App = () => {
         <Route path="/find_id" element={<FindId />} />
         <Route path="/find_pw" element={<FindPw />} />
         <Route path="/mypage" element={<Mypage />} />
+        <Route path="/newProject" element={<NewProject />} />
+        <Route Route path="/chatroom" element={<ChatContainer />}>
+          <Route path=":roomNo" element={<ChatContainer />} />
+        </Route>
+        <Route path="/chatlist" element={<RoomContainer />} />
+        <Route path="/chatroom/create" element={<ChatRoomCreate />} />
                 <Route path="/newProject" element={<NewProject />} />
         <Route path="/project/:projectSeq" element={<ProjectMain />} />
       </Route>

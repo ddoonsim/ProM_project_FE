@@ -15,19 +15,19 @@ import './i18n'; // 다국어 설정
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <UserProvider>
-      <HelmetProvider>
-        <BrowserRouter>
-          <MainClassProvider>
-            <ErrorPage>
-              <App />
-            </ErrorPage>
-          </MainClassProvider>
-        </BrowserRouter>
-      </HelmetProvider>
-    </UserProvider>
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <UserProvider>
+    <HelmetProvider>
+      <BrowserRouter>
+        <MainClassProvider>
+          <ErrorPage>
+            <App />
+          </ErrorPage>
+        </MainClassProvider>
+      </BrowserRouter>
+    </HelmetProvider>
+  </UserProvider>,
+  // </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function
