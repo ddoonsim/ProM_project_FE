@@ -11,6 +11,8 @@ import Main from './pages/front/Main';
 import Login from './pages/front/member/Login';
 import Join from './pages/front/member/Join';
 import Logout from './pages/front/member/Logout';
+import FindId from './pages/front/member/FindId';
+import FindPw from './pages/front/member/FindPw';
 import Mypage from './pages/front/member/Mypage';
 import NewProject from './pages/front/project/NewProject';
 import RoomContainer from './containers/chatting/RoomContainer';
@@ -35,6 +37,8 @@ const App = () => {
         <Route path="/join" element={<Join />} />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
+        <Route path="/find_id" element={<FindId />} />
+        <Route path="/find_pw" element={<FindPw />} />
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/newProject" element={<NewProject />} />
         <Route Route path="/chatroom" element={<ChatContainer />}>
