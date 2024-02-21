@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import colorNames from '../../styles/colors';
-import sizeNames from '../../styles/sizes';
 
 export const ModalStyle = styled.div`
   width: 300px;
@@ -23,3 +21,34 @@ export const ModalStyle = styled.div`
     top: 10px;
   }
 `;
+
+// 모달 창 스타일
+export const customStyles = {
+  overlay: {
+    zIndex: 1000,
+    backgroundColor: '#00000070',
+  },
+  content: {
+    width: '800px',
+    inset: 'unset',
+    margin: '50vh auto',
+    padding: '0 10px',
+    transform: 'translateY(-50%)',
+    position: 'relative',
+    textAlign: 'center',
+  },
+};
+
+// 닫기 버튼 
+export const closeBtn = {
+  display: 'contents',
+  fontSize: 'xx-large',
+  position: 'absolute',
+  cursor: 'pointer',
+};
+
+// X svg 요소 위치 고정
+export const closeSvg = {
+  position: 'absolute',
+  right: '5px',
+};
