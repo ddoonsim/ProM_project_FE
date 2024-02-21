@@ -1,10 +1,12 @@
-import FindPwForm from '../../components/member/FindPwForm';
 import React, { useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { findUserInfo } from '../../api/member/findpw';
+import FindPwForm from '../../components/member/FindPwForm';
 
 const FindPwContainer = () => {
     const { t } = useTranslation();
+    const navigate = useNavigate();
     const [form, setForm] = useState({
       agree: false,
     });
@@ -26,8 +28,9 @@ const FindPwContainer = () => {
           };
 
           for (const field in requiredFields) {
+            _errors[field] = _errors[field] || [];
             if (!form[field] || !form[field].trim()) {
-              _errors[field] = requiredFields[field];
+              _errors[field].push(requiredFields[field]);
               hasError = true;
             }
           }
@@ -38,19 +41,23 @@ const FindPwContainer = () => {
             return;
           }
 
-          // 회원정보 일치 확인
-          findUserInfo(form)
-            .then(() => {
+        // 회원정보 일치 확인
+         findUserInfo(form)
+         .then(() => {
+             // 회원정보 일치시 처리
+             alert(t('sendEmail_findPw_ok'));
 
-            })
-            . catch (() => {
-                setErrors(() => ({
-                    global: t('Find_fail'),
-                }));
+             // 로그인 페이지 이동
+             navigate('/login', { replace: true });
 
-            });
+         })
+         . catch (() => {
+             setErrors(() => ({
+                 global: t('Find_fail'),
+             }));
+
+         });
          
-
         },
         [form, t],
     );

@@ -1,4 +1,3 @@
-import JoinContainer from '../../../containers/member/JoinContainer';
 import { Helmet } from 'react-helmet-async';
 import { MainTitle } from '../../../components/commons/TitleStyle';
 import { OuterBox } from '../../../components/commons/OutlineStyles';

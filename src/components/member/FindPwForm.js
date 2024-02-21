@@ -36,12 +36,12 @@ const FormBox = styled.form`
   }
   `;
 
-  const FindPwForm = ({ onSubmit, onChange, form, errors }) => {
-    const { t } = useTranslation();
+  const FindPwForm = ({ onSubmit, onChange, form, errors, onClick }) => {
 
     errors = errors || {};
 
     const refEmail = useRef();
+    const { t } = useTranslation();
 
     useEffect(() => {
         refEmail.current.focus();
@@ -53,7 +53,7 @@ const FormBox = styled.form`
             <dt>{t('이메일')}</dt>
             <dd>
             <InputText
-                type="text"
+                type="email"
                 name="email"
                 ref={refEmail}
                 onChange={onChange}
@@ -99,6 +99,7 @@ const FormBox = styled.form`
           {t('다시입력')}
         </BigButton>
       </ButtonGroup>
+
     </FormBox>
   );
 };

@@ -94,26 +94,30 @@ const Side = () => {
   } = useContext(UserContext);
   return (
     <SideNav>
-      <div>프로필 이미지</div>
-      <SubTitle align="center" color="white">
-        {userInfo.name}
-      </SubTitle>
-      <NavLink
-        to="/mypage/edit"
-        className={({ isActive }) => classNames({ on: isActive }) + ' btn'}
-      >
-        수정하기
-      </NavLink>
-      <hr />
-      <NavLink
-        to="/newProject"
-        className={({ isActive }) =>
-          classNames({ on: isActive }) + ' btn new-project'
-        }
-      >
-        + 새 프로젝트
-      </NavLink>
-      <ProjectListContainer />
+      {isLogin && (
+      <>
+        <div>프로필 이미지</div>
+        <SubTitle align="center" color="white">
+          {userInfo.name}
+        </SubTitle>
+        <NavLink
+          to="/mypage/edit"
+          className={({ isActive }) => classNames({ on: isActive }) + ' btn'}
+        >
+          수정하기
+        </NavLink>
+        <hr />
+        <NavLink
+          to="/newProject"
+          className={({ isActive }) =>
+            classNames({ on: isActive }) + ' btn new-project'
+          }
+        >
+          + 새 프로젝트
+        </NavLink>
+        <ProjectListContainer />
+      </>
+      )}
     </SideNav>
   );
 };
