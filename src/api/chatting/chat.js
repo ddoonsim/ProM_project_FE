@@ -6,7 +6,13 @@ export const getRooms = () => apiRequest('/chat/rooms');
 /** 방정보  */
 export const getRoom = (roomNo) => {
   return new Promise((resolve, reject) => {
-    apiRequest(`/chat/room/${roomNo}`).then((res) => {});
+    apiRequest(`/chat/room/${roomNo}`).then((res) => {
+      if (!res.data.success) {
+        reject(res.data);
+      } else {
+        resolve(res.data.data);
+      }
+    });
   });
 };
 
@@ -25,10 +31,13 @@ export const registerRoom = (form) => {
 
 /** 채팅 메세지 기록 */
 export const registerMessage = (form) => {
-  console.log('form====', form);
   return new Promise((resolve, reject) => {
     apiRequest('/chat/message', 'POST', form).then((res) => {
-      console.log('message res ===============', res);
+      if (!res.data.success) {
+        reject(res.data);
+      } else {
+        resolve(res.data.data);
+      }
     });
   });
 };

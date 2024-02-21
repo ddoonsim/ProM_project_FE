@@ -2,18 +2,44 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { InputText } from '../commons/InputStyle';
 import { FiSend } from 'react-icons/fi';
+import colorNames from '../../styles/colors';
+
+const { info, primary } = colorNames;
 
 const ChatBox = styled.ul`
-  min-height: 700px;
-  position: static;
-  display: block;
-  top: 110px;
-  left: 15px;
-  width: calc(70% - 30px);
-  height: calc(100% - 225px);
+  min-height: 0;
+  height: 700px;
+  overflow-y: auto; /* 세로 스크롤을 표시하고 필요할 때만 스크롤합니다. */
+  border: 1px solid #ccc; /* 채팅창에 테두리를 추가합니다. */
   background: #eee;
   padding: 10px;
-  overflow-y: auto;
+
+  li {
+    display: grid;
+    justify-content: start;
+  }
+
+  .me {
+    justify-content: end;
+  }
+
+  li + li {
+  }
+
+  span {
+    max-widht: 50px;
+    background: ${info};
+    color: #fff;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    line-height: 19px;
+  }
+
+  .me > span {
+    widht: 50%;
+    background: ${primary};
+  }
 `;
 
 const InputGrp = styled.div`
@@ -40,6 +66,27 @@ const InputGrp = styled.div`
   }
 `;
 
+const Hr = styled.div`
+  .hr-sect {
+    display: flex;
+    flex-basis: 100%;
+    align-items: center;
+    color: #ff4040;
+    font-size: 12px;
+    margin: 8px 0px;
+  }
+  .hr-sect::before,
+  .hr-sect::after {
+    content: '';
+    flex-grow: 1;
+    background: #ff4040;
+    height: 1px;
+    font-size: 0px;
+    line-height: 0px;
+    margin: 0px 16px;
+  }
+`;
+
 const ChatRoomForm = ({
   roomNo,
   handleClick,
@@ -48,12 +95,18 @@ const ChatRoomForm = ({
   chatBoxEl,
   handleChange,
   lis,
-  children,
+  loglis,
 }) => {
   return (
     <>
       <h1>{roomNo}채팅방!!</h1>
-      <ChatBox ref={chatBoxEl}>{lis}</ChatBox>
+      <ChatBox ref={chatBoxEl} id="chatBox">
+        {loglis}
+        <Hr>
+          <div className="hr-sect">이전 채팅</div>
+        </Hr>
+        {lis}
+      </ChatBox>
 
       <InputGrp>
         <InputText
