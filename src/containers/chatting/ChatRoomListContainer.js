@@ -3,7 +3,6 @@ import { useState, useCallback, useEffect } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { MainTitle } from '../../components/commons/TitleStyle';
 const ChatRoomListContainer = () => {
-  const [form, setForm] = useState({ roomNm: '', max: '' });
   const [rooms, setRooms] = useState([]);
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(true);
@@ -11,7 +10,7 @@ const ChatRoomListContainer = () => {
   const updateRooms = useCallback(() => {
     getRooms()
       .then((res) => {
-        setRooms(res.data.data);
+        setRooms(res);
         setLoading(false);
       })
       .catch((err) => {

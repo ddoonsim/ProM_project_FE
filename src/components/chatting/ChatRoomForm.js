@@ -8,6 +8,7 @@ import { MainTitle } from '../commons/TitleStyle';
 const { info, primary } = colorNames;
 
 const ChatBox = styled.ul`
+  display: flex;
   min-height: 0;
   height: 700px;
   overflow-y: auto; /* 세로 스크롤을 표시하고 필요할 때만 스크롤합니다. */
@@ -89,7 +90,7 @@ const Hr = styled.div`
 `;
 
 const ChatRoomForm = ({
-  roomNo,
+  roomNm,
   handleClick,
   inputEl,
   buttonEl,
@@ -100,6 +101,7 @@ const ChatRoomForm = ({
 }) => {
   return (
     <>
+      <MainTitle>{roomNm}</MainTitle>
       <ChatBox ref={chatBoxEl} id="chatBox">
         {loglis}
         <Hr>
