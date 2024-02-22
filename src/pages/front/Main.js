@@ -13,8 +13,6 @@ const Main = () => {
     state: { isLogin, userInfo },
   } = useContext(UserContext);
 
-  console.log('userInfo', { userInfo });
-
   return isLogin ? (
     <>
       <h1>{userInfo.name}님 로그인 성공 페이지 빠밤</h1>
