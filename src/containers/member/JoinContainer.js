@@ -130,7 +130,6 @@ const JoinContainer = () => {
     }
 
     target.value = formattedPhone;
-    console.log(target.value);
   };
 
   const onClick = useCallback((e) => {

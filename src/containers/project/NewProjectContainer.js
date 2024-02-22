@@ -16,8 +16,7 @@ const NewProjectContainer = () => {
         .then(() => {
           alert('새 프로젝트 생성했습니다.');
 
-          // 로그인 페이지 이동
-          navigate('/', { replace: true });
+          window.location.reload();
         })
         .catch((err) => console.error(err));
     },
