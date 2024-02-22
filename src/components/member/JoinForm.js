@@ -225,6 +225,7 @@ const JoinForm = ({
             gid={form.gid}
             imageOnly={true}
             singleFile={true}
+            location={'profile_img'}
             fileUploadCallback={fileUploadCallback}
           >
             {t('이미지_업로드')}
