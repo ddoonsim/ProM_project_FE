@@ -8,6 +8,7 @@ import ErrorPage from './pages/commons/ErrorPage';
 
 import { UserProvider } from './modules/user';
 import { MainClassProvider } from './modules/mainClass';
+import { ModalProvider } from './modules/modalContext';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -18,13 +19,15 @@ root.render(
   // <React.StrictMode>
   <UserProvider>
     <HelmetProvider>
-      <BrowserRouter>
-        <MainClassProvider>
-          <ErrorPage>
-            <App />
-          </ErrorPage>
-        </MainClassProvider>
-      </BrowserRouter>
+      <ModalProvider>
+        <BrowserRouter>
+          <MainClassProvider>
+            <ErrorPage>
+              <App />
+            </ErrorPage>
+          </MainClassProvider>
+        </BrowserRouter>
+      </ModalProvider>
     </HelmetProvider>
   </UserProvider>,
   // </React.StrictMode>,

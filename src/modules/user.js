@@ -20,7 +20,6 @@ const UserProvider = ({ children }) => {
 
     getUserInfo()
       .then((userInfo) => {
-        console.log(userInfo);
         setUserInfo(() => userInfo);
         setIsLogin(Boolean(userInfo && userInfo.email !== undefined && userInfo.email.trim() !== '')); // 로그인 여부
       })
