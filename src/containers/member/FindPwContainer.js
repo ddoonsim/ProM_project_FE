@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { findUserInfo } from '../../api/member/findpw';
+import { findPwInfo } from '../../api/member/findpw';
 import FindPwForm from '../../components/member/FindPwForm';
 
 const FindPwContainer = () => {
@@ -42,25 +42,30 @@ const FindPwContainer = () => {
           }
 
         // 회원정보 일치 확인
-         findUserInfo(form)
+         findPwInfo(form)
          .then((res) => {
-            console.log(res);
+            console.log(res.success);
+            if (res.success) {
              // 회원정보 일치시 처리
              alert(t('sendEmail_findPw_ok'));
 
              // 로그인 페이지 이동
              navigate('/login', { replace: true });
+            } else {
+              alert('이메일 인증에 실패했습니다😢');  // 안나와,,,
+            }
 
          })
-         . catch (() => {
-             setErrors(() => ({
-                 global: t('Find_fail'),
-             }));
+          .catch((err) => setErrors(() => err.message));
+      //    . catch (() => {
+      //     setErrors(() => ({
+      //         global: t('Find_fail'),
+      //     }));
 
-         });
-         
+      // });
+      
         },
-        [form, t],
+        [form, t,navigate],
     );
 
     const onChange = useCallback((e) => {
