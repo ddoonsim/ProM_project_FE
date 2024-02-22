@@ -3,19 +3,12 @@ import styled from 'styled-components';
 import UserContext from '../../modules/user';
 import ModalContext from '../../modules/modalContext';
 import { useContext } from 'react';
-import Modal from 'react-modal';
 import colorNames from '../../styles/colors';
 import { SubTitle } from '../../components/commons/TitleStyle';
 import { NavLink } from 'react-router-dom';
-import { CgClose } from 'react-icons/cg';
 import classNames from '../../../node_modules/classnames/index';
 import sizeNames from '../../styles/sizes';
 import NewProject from '../../pages/front/project/NewProject';
-import {
-  customStyles,
-  closeBtn,
-  closeSvg,
-} from '../../components/commons/ModalStyle';
 import ModalContainer from '../../containers/commons/ModalContainer';
 
 const { primary, info, white } = colorNames;

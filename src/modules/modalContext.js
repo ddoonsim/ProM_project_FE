@@ -1,5 +1,4 @@
 import { useState, useEffect, createContext } from 'react';
-import Modal from 'react-modal';
 
 const modalsState = {
   state: { modalIsOpen: false },
@@ -23,10 +22,7 @@ const ModalProvider = ({ children }) => {
 
   return (
     <ModalContext.Provider value={value}>
-      {/* <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
-        <button onClick={() => setModalIsOpen(false)}> modal close</button> */}
         {children}
-      {/* </Modal> */}
     </ModalContext.Provider>
   );
 };

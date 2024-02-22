@@ -7,6 +7,7 @@ const validation = {
   AssertTrue_join_agree: '⚠️가입 약관에 동의하세요.',
   Login_fail: '⚠️아이디 또는 비밀번호가 일치하지 않습니다.',
   Find_fail: '⚠️이메일 또는 아이디가 일치하지 않습니다.',
+  NotBlank_pName: '⚠️프로젝트 제목을 입력하세요.',
 };
 
 export default validation;

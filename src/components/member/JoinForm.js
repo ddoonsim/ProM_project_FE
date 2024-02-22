@@ -218,7 +218,9 @@ const JoinForm = ({
       <dl>
         <dt>{t('프로필이미지')}</dt>
         <dd>
-          {form.profileImage && <ImageView image={form.profileImage} mode="thumbnail"/>}
+          {form.profileImage && (
+            <ImageView image={form.profileImage} mode="thumbnail" />
+          )}
           <FileUpload
             gid={form.gid}
             imageOnly={true}
