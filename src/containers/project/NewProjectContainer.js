@@ -1,15 +1,13 @@
 import React, { useCallback, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { produce } from 'immer';
 import NewProjectForm from '../../components/project/NewProjectForm';
 import createProject from '../../api/project/newProject';
 
 const NewProjectContainer = () => {
   const [form, setForm] = useState({});
-  const navigate = useNavigate();
 
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   const [errors, setErrors] = useState({});
 
