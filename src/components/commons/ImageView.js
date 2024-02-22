@@ -8,7 +8,7 @@ const ImageView = ({image, mode}) => {
         <div>
             <img src={imageUrl} alt={fileName} />
         </div>
-    )
+    );
 
 };
 

@@ -4,8 +4,9 @@ import { MainTitle } from '../commons/TitleStyle';
 import { InputText } from '../commons/InputStyle';
 import { BigButton } from '../commons/ButtonStyle';
 import sizeNames from '../../styles/sizes';
+import ErrorMessages from '../commons/ErrorMessages';
 
-const {medium} = sizeNames;
+const { medium } = sizeNames;
 
 const Container = styled.div`
 margin: 0 50px 10px;
@@ -26,7 +27,7 @@ margin: 0 50px 10px;
   }
 `;
 
-const NewProjectForm = ({ form, onSubmit, onChange }) => {
+const NewProjectForm = ({ form, onSubmit, onChange, errors }) => {
   return (
     <Container>
       <MainTitle>새 프로젝트</MainTitle>
@@ -43,6 +44,7 @@ const NewProjectForm = ({ form, onSubmit, onChange }) => {
             />
           </dd>
         </dl>
+        <ErrorMessages errors={errors} field="pName" />
         <dl>
           <dt>프로젝트 설명</dt>
           <dd>
