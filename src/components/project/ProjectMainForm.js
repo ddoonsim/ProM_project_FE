@@ -1,9 +1,13 @@
+import { useContext } from 'react';
+import ModalContext from '../../modules/modalContext';
 import styled from 'styled-components';
 import { FiMoreVertical } from 'react-icons/fi';
 import { MainTitle, SubTitle } from '../commons/TitleStyle';
 import { Link } from '../../../node_modules/react-router-dom/dist/index';
 import colorNames from '../../styles/colors';
 import sizeNames from '../../styles/sizes';
+import ModalContainer from '../../containers/commons/ModalContainer';
+import AddTask from '../../pages/front/project/AddTask';
 
 const { primary, info, white } = colorNames;
 const { small, medium, big, exrtaBig } = sizeNames;
@@ -130,6 +134,11 @@ const ProjectDashBoard = styled.div`
 `;
 
 const ProjectMainForm = ({ item }) => {
+  
+  const {
+    action: { setModalIsOpen },
+  } = useContext(ModalContext);
+
   const { pname, description } = item;
   return (
     <ProjectDashBoard className="container">
@@ -169,7 +178,7 @@ const ProjectMainForm = ({ item }) => {
 
       <SubTitle border_width={0.5} color="#aaa">
         업무 진행 상황
-        <Link className="plus_btn">업무 추가</Link>
+        <Link className="plus_btn" onClick={() => setModalIsOpen(true)}>업무 추가</Link>
       </SubTitle>
       <div className="tasks_progress_box">
         <div className="progress_name">
@@ -185,6 +194,10 @@ const ProjectMainForm = ({ item }) => {
           <div className="inner_box">네이버 로그인 API</div>
         </div>
       </div>
+
+      {/* <ModalContainer>
+        <AddTask />
+      </ModalContainer> */}
     </ProjectDashBoard>
   );
 };

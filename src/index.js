@@ -8,6 +8,7 @@ import ErrorPage from './pages/commons/ErrorPage';
 
 import { UserProvider } from './modules/user';
 import { MainClassProvider } from './modules/mainClass';
+import { ModalProvider } from './modules/modalContext';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -15,9 +16,10 @@ import './i18n'; // 다국어 설정
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <UserProvider>
-      <HelmetProvider>
+  // <React.StrictMode>
+  <UserProvider>
+    <HelmetProvider>
+      <ModalProvider>
         <BrowserRouter>
           <MainClassProvider>
             <ErrorPage>
@@ -25,9 +27,10 @@ root.render(
             </ErrorPage>
           </MainClassProvider>
         </BrowserRouter>
-      </HelmetProvider>
-    </UserProvider>
-  </React.StrictMode>,
+      </ModalProvider>
+    </HelmetProvider>
+  </UserProvider>,
+  // </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function

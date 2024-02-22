@@ -21,7 +21,7 @@ const UserProvider = ({ children }) => {
     getUserInfo()
       .then((userInfo) => {
         setUserInfo(() => userInfo);
-        setIsLogin(true); // 로그인 여부
+        setIsLogin(Boolean(userInfo && userInfo.email !== undefined && userInfo.email.trim() !== '')); // 로그인 여부
       })
       .catch((err) => console.error(err));
   }, [isLogin]);

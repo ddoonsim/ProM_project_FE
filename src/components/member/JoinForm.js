@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import loadable from '@loadable/component';
 import React from 'react';
 import FileUpload from '../commons/FileUpload';
+import ImageView from '../commons/ImageView';
 
 const ErrorMessages = loadable(() => import('../commons/ErrorMessages'));
 
@@ -217,8 +218,11 @@ const JoinForm = ({
       <dl>
         <dt>{t('프로필이미지')}</dt>
         <dd>
+          {form.profileImage && (
+            <ImageView image={form.profileImage} mode="thumbnail" />
+          )}
           <FileUpload
-            gid="testgid"
+            gid={form.gid}
             imageOnly={true}
             singleFile={true}
             fileUploadCallback={fileUploadCallback}
