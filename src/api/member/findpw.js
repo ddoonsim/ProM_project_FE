@@ -1,8 +1,8 @@
 import apiRequest from "../../lib/apiRequest";
 
-export const findUserInfo = () =>
+export const findUserInfo = (form) =>
   new Promise((resolve, reject) => {
-    apiRequest('/member/find_pw')
+    apiRequest('/member/find_pw', 'POST', form)
       .then((res) => {
         console.log(res.data)
         if (res.data.success) {

@@ -43,7 +43,8 @@ const FindPwContainer = () => {
 
         // 회원정보 일치 확인
          findUserInfo(form)
-         .then(() => {
+         .then((res) => {
+            console.log(res);
              // 회원정보 일치시 처리
              alert(t('sendEmail_findPw_ok'));
 

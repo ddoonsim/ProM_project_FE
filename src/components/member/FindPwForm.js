@@ -36,7 +36,7 @@ const FormBox = styled.form`
   }
   `;
 
-  const FindPwForm = ({ onSubmit, onChange, form, errors, onClick }) => {
+  const FindPwForm = ({ onSubmit, onChange, form, errors}) => {
 
     errors = errors || {};
 
