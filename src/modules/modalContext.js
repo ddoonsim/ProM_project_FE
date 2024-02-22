@@ -1,33 +1,33 @@
-import { useState, useCallback, createContext } from 'react';
+import { useState, useEffect, createContext } from 'react';
+import Modal from 'react-modal';
 
 const modalsState = {
-  isOpen: false,
-  setIsOpen: null,
+  state: { modalIsOpen: false },
+  action: { setModalIsOpen: () => {} },
 };
 
 // modal을 열고 닫는 함수
 export const ModalContext = createContext(modalsState);
 
 const ModalProvider = ({ children }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const OpenAndCloseModal = useCallback(() => {
-    if (isOpen) {
-      setIsOpen(false);
-    }
-
-    if (!isOpen) {
-      setIsOpen(true);
-    }
-  }, [isOpen]);
+  useEffect(() => {
+    setModalIsOpen(modalIsOpen);
+  }, [modalIsOpen]);
 
   const value = {
-    state: { isOpen },
-    action: { setIsOpen },
+    state: { modalIsOpen },
+    action: { setModalIsOpen },
   };
 
   return (
-    <ModalProvider.Provider value={value}>{children}</ModalProvider.Provider>
+    <ModalContext.Provider value={value}>
+      {/* <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+        <button onClick={() => setModalIsOpen(false)}> modal close</button> */}
+        {children}
+      {/* </Modal> */}
+    </ModalContext.Provider>
   );
 };
 
