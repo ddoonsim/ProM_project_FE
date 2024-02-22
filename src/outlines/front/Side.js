@@ -23,18 +23,12 @@ const SideNav = styled.nav`
   display: flex;
   flex-direction: column;
   align-items: center;
-  .profile-image {
-    width: 100px;
-    height: 100px;
+  img {
+    width: 125px;
+    height: 125px;
     border-radius: 50%;
     background: ${white};
     margin-bottom: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: ${medium};
-    color: ${primary};
-    font-weight: bold;
   }
   .btn {
     width: 150px;
