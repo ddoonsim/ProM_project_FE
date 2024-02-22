@@ -10,6 +10,7 @@ import classNames from '../../../node_modules/classnames/index';
 import sizeNames from '../../styles/sizes';
 import NewProject from '../../pages/front/project/NewProject';
 import ModalContainer from '../../containers/commons/ModalContainer';
+import ImageView from '../../components/commons/ImageView';
 
 const { primary, info, white } = colorNames;
 const { medium, big } = sizeNames;
@@ -22,18 +23,12 @@ const SideNav = styled.nav`
   display: flex;
   flex-direction: column;
   align-items: center;
-  .profile-image {
-    width: 100px;
-    height: 100px;
+  img {
+    width: 125px;
+    height: 125px;
     border-radius: 50%;
     background: ${white};
     margin-bottom: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: ${medium};
-    color: ${primary};
-    font-weight: bold;
   }
   .btn {
     width: 150px;
@@ -100,7 +95,9 @@ const Side = () => {
 
   return (
     <SideNav>
-      <div>프로필 이미지</div>
+      {userInfo.profileImage && (
+            <ImageView image={userInfo.profileImage} mode="thumbnail" />
+      )}
       <SubTitle align="center" color="white">
         {userInfo.name}
       </SubTitle>
@@ -118,7 +115,7 @@ const Side = () => {
       <ProjectListContainer />
 
       <ModalContainer>
-        <NewProject />
+        <NewProject mode={'new'} />
       </ModalContainer>
     </SideNav>
   );
