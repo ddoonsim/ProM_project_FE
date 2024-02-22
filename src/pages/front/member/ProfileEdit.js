@@ -1,7 +1,6 @@
 import ProfileEditContainer from '../../../containers/member/ProfileEditContainer';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-import { MainTitle } from '../../../components/commons/TitleStyle';
 
 const ProfileEdit = () => {
   const { t } = useTranslation();
