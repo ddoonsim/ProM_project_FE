@@ -1,7 +1,6 @@
 import apiRequest from '../../lib/apiRequest';
 
 /** 방목록 */
-/** 방목록 */
 export const getRooms = () => {
   return new Promise((resolve, reject) => {
     apiRequest('/chat/rooms').then((res) => {

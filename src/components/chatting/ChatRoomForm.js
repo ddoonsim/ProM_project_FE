@@ -8,9 +8,10 @@ import { MainTitle } from '../commons/TitleStyle';
 const { info, primary } = colorNames;
 
 const ChatBox = styled.ul`
-  display: flex;
+  flex-direction: column;
   min-height: 0;
   height: 700px;
+  width: 400px;
   overflow-y: auto; /* 세로 스크롤을 표시하고 필요할 때만 스크롤합니다. */
   border: 1px solid #ccc; /* 채팅창에 테두리를 추가합니다. */
   background: #eee;
