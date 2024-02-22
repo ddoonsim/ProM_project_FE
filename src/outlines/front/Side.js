@@ -115,7 +115,7 @@ const Side = () => {
       <ProjectListContainer />
 
       <ModalContainer>
-        <NewProject />
+        <NewProject mode={'new'} />
       </ModalContainer>
     </SideNav>
   );
