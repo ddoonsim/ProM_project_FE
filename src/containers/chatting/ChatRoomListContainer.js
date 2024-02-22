@@ -1,6 +1,7 @@
 import { getRooms } from '../../api/chatting/chat';
 import { useState, useCallback, useEffect } from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import { MainTitle } from '../../components/commons/TitleStyle';
 const ChatRoomListContainer = () => {
   const [form, setForm] = useState({ roomNm: '', max: '' });
   const [rooms, setRooms] = useState([]);
@@ -36,7 +37,7 @@ const ChatRoomListContainer = () => {
   }
   return (
     <>
-      <h2>채팅방 목록</h2>
+      <MainTitle>채팅방 목록</MainTitle>
       <ul>{lis}</ul>
     </>
   );

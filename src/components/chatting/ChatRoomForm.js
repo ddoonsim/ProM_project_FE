@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { InputText } from '../commons/InputStyle';
 import { FiSend } from 'react-icons/fi';
 import colorNames from '../../styles/colors';
+import { MainTitle } from '../commons/TitleStyle';
 
 const { info, primary } = colorNames;
 
@@ -99,7 +100,6 @@ const ChatRoomForm = ({
 }) => {
   return (
     <>
-      <h1>{roomNo}채팅방!!</h1>
       <ChatBox ref={chatBoxEl} id="chatBox">
         {loglis}
         <Hr>

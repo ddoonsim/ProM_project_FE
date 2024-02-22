@@ -1,7 +1,13 @@
 import apiRequest from '../../lib/apiRequest';
 
 /** 방목록 */
-export const getRooms = () => apiRequest('/chat/rooms');
+export const getRooms = () => {
+  return new Promise((resolve, reject) => {
+    apiRequest('/chat/rooms').then((res) => {
+      console.log('/chat/rooms res==============', res);
+    });
+  });
+};
 
 /** 방정보  */
 export const getRoom = (roomNo) => {

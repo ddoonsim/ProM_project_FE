@@ -62,7 +62,7 @@ const ProjectDashBoard = styled.div`
         width: 300px;
 
         p {
-            font-size: ${medium};
+          font-size: ${medium};
         }
       }
 
@@ -151,9 +151,8 @@ const ProjectMainForm = ({ item }) => {
         <div className="team_member_box">
           <div className="team_member">
             <h2>팀 구성원</h2>
-            {item.member && item.member.map(({ seq, name }) => (
-              <p key={seq}>{name}</p>
-            ))}
+            {item.member &&
+              item.member.map(({ seq, name }) => <p key={seq}>{name}</p>)}
           </div>
           <div className="btns">
             <Link className="btn" name="invite_member">

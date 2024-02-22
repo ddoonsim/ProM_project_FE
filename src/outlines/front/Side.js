@@ -92,7 +92,7 @@ const Side = () => {
   const {
     state: { isLogin, userInfo },
   } = useContext(UserContext);
-  console.log(isLogin);
+  // console.log(isLogin);
   return (
     <SideNav>
       {isLogin && (
