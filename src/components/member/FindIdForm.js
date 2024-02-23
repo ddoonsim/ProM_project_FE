@@ -36,46 +36,45 @@ const FormBox = styled.form`
   }
   `;
 
-  const FindPwForm = ({ onSubmit, onChange, form, errors}) => {
+  const FindIdForm = ({ onSubmit, onChange,form, errors}) => {
 
     errors = errors || {};
 
-    const refEmail = useRef();
+    const refName = useRef();
     const { t } = useTranslation();
 
     useEffect(() => {
-        refEmail.current.focus();
-    }, [refEmail]);
+        refName.current.focus();
+    }, [refName]);
 
   return (
     <FormBox onSubmit={onSubmit}>
         <dl>
-            <dt>{t('이메일')}</dt>
+            <dt>{t('회원명')}</dt>
             <dd>
             <InputText
-                type="email"
-                name="email"
-                ref={refEmail}
+                type="text"
+                name="name"
+                ref={refName}
+                value={form.name}
                 onChange={onChange}
             />
-            <ErrorMessages errors={errors} field="email" />
+            <ErrorMessages errors={errors} field="name" />
             </dd>
       </dl>
-      <dl>
-        <dt>{t('회원명')}</dt>
-        <dd>
-          <InputText
-            type="text"
-            name="name"
-            value={form.name}
-            onChange={onChange}
-          />
-          <ErrorMessages errors={errors} field="name" />
-        </dd>
+        <dl>
+            <dt>{t('휴대전화번호')}</dt>
+            <dd>
+                <InputText
+                    type="text"
+                    name="mobile"
+                    value={form.mobile}
+                    onChange={onChange}
+                />
+                <ErrorMessages errors={errors} field="mobile" />
+            </dd>
       </dl>
-
       <ErrorMessages>{errors.global}</ErrorMessages>
-
       <ButtonGroup>
         <BigButton
           type="submit"
@@ -85,7 +84,7 @@ const FormBox = styled.form`
           size="medium"
           fsize="medium"
         >
-          {t('비밀번호 찾기')}
+          {t('아이디 찾기')}
         </BigButton>
         <BigButton
           type="reset"
@@ -99,9 +98,8 @@ const FormBox = styled.form`
           {t('다시입력')}
         </BigButton>
       </ButtonGroup>
-
     </FormBox>
   );
 };
 
-export default React.memo(FindPwForm);
+export default React.memo(FindIdForm);
