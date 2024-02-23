@@ -133,11 +133,9 @@ const ProjectDashBoard = styled.div`
 `;
 
 const ProjectMainForm = ({ item }) => {
-
   const [isOpen, setIsOpen] = useState(false);
   const onClose = useCallback(() => setIsOpen(false), []);
-
-  const { pname, description } = item;
+  const { pname, description, seq } = item;
   return (
     <ProjectDashBoard className="container">
       <div className="project_info_box">
@@ -165,7 +163,7 @@ const ProjectMainForm = ({ item }) => {
             <Link className="btn" name="invite_member">
               팀원 초대하기
             </Link>
-            <Link className="btn" name="chat">
+            <Link className="btn" name="chatroom" to={`/chatroom/${seq + 'p'}`}>
               팀 단체 채팅
             </Link>
           </div>
@@ -174,7 +172,9 @@ const ProjectMainForm = ({ item }) => {
 
       <SubTitle border_width={0.5} color="#aaa">
         업무 진행 상황
-        <Link className="plus_btn" onClick={() => setIsOpen(!isOpen)}>업무 추가</Link>
+        <Link className="plus_btn" onClick={() => setIsOpen(!isOpen)}>
+          업무 추가
+        </Link>
       </SubTitle>
       <div className="tasks_progress_box">
         <div className="progress_name">
