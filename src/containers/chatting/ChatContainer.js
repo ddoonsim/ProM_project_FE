@@ -5,7 +5,7 @@ import React, {
   useRef,
   useContext,
 } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { getRoom, registerMessage } from '../../api/chatting/chat';
 import ChatRoomForm from '../../components/chatting/ChatRoomForm';
 import UserContext from '../../modules/user';
@@ -15,6 +15,7 @@ const ChatContainer = () => {
   const inputEl = useRef();
   const buttonEl = useRef();
   const chatBoxEl = useRef();
+  const navigate = useNavigate();
   let chatLog = [];
   let [loglis, setLoglis] = useState();
   const initialInfo = {
@@ -29,6 +30,7 @@ const ChatContainer = () => {
     message: '',
   };
 
+  const { roomNm } = useParams();
   const { roomNo } = useParams();
   const [roomInfo, setRoomInfo] = useState(initialInfo);
   const [chatData, setChatData] = useState(initialChatData);
@@ -49,7 +51,20 @@ const ChatContainer = () => {
 
     getRoom(roomNo)
       .then((res) => {
+        /* 채팅방 접속시 주소에 p가 포함되어있으면 project */
+        const isProject = window.location.href
+          .split('chatroom')[1]
+          .endsWith('p');
+
+        /* project이면 주소변환 후 기록 제거 */
+        if (isProject) {
+          navigate(`/chatroom/${res[0].chatRoom.roomNo}`, { replace: true });
+        }
+
+        /* 채팅방 정보 설정 */
         setRoomInfo(res[0].chatRoom);
+
+        /* 채팅 기록 가져오기 */
         if (res.length > 1) {
           for (let i = 1; i < res.length; i++) {
             chatLog.push({
@@ -151,6 +166,7 @@ const ChatContainer = () => {
         chatBoxEl={chatBoxEl}
         handleClick={handleClick}
         roomNo={roomNo}
+        roomNm={roomNm}
         lis={lis}
         loglis={loglis}
       />

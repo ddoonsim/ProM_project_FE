@@ -8,20 +8,26 @@ const ListForm = ({ items }) => {
   return (
     <>
       <br />
-      <SubTitle align="center" color="white">Project List</SubTitle>
+      <SubTitle align="center" color="white">
+        Project List
+      </SubTitle>
 
       <ul>
-        {items.length > 0
-          ? items.map(({ seq, pname }) => (
-              <NavLink
-                to={'/project/' + seq}
-                className={({ isActive }) => classNames({ on: isActive }) + " list"}
-                key={seq}
-              >
-                {pname}
-              </NavLink>
-            ))
-          : <NavLink>없음</NavLink>}
+        {items.length > 0 ? (
+          items.map(({ seq, pname }) => (
+            <NavLink
+              to={'/project/' + seq}
+              className={({ isActive }) =>
+                classNames({ on: isActive }) + ' list'
+              }
+              key={seq}
+            >
+              {pname}
+            </NavLink>
+          ))
+        ) : (
+          <NavLink>없음</NavLink>
+        )}
       </ul>
     </>
   );

@@ -84,7 +84,6 @@ const SideNav = styled.nav`
 `;
 
 const Side = () => {
-
   const {
     state: { isLogin, userInfo },
   } = useContext(UserContext);
