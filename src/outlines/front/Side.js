@@ -1,16 +1,15 @@
 import ProjectListContainer from '../../containers/project/ProjectListContainer';
 import styled from 'styled-components';
 import UserContext from '../../modules/user';
-import ModalContext from '../../modules/modalContext';
-import { useContext } from 'react';
+import { useCallback, useContext, useState } from 'react';
 import colorNames from '../../styles/colors';
 import { SubTitle } from '../../components/commons/TitleStyle';
 import { NavLink } from 'react-router-dom';
 import classNames from '../../../node_modules/classnames/index';
 import sizeNames from '../../styles/sizes';
 import NewProject from '../../pages/front/project/NewProject';
-import ModalContainer from '../../containers/commons/ModalContainer';
 import ImageView from '../../components/commons/ImageView';
+import ModalBox from '../../components/commons/ModalBox';
 
 const { primary, info, white } = colorNames;
 const { medium, big } = sizeNames;
@@ -85,18 +84,18 @@ const SideNav = styled.nav`
 `;
 
 const Side = () => {
-  const {
-    action: { setModalIsOpen },
-  } = useContext(ModalContext);
 
   const {
     state: { isLogin, userInfo },
   } = useContext(UserContext);
 
+  const [isOpen, setIsOpen] = useState(false);
+  const onClose = useCallback(() => setIsOpen(false), []);
+
   return (
     <SideNav>
       {userInfo.profileImage && (
-            <ImageView image={userInfo.profileImage} mode="thumbnail" />
+        <ImageView image={userInfo.profileImage} mode="thumbnail" />
       )}
       <SubTitle align="center" color="white">
         {userInfo.name}
@@ -108,15 +107,16 @@ const Side = () => {
         수정하기
       </NavLink>
       <hr />
-      <button className="btn" onClick={() => setModalIsOpen(true)}>
+      {isOpen && (
+        <ModalBox isOpen={isOpen} onClose={onClose}>
+          <NewProject mode={'new'} />
+        </ModalBox>
+      )}
+      <button type="button" className="btn" onClick={() => setIsOpen(!isOpen)}>
         {' '}
         + 새 프로젝트
       </button>
       <ProjectListContainer />
-
-      <ModalContainer>
-        <NewProject mode={'new'} />
-      </ModalContainer>
     </SideNav>
   );
 };
