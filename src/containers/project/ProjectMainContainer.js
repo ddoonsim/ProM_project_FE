@@ -16,7 +16,7 @@ const ProjectMainContainer = () => {
         // console.log(item.member[0]);
       })
       .catch((err) => console.error(err));
-  }, []);
+  }, [projectSeq]);
 
   return <ProjectMainForm item={item} />;
 };
