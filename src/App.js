@@ -18,7 +18,6 @@ import NewProject from './pages/front/project/NewProject';
 import RoomContainer from './containers/chatting/RoomContainer';
 import ChatContainer from './containers/chatting/ChatContainer';
 import ChatRoomCreate from './pages/chatting/ChatRoomCreate';
-// import Home from './pages/front/Home';
 import ProjectMain from './pages/front/project/ProjectMain';
 import ProfileEdit from './pages/front/member/ProfileEdit';
 
