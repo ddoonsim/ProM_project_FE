@@ -4,14 +4,23 @@ import { InputText } from '../commons/InputStyle';
 import { FiSend } from 'react-icons/fi';
 import colorNames from '../../styles/colors';
 import { MainTitle } from '../commons/TitleStyle';
+import { Container } from '../commons/ModalStyle';
 
 const { info, primary } = colorNames;
+
+const ChatRoom = styled.div`
+  margin-bottom: 10px;
+
+  p {
+    margin: 0;
+  }
+`;
 
 const ChatBox = styled.ul`
   flex-direction: column;
   min-height: 0;
   height: 700px;
-  width: 400px;
+  width: 650px;
   overflow-y: auto; /* 세로 스크롤을 표시하고 필요할 때만 스크롤합니다. */
   border: 1px solid #ccc; /* 채팅창에 테두리를 추가합니다. */
   background: #eee;
@@ -20,37 +29,40 @@ const ChatBox = styled.ul`
   li {
     display: grid;
     justify-content: start;
+
+    .time {
+      text-align: end;
+    }
   }
 
   .me {
     justify-content: end;
+    .time {
+      text-align: start;
+    }
   }
 
   li + li {
   }
 
   span {
-    max-widht: 50px;
     background: ${info};
     color: #fff;
     margin: 10px;
     padding: 10px;
     border-radius: 5px;
-    line-height: 19px;
   }
 
   .me > span {
-    widht: 50%;
     background: ${primary};
   }
 `;
 
 const InputGrp = styled.div`
   display: flex;
-  position: absolute;
   bottom: 55px;
   left: 15px;
-  width: calc(100% - 30px);
+  width: 100%;
   button {
     height: 45px;
     width: 45px;
@@ -66,6 +78,7 @@ const InputGrp = styled.div`
 
   input {
     flex-grow: 1;
+    min-height: 45px;
   }
 `;
 
@@ -101,16 +114,17 @@ const ChatRoomForm = ({
   loglis,
 }) => {
   return (
-    <>
+    <Container>
       <MainTitle>{roomNm}</MainTitle>
-      <ChatBox ref={chatBoxEl} id="chatBox">
-        {loglis}
-        <Hr>
-          <div className="hr-sect">이전 채팅</div>
-        </Hr>
-        {lis}
-      </ChatBox>
-
+      <ChatRoom>
+        <ChatBox ref={chatBoxEl} id="chatBox">
+          {loglis}
+          <Hr>
+            <div className="hr-sect">이전 채팅</div>
+          </Hr>
+          {lis}
+        </ChatBox>
+      </ChatRoom>
       <InputGrp>
         <InputText
           ref={inputEl}
@@ -122,7 +136,7 @@ const ChatRoomForm = ({
           <FiSend />
         </button>
       </InputGrp>
-    </>
+    </Container>
   );
 };
 

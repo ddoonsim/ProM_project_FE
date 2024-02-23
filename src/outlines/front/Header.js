@@ -73,9 +73,6 @@ const Header = () => {
             >
               {t('마이페이지')}
             </NavLink>
-            <NavLink to="/chatlist" className="btn_chat">
-              <BsChat />
-            </NavLink>
           </>
         ) : (
           <>

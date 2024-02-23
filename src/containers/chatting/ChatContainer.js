@@ -11,11 +11,12 @@ import ChatRoomForm from '../../components/chatting/ChatRoomForm';
 import UserContext from '../../modules/user';
 
 let webSocket;
-const ChatContainer = () => {
+const ChatContainer = ({ roomNo }) => {
+  if (roomNo.endsWith('p')) roomNo.replace('p', '');
+
   const inputEl = useRef();
   const buttonEl = useRef();
   const chatBoxEl = useRef();
-  const navigate = useNavigate();
   let chatLog = [];
   let [loglis, setLoglis] = useState();
   const initialInfo = {
@@ -30,8 +31,6 @@ const ChatContainer = () => {
     message: '',
   };
 
-  const { roomNm } = useParams();
-  const { roomNo } = useParams();
   const [roomInfo, setRoomInfo] = useState(initialInfo);
   const [chatData, setChatData] = useState(initialChatData);
   const [messages, setMessages] = useState([]);
@@ -51,22 +50,15 @@ const ChatContainer = () => {
 
     getRoom(roomNo)
       .then((res) => {
-        /* 채팅방 접속시 주소에 p가 포함되어있으면 project */
-        const isProject = window.location.href
-          .split('chatroom')[1]
-          .endsWith('p');
-
-        /* project이면 주소변환 후 기록 제거 */
-        if (isProject) {
-          navigate(`/chatroom/${res[0].chatRoom.roomNo}`, { replace: true });
-        }
-
-        /* 채팅방 정보 설정 */
         setRoomInfo(res[0].chatRoom);
 
         /* 채팅 기록 가져오기 */
         if (res.length > 1) {
           for (let i = 1; i < res.length; i++) {
+            const time = res[i].createdAt
+              .split('T')[1]
+              .split('.')[0]
+              .split(':');
             chatLog.push({
               member:
                 res[i].member !== null
@@ -74,6 +66,7 @@ const ChatContainer = () => {
                   : '사용자 정보 없음',
               roomNo: res[i].chatRoom.roomNo,
               message: res[i].message,
+              time: `${time[0]}:${time[1]}`,
             });
           }
           setLoglis(
@@ -85,8 +78,8 @@ const ChatContainer = () => {
                 >
                   {log.member === userInfo.name ? '' : log.member}
                   <span>{log.message}</span>
+                  <p className="time">{log.time}</p>
                 </li>
-                {/* <li key={index}>{log.message}</li> */}
               </>
             )),
           );
@@ -99,7 +92,7 @@ const ChatContainer = () => {
     if (webSocket) {
       webSocket.onmessage = (message) => {
         const data = JSON.parse(message.data);
-        if (data.roomNo === roomNo) {
+        if (data.roomNo === roomInfo.roomNo) {
           // 동일한 채팅 방에서만 메세지 출력
           setMessages(messages.concat(data));
         }
@@ -118,7 +111,7 @@ const ChatContainer = () => {
         return false;
       }
       const params = {
-        roomNo,
+        roomNo: roomInfo.roomNo,
         memberSeq: userInfo.seq,
         memberNm: userInfo.name,
         message: e.target.value,
@@ -143,11 +136,7 @@ const ChatContainer = () => {
     inputEl.current.focus();
     registerMessage(chatData); // 채팅 기록 서버 DB에 기록
     console.log('messages.length ', messages.length);
-    const st = 25 * messages.length + 100;
-    console.log('chatBoxEl: ', chatBoxEl);
-    chatBoxEl.current.scrollTo(0, st);
   }, [chatData]);
-
   const lis = messages.map((m, index) => (
     <>
       <li key={index} className={userInfo.name === m.memberNm ? 'me' : ''}>
@@ -165,8 +154,8 @@ const ChatContainer = () => {
         buttonEl={buttonEl}
         chatBoxEl={chatBoxEl}
         handleClick={handleClick}
-        roomNo={roomNo}
-        roomNm={roomNm}
+        roomNo={roomInfo.roomNo}
+        roomNm={roomInfo.roomNm}
         lis={lis}
         loglis={loglis}
       />
