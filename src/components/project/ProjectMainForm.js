@@ -6,7 +6,8 @@ import { Link } from '../../../node_modules/react-router-dom/dist/index';
 import colorNames from '../../styles/colors';
 import sizeNames from '../../styles/sizes';
 import AddTask from '../../pages/front/project/AddTask';
-import ModalBox from '../commons/ModalBox'; 
+import ModalBox from '../commons/ModalBox';
+import TeamMemberBox from './TeamMemberBox';
 
 const { primary, info, white } = colorNames;
 const { small, medium, big, exrtaBig } = sizeNames;
@@ -49,45 +50,6 @@ const ProjectDashBoard = styled.div`
         padding: 5px 20px;
         background-color: ${white};
         border-radius: 20px;
-      }
-    }
-
-    .team_member_box {
-      width: 500px;
-      min-height: 200px;
-      display: flex;
-      margin: 50px;
-      padding: 10px 50px;
-      background-color: ${white};
-      border-radius: 20px;
-
-      .team_member {
-        width: 300px;
-
-        p {
-          font-size: ${medium};
-        }
-      }
-
-      .btns {
-        padding: 30px;
-
-        .btn {
-          margin: 10px 0;
-          display: grid;
-          text-align: center;
-          border: none;
-          width: 150px;
-          height: 40px;
-          line-height: 38px;
-          border-radius: 3px;
-          box-shadow: gray 1px 1px 3px;
-          color: ${white};
-          background: ${info};
-          font-size: ${medium};
-          font-weight: 500;
-          cursor: pointer;
-        }
       }
     }
   }
@@ -156,21 +118,8 @@ const ProjectMainForm = ({ item }) => {
           </h3>
           <div className="notice_box"></div>
         </div>
-        <div className="team_member_box">
-          <div className="team_member">
-            <h2>팀 구성원</h2>
-            {item.member &&
-              item.member.map(({ seq, name }) => <p key={seq}>{name}</p>)}
-          </div>
-          <div className="btns">
-            <Link className="btn" name="invite_member">
-              팀원 초대하기
-            </Link>
-            <Link className="btn" name="chat">
-              팀 단체 채팅
-            </Link>
-          </div>
-        </div>
+        {/* 팀 구성원 박스 */}
+        <TeamMemberBox item={item} />
       </div>
 
       <SubTitle border_width={0.5} color="#aaa">

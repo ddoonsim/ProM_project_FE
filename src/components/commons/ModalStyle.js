@@ -56,6 +56,7 @@ export const closeSvg = {
 // 모달 창 내부 폼 스타일
 export const Container = styled.div`
 margin: 0 50px 10px;
+display: inline-block;
 
   dl {
     display: flex;
