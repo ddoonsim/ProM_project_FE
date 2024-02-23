@@ -36,7 +36,7 @@ const ProjectDashBoard = styled.div`
         font-weight: 500;
       }
 
-      a {
+      .btn {
         margin-left: 530px;
         padding: 5px 20px;
         background-color: ${info};
@@ -133,7 +133,6 @@ const ProjectDashBoard = styled.div`
 `;
 
 const ProjectMainForm = ({ item }) => {
-
   const [isOpen, setIsOpen] = useState(false);
   const onClose = useCallback(() => setIsOpen(false), []);
 
@@ -143,7 +142,9 @@ const ProjectMainForm = ({ item }) => {
       <div className="project_info_box">
         <div className="info_box">
           <MainTitle borderBottom="none">
-            <FiMoreVertical />
+            <Link to="/">
+              <FiMoreVertical />
+            </Link>
             &nbsp;&nbsp;{pname}
           </MainTitle>
 
@@ -151,7 +152,7 @@ const ProjectMainForm = ({ item }) => {
 
           <h3>
             📣 공지사항
-            <Link>새 글 등록</Link>
+            <Link className="btn">새 글 등록</Link>
           </h3>
           <div className="notice_box"></div>
         </div>
@@ -174,7 +175,9 @@ const ProjectMainForm = ({ item }) => {
 
       <SubTitle border_width={0.5} color="#aaa">
         업무 진행 상황
-        <Link className="plus_btn" onClick={() => setIsOpen(!isOpen)}>업무 추가</Link>
+        <Link className="plus_btn" onClick={() => setIsOpen(!isOpen)}>
+          업무 추가
+        </Link>
       </SubTitle>
       <div className="tasks_progress_box">
         <div className="progress_name">

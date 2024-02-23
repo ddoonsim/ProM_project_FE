@@ -39,7 +39,7 @@ export const customStyles = {
   },
 };
 
-// 닫기 버튼 
+// 닫기 버튼
 export const closeBtn = {
   display: 'contents',
   fontSize: 'xx-large',
@@ -52,3 +52,23 @@ export const closeSvg = {
   position: 'absolute',
   right: '5px',
 };
+
+// 모달 창 내부 폼 스타일
+export const Container = styled.div`
+margin: 0 50px 10px;
+
+  dl {
+    display: flex;
+    padding: 10px 15px;
+    align-items: center;
+
+    dt {
+      width: 130px;
+      font-size: medium;
+    }
+
+    dd {
+      flex-grow: 1;
+      width: 300px;
+  }
+`;
