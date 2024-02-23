@@ -29,6 +29,7 @@ const ChatContainer = () => {
     message: '',
   };
 
+  const { roomNm } = useParams();
   const { roomNo } = useParams();
   const [roomInfo, setRoomInfo] = useState(initialInfo);
   const [chatData, setChatData] = useState(initialChatData);
@@ -151,6 +152,7 @@ const ChatContainer = () => {
         chatBoxEl={chatBoxEl}
         handleClick={handleClick}
         roomNo={roomNo}
+        roomNm={roomNm}
         lis={lis}
         loglis={loglis}
       />

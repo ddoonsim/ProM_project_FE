@@ -6,7 +6,7 @@ import { Link } from '../../../node_modules/react-router-dom/dist/index';
 import colorNames from '../../styles/colors';
 import sizeNames from '../../styles/sizes';
 import AddTask from '../../pages/front/project/AddTask';
-import ModalBox from '../commons/ModalBox';
+import ModalBox from '../commons/ModalBox'; 
 
 const { primary, info, white } = colorNames;
 const { small, medium, big, exrtaBig } = sizeNames;
