@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { findIdInfo } from '../../api/member/findid';
 import FindIdForm from '../../components/member/FindIdForm';
+import swal from 'sweetalert';
+
 
 const FindIdContainer = () => {
   const { t } = useTranslation();
@@ -50,7 +52,7 @@ const FindIdContainer = () => {
           if (res.success) {
             // 회원정보 일치시 처리
             // 가입한 아이디(이메일)가 모달창 또는 알림으로 나오도록 처리
-            alert("아이디 : " + res.data.replace(res.data.substr(2,4), "***"));
+            swal("아이디", res.data.replace(res.data.substr(2,4), "***"), "success" );
 
             // 로그인 페이지 이동
             navigate('/login', { replace: true });
