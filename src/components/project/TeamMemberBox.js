@@ -5,6 +5,7 @@ import InviteMember from '../../pages/front/project/InviteMember';
 import styled from 'styled-components';
 import colorNames from '../../styles/colors';
 import sizeNames from '../../styles/sizes';
+import ChatRoom from '../../pages/chatting/ChatRoom';
 
 const { primary, info, white } = colorNames;
 const { small, medium, big, exrtaBig } = sizeNames;
@@ -50,7 +51,7 @@ const TeamMember = styled.div`
 
 const TeamMemberBox = ({ item }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const {seq} = item;
+  const { seq } = item;
   const onClose = useCallback(() => setIsOpen(false), []);
 
   return (
@@ -73,7 +74,16 @@ const TeamMemberBox = ({ item }) => {
         >
           팀원 초대하기
         </Link>
-        <Link className="btn" name="chatroom" to={`/chatroom/${seq + 'p'}`}>
+        {isOpen && (
+          <ModalBox isOpen={isOpen} onClose={onClose}>
+            <ChatRoom roomNo={seq + 'p'} />
+          </ModalBox>
+        )}
+        <Link
+          className="btn"
+          name="chatroom"
+          onClick={() => setIsOpen(!isOpen)}
+        >
           팀 단체 채팅
         </Link>
       </div>
