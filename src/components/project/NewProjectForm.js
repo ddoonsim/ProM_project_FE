@@ -1,31 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
 import { MainTitle } from '../commons/TitleStyle';
 import { InputText } from '../commons/InputStyle';
 import { BigButton } from '../commons/ButtonStyle';
-import sizeNames from '../../styles/sizes';
+import { Container } from '../commons/ModalStyle';
 import ErrorMessages from '../commons/ErrorMessages';
-
-const { medium } = sizeNames;
-
-const Container = styled.div`
-margin: 0 50px 10px;
-
-  dl {
-    display: flex;
-    padding: 10px 15px;
-    align-items: center;
-
-    dt {
-      width: 130px;
-      font-size: ${medium};
-    }
-
-    dd {
-      flex-grow: 1;
-      width: 300px;
-  }
-`;
 
 const NewProjectForm = ({ form, onSubmit, onChange, errors }) => {
   return (

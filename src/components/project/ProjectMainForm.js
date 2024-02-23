@@ -133,7 +133,6 @@ const ProjectDashBoard = styled.div`
 `;
 
 const ProjectMainForm = ({ item }) => {
-
   const [isOpen, setIsOpen] = useState(false);
   const onClose = useCallback(() => setIsOpen(false), []);
 
@@ -176,7 +175,9 @@ const ProjectMainForm = ({ item }) => {
 
       <SubTitle border_width={0.5} color="#aaa">
         업무 진행 상황
-        <Link className="plus_btn" onClick={() => setIsOpen(!isOpen)}>업무 추가</Link>
+        <Link className="plus_btn" onClick={() => setIsOpen(!isOpen)}>
+          업무 추가
+        </Link>
       </SubTitle>
       <div className="tasks_progress_box">
         <div className="progress_name">
