@@ -67,7 +67,6 @@ const ChatContainer = () => {
         /* 채팅 기록 가져오기 */
         if (res.length > 1) {
           for (let i = 1; i < res.length; i++) {
-            console.log(res[i].createdAt);
             chatLog.push({
               member:
                 res[i].member !== null

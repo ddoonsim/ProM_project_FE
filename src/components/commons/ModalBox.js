@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
-import { customStyles } from './ModalStyle';
+import { closeBtn, closeSvg, customStyles } from './ModalStyle';
+import { CgClose } from 'react-icons/cg';
 
 const ModalBox = ({
   isOpen,
@@ -18,6 +19,9 @@ const ModalBox = ({
       style={customStyles}
       contentLabel={title}
     >
+      <button style={closeBtn} onClick={onClose}>
+        <CgClose style={closeSvg} />
+      </button>
       {subTitle && <h2>{subTitle}</h2>}
       {children}
     </Modal>
