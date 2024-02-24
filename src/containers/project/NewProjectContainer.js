@@ -14,7 +14,6 @@ const NewProjectContainer = () => {
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-
       const _errors = {};
       let hasError = false;
       if (!form.pName) {
@@ -43,7 +42,6 @@ const NewProjectContainer = () => {
 
   const onChange = useCallback((e) => {
     const target = e.currentTarget;
-
     setForm(
       produce((draft) => {
         draft[target.name] = target.value;

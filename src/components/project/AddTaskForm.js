@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BigButton } from '../commons/ButtonStyle';
 import { InputText } from '../commons/InputStyle';
 import { Container } from '../commons/ModalStyle';
 import Select from 'react-select';
 
-const AddTaskForm = () => {
+const AddTaskForm = ({ form, onSubmit, onChange }) => {
   const options = [
     { value: 'user01', label: 'user01' },
     { value: 'user02', label: 'user02' },
@@ -15,11 +15,17 @@ const AddTaskForm = () => {
   return (
     <Container>
       <h1>업무 추가</h1>
-      <form>
+      <form onSubmit={onSubmit}>
         <dl>
           <dt>업무 제목</dt>
           <dd>
-            <InputText placeholder="제목을 입력하세요."></InputText>
+            <InputText
+              type="text"
+              name="tName"
+              value={form.tName}
+              onChange={onChange}
+              placeholder="제목을 입력하세요."
+            ></InputText>
           </dd>
         </dl>
         <dl>
@@ -27,11 +33,12 @@ const AddTaskForm = () => {
           <dd>
             {/* 드롭다운 다중 선택 --> react-select 라이브러리 이용 */}
             <Select
+              isMulti
               options={options}
-              value="manager"
               placeholder="담당자를 선택하세요."
-              selectedOption
+              getValue={(options) => setSelectedOption(options)}
             />
+            <input type="text"></input>
           </dd>
         </dl>
         <dl>
@@ -41,7 +48,13 @@ const AddTaskForm = () => {
         <dl>
           <dt>업무 내용</dt>
           <dd>
-            <textarea placeholder="업무 내용 상세"></textarea>
+            <textarea
+              type="text"
+              name="description"
+              value={form.description}
+              onChange={onChange}
+              placeholder="업무 내용 상세"
+            ></textarea>
           </dd>
         </dl>
 
