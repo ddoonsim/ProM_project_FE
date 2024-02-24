@@ -64,7 +64,7 @@ const TeamMemberBox = ({ item }) => {
       <div className="btns">
         {isOpen && (
           <ModalBox isOpen={isOpen} onClose={onClose}>
-            <InviteMember />
+            <InviteMember projectSeq={item.seq} />
           </ModalBox>
         )}
         <Link

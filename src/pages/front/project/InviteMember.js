@@ -1,8 +1,8 @@
 import InviteMemberContainer from "../../../containers/project/InviteMemberContainer";
 
-const InviteMember = () => {
+const InviteMember = ({projectSeq}) => {
     return (
-        <InviteMemberContainer />
+        <InviteMemberContainer projectSeq={projectSeq} />
     );
 };
 

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { produce } from 'immer';
 import { sendInvitation } from '../../api/commons/sendEmail';
 
-const InviteMemberContainer = () => {
+const InviteMemberContainer = ({projectSeq}) => {
   const [form, setForm] = useState({});
 
   const { t } = useTranslation();
@@ -32,8 +32,8 @@ const InviteMemberContainer = () => {
       }
       /* 이메일 입력란 필수 체크 E */
 
-      // 초대 이메일 전송!
-      sendInvitation(form.email, 'http://localhost:3000/');
+      // 초대 링크 이메일 전송!
+      sendInvitation(form.email, `http://localhost:3000/project/invite/${projectSeq}`);
     },
     [form, t],
   );

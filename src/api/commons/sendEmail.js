@@ -18,15 +18,16 @@ export const sendVerifyEmail = function (email) {
 
 // 초대 이메일 발송
 export const sendInvitation = function (email, link) {
-  return new Promise((resolve, reject) => {
+  return new Promise(() => {
     apiRequest(`/email/invite?email=${email}&link=${link}`, 'GET')
       .then((data) => {
         if (data.data.success) {
           alert('📨초대장을 발송했습니다!😊');
           window.location.reload();
         } else {
-          alert('이메일 전송에 실패했습니다😢');
-          reject(data.data);
+          console.log(data);
+          alert('이미 우리 팀 팀원이네요! 이메일을 확인해주세요😊');
+          window.location.reload();
         }
       })
       .catch((err) => console.error(err));
