@@ -1,9 +1,9 @@
 import ChatContainer from '../../containers/chatting/ChatContainer';
 
-const ChatRoom = () => {
+const ChatRoom = ({roomNo}) => {
   return (
     <>
-      <ChatContainer />
+      <ChatContainer roomNo={roomNo}/>
     </>
   );
 };
