@@ -50,7 +50,7 @@ const TeamMember = styled.div`
 
 const TeamMemberBox = ({ item }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const {seq} = item;
+  const { seq } = item;
   const onClose = useCallback(() => setIsOpen(false), []);
 
   return (
@@ -63,7 +63,7 @@ const TeamMemberBox = ({ item }) => {
       <div className="btns">
         {isOpen && (
           <ModalBox isOpen={isOpen} onClose={onClose}>
-            <InviteMember />
+            <InviteMember projectSeq={item.seq} />
           </ModalBox>
         )}
         <Link

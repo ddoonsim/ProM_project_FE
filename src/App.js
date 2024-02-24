@@ -20,6 +20,8 @@ import ChatContainer from './containers/chatting/ChatContainer';
 import ChatRoomCreate from './pages/chatting/ChatRoomCreate';
 import ProjectMain from './pages/front/project/ProjectMain';
 import ProfileEdit from './pages/front/member/ProfileEdit';
+import Invitation from './pages/front/project/Invitation';
+import AcceptedContainer from './containers/project/AcceptedContainer';
 
 Modal.setAppElement('#root');
 
@@ -49,6 +51,8 @@ const App = () => {
         <Route path="/chatroom/create" element={<ChatRoomCreate />} />
         <Route path="/newProject" element={<NewProject />} />
         <Route path="/project/:projectSeq" element={<ProjectMain />} />
+        <Route path="/project/invite/:projectSeq" element={<Invitation />} />
+        <Route path="/accepted/:projectSeq" element={<AcceptedContainer />} />
       </Route>
       <Route path="*" element={<Layout />}>
         <Route path="*" element={<NotFound />} />
