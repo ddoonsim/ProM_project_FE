@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { BigButton } from '../commons/ButtonStyle';
 import { InputText } from '../commons/InputStyle';
 import { Container } from '../commons/ModalStyle';
@@ -9,6 +10,7 @@ const AddTaskForm = () => {
     { value: 'user02', label: 'user02' },
     { value: 'user03', label: 'user03' },
   ];
+  const [selectedOption, setSelectedOption] = useState(null);
 
   return (
     <Container>
@@ -28,7 +30,7 @@ const AddTaskForm = () => {
               options={options}
               value="manager"
               placeholder="담당자를 선택하세요."
-              isMulti
+              selectedOption
             />
           </dd>
         </dl>
