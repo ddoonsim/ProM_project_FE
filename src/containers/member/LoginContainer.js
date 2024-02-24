@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import cookies from 'react-cookies';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import LoginForm from '../../components/member/LoginForm';
 import UserContext from '../../modules/user';
 import { requestLogin } from '../../api/member/login';
@@ -12,6 +12,7 @@ const LoginContainer = () => {
 
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const {
     action: { updateUserInfo },
@@ -58,8 +59,8 @@ const LoginContainer = () => {
           // 로그인 상태(isLogin -> true), userInfo에 회원정보 업데이트
           updateUserInfo();
 
-          // 페이지 이동
-          navigate('/', { replace: true });
+          // 원래 보고 있던 페이지로 이동
+          navigate(-1);
         })
         .catch(() => {
           setErrors(() => ({
