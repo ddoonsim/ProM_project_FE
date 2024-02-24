@@ -74,18 +74,8 @@ const TeamMemberBox = ({ item }) => {
         >
           팀원 초대하기
         </Link>
-        {isOpen && (
-          <ModalBox isOpen={isOpen} onClose={onClose}>
-            <ChatRoom roomNo={seq + 'p'} />
-          </ModalBox>
-        )}
-        <Link
-          className="btn"
-          name="chatroom"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          팀 단체 채팅
-        </Link>
+        {/* 채팅방 */}
+        <ChatRoom roomNo={seq + 'p'} />
       </div>
     </TeamMember>
   );
