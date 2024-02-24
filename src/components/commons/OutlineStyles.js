@@ -8,7 +8,7 @@ export const OuterBox = styled.div`
   padding: 50px 100px;
   width: 100%;
   max-width: 800px;
-  min-height: 800px;
+  height: fit-content;
   margin: 50px auto;
   border-radius: 10px;
   box-shadow: 2px 2px 5px ${primary};
