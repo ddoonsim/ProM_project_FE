@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { FiMoreVertical } from 'react-icons/fi';
 import { MainTitle, SubTitle } from '../commons/TitleStyle';
 import { Link } from '../../../node_modules/react-router-dom/dist/index';
+import EditInfoBtn from './EditProjectInfoBtn';
 import colorNames from '../../styles/colors';
 import sizeNames from '../../styles/sizes';
 import AddTask from '../../pages/front/project/AddTask';
@@ -104,9 +105,8 @@ const ProjectMainForm = ({ item }) => {
       <div className="project_info_box">
         <div className="info_box">
           <MainTitle borderBottom="none">
-            <Link to="/">
-              <FiMoreVertical />
-            </Link>
+            {/* 프로젝트 제목과 설명을 수정할 수 있는 폼 Open 버튼 */}
+            <EditInfoBtn />
             &nbsp;&nbsp;{pname}
           </MainTitle>
 

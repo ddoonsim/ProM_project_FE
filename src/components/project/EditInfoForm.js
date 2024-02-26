@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { MainTitle } from '../commons/TitleStyle';
 import { InputText } from '../commons/InputStyle';
 import { BigButton } from '../commons/ButtonStyle';
 import { Container } from '../commons/ModalStyle';
 import ErrorMessages from '../commons/ErrorMessages';
 
-const NewProjectForm = ({ form, onSubmit, onChange, errors }) => {
+const EditInfoForm = ({ form, onSubmit, onChange, errors }) => {
+//   useEffect(() => {
+//     form.pName = item.pname;
+//     console.log(form.pName);
+//   }, [item]);
+
   return (
     <Container>
-      <MainTitle>새 프로젝트</MainTitle>
+      <MainTitle>프로젝트 설정 수정</MainTitle>
 
       <form onSubmit={onSubmit}>
         <dl>
@@ -40,11 +45,11 @@ const NewProjectForm = ({ form, onSubmit, onChange, errors }) => {
           name="createBtn"
           width="250px"
         >
-          프로젝트 만들기
+          수정하기
         </BigButton>
       </form>
     </Container>
   );
 };
 
-export default React.memo(NewProjectForm);
+export default React.memo(EditInfoForm);
