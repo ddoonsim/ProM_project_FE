@@ -76,8 +76,8 @@ const JoinContainer = () => {
           alert(t('join_ok'));
           setForm(() => {}); // 양식 초기화
 
-          // 로그인 페이지 이동
-          navigate('/login', { replace: true });
+          // 메인 페이지 이동
+          navigate('/', { replace: true });
         })
         .catch((err) => setErrors(() => err.message));
     },
