@@ -1,6 +1,14 @@
 import { SubTitle } from '../commons/TitleStyle';
-import { NavLink } from '../../../node_modules/react-router-dom/dist/index';
+import { NavLink } from 'react-router-dom';
 import classNames from '../../../node_modules/classnames/index';
+import styled from 'styled-components';
+
+const None = styled.a`
+  display: block;
+  font-size: medium;
+  color: white;
+  text-align: center;
+`;
 
 const ListForm = ({ items }) => {
   items = items || [];
@@ -26,7 +34,7 @@ const ListForm = ({ items }) => {
             </NavLink>
           ))
         ) : (
-          <NavLink>없음</NavLink>
+          <None>없음</None>
         )}
       </ul>
     </>
