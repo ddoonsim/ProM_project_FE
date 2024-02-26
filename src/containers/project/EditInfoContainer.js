@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { produce } from 'immer';
 import { useParams } from 'react-router-dom';
 import getProjectInfo from '../../api/project/ProjectMainView';
-import createProject from '../../api/project/newProject';
 import updateInfo from '../../api/project/updateInfo';
 
 const EditInfoContainer = () => {
