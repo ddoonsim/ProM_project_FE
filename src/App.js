@@ -22,6 +22,7 @@ import ProjectMain from './pages/front/project/ProjectMain';
 import ProfileEdit from './pages/front/member/ProfileEdit';
 import Invitation from './pages/front/project/Invitation';
 import AcceptedContainer from './containers/project/AcceptedContainer';
+import TestPage from './pages/testPage';
 
 Modal.setAppElement('#root');
 
@@ -51,6 +52,7 @@ const App = () => {
         <Route path="/project/:projectSeq" element={<ProjectMain />} />
         <Route path="/project/invite/:projectSeq" element={<Invitation />} />
         <Route path="/accepted/:projectSeq" element={<AcceptedContainer />} />
+        <Route path="/test" element={<TestPage />} />
       </Route>
       <Route path="*" element={<Layout />}>
         <Route path="*" element={<NotFound />} />
