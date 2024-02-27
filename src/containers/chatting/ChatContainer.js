@@ -12,7 +12,7 @@ import UserContext from '../../modules/user';
 
 let webSocket;
 const ChatContainer = ({ roomNo }) => {
-  if (roomNo.endsWith('p')) roomNo.replace('p', '');
+  if ((''+roomNo).endsWith('p')) roomNo.replace('p', '');
 
   const inputEl = useRef();
   const buttonEl = useRef();

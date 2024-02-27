@@ -8,6 +8,7 @@ const validation = {
   Login_fail: '⚠️아이디 또는 비밀번호가 일치하지 않습니다.',
   Find_fail: '⚠️이메일 또는 아이디가 일치하지 않습니다.',
   NotBlank_pName: '⚠️프로젝트 제목을 입력하세요.',
+  NotBlank_tName: '⚠️업무 제목을 입력하세요.',
 };
 
 export default validation;

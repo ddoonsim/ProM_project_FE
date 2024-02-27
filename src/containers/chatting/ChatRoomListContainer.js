@@ -1,11 +1,16 @@
 import { getRooms } from '../../api/chatting/chat';
 import { useState, useCallback, useEffect } from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import { MainTitle } from '../../components/commons/TitleStyle';
+import { SubTitle } from '../../components/commons/TitleStyle';
+import ModalBox from '../../components/commons/ModalBox';
+import ChatContainer from './ChatContainer';
 const ChatRoomListContainer = () => {
   const [rooms, setRooms] = useState([]);
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(true);
+
+  const [isOpen, setIsOpen] = useState(false);
+  const onClose = useCallback(() => setIsOpen(false), []);
 
   const updateRooms = useCallback(() => {
     getRooms()
@@ -23,22 +28,31 @@ const ChatRoomListContainer = () => {
   let lis = null;
   if (rooms && rooms.length > 0) {
     lis = rooms.map((r) => {
-      const link = `/chatroom/${r.roomNo}`;
+      // const link = `/chatroom/${r.roomNo}`;
+      console.log(r);
+
       return (
         <div key={r.roomNo}>
-          <Link to={link}>
-            <div className="left">{r.roomNm}</div>
-            <div className="right">최대 인원수 : {r.capacity}명</div>
+          <Link name="chatroom" onClick={() => setIsOpen(!isOpen)}>
+            {r.roomNm}
+            {/* <div className="right">최대 인원수 : {r.capacity}명</div> */}
+
+            {isOpen && (
+              <ModalBox isOpen={isOpen} onClose={onClose}>
+                <ChatContainer roomNo={r.roomNo} />
+              </ModalBox>
+            )}
           </Link>
         </div>
       );
     });
   }
+
   return (
-    <>
-      <MainTitle>채팅방 목록</MainTitle>
+    <div>
+      <SubTitle>채팅방 목록</SubTitle>
       <ul>{lis}</ul>
-    </>
+    </div>
   );
 };
 
