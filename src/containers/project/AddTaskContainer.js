@@ -11,6 +11,8 @@ const AddTaskContainer = ({ item }) => {
     member: member,
     tName: '',
     description: '',
+    sDate: '',
+    eDate: '',
     pSeq: 0,
   });
   const [errors, setErrors] = useState({});
@@ -34,6 +36,7 @@ const AddTaskContainer = ({ item }) => {
   const onChange = useCallback(
     (e) => {
       const target = e.currentTarget;
+      console.log(target);
       setForm(
         produce((draft) => {
           draft[target.name] = target.value;
