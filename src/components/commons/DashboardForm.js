@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import MyCalendar from '../member/MyCalendar';
 import ChatRoom from '../../pages/chatting/ChatRoom';
 import colorNames from '../../styles/colors';
+import Weather from './Weather';
 
 const { primary, info } = colorNames;
 
@@ -116,7 +117,7 @@ const DashboardForm = ({ items }) => {
             <li>예시 2</li>
           </ul>
         </div>
-        {/* 날씨 위젯 삽입 */}
+        <Weather />
       </div>
       <br />
       <SubTitle>My Tasks</SubTitle>
