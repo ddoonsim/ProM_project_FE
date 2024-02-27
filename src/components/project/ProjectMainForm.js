@@ -97,7 +97,6 @@ const ProjectDashBoard = styled.div`
 const ProjectMainForm = ({ item }) => {
   const [isOpen, setIsOpen] = useState(false);
   const onClose = useCallback(() => setIsOpen(false), []);
-
   const { pname, description } = item;
   return (
     <ProjectDashBoard className="container">
@@ -145,7 +144,7 @@ const ProjectMainForm = ({ item }) => {
 
       {isOpen && (
         <ModalBox isOpen={isOpen} onClose={onClose}>
-          <AddTask />
+          <AddTask item={item} />
         </ModalBox>
       )}
     </ProjectDashBoard>

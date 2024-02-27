@@ -1,17 +1,17 @@
-import { useState, useEffect } from 'react';
 import { BigButton } from '../commons/ButtonStyle';
 import { InputText } from '../commons/InputStyle';
 import { Container } from '../commons/ModalStyle';
 import Select from 'react-select';
+import ErrorMessages from '../commons/ErrorMessages';
 
-const AddTaskForm = ({ form, onSubmit, onChange }) => {
-  const options = [
-    { value: 'user01', label: 'user01' },
-    { value: 'user02', label: 'user02' },
-    { value: 'user03', label: 'user03' },
-  ];
-  const [selectedOption, setSelectedOption] = useState(null);
-
+const AddTaskForm = ({
+  form,
+  onSubmit,
+  onChange,
+  handleChange,
+  options,
+  errors,
+}) => {
   return (
     <Container>
       <h1>업무 추가</h1>
@@ -28,6 +28,7 @@ const AddTaskForm = ({ form, onSubmit, onChange }) => {
             ></InputText>
           </dd>
         </dl>
+        <ErrorMessages errors={errors} field="tName" />
         <dl>
           <dt>담당자</dt>
           <dd>
@@ -36,9 +37,9 @@ const AddTaskForm = ({ form, onSubmit, onChange }) => {
               isMulti
               options={options}
               placeholder="담당자를 선택하세요."
-              getValue={(options) => setSelectedOption(options)}
+              // getValue={(options) => setSelectedOption(options)}
+              onChange={handleChange}
             />
-            <input type="text"></input>
           </dd>
         </dl>
         <dl>
