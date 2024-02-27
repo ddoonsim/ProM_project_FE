@@ -5,6 +5,7 @@ import { produce } from 'immer';
 import { useParams } from 'react-router-dom';
 import getProjectInfo from '../../api/project/ProjectMainView';
 import updateInfo from '../../api/project/updateInfo';
+import Swal from 'sweetalert2';
 
 const EditInfoContainer = () => {
   const { t } = useTranslation();
@@ -43,9 +44,15 @@ const EditInfoContainer = () => {
 
       updateInfo(form)
         .then(() => {
-          alert('프로젝트 정보를 수정했습니다.');
-
-          window.location.reload();
+          Swal.fire({
+            title: "프로젝트 수정 완료",
+            text: "프로젝트 정보를 수정했습니다.",
+            icon: "success"
+          }).then((result) => {
+            if (result.isConfirmed || result.isDismissed) {
+              window.location.reload();
+            }
+          })
         })
         .catch((err) => setErrors(() => err.message));
     },

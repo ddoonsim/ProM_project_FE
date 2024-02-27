@@ -4,6 +4,7 @@ import ProfileEditForm from '../../components/member/ProfileEditForm';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from '../../../node_modules/react-router-dom/dist/index';
 import requestProfile from '../../api/mypage/profile';
+import Swal from 'sweetalert2';
 
 const ProfileEditContainer = () => {
   const { t } = useTranslation();
@@ -20,7 +21,11 @@ const ProfileEditContainer = () => {
       requestProfile(form)
         .then(() => {
           // 수정 성공시 처리
-          alert(t('edit_ok'));
+          Swal.fire({
+            title: "수정 완료",
+            text: "마이페이지로 이동합니다🤗",
+            icon: "success"
+          })
           setForm(() => {}); // 양식 초기화
 
           // 마이페이지 이동

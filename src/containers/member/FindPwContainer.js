@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { findPwInfo } from '../../api/member/findpw';
 import FindPwForm from '../../components/member/FindPwForm';
-import Swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 const FindPwContainer = () => {
     const { t } = useTranslation();
@@ -47,9 +47,11 @@ const FindPwContainer = () => {
          .then((res) => {
             if (res.success) {
              // 회원정보 일치시 처리
-             Swal("이메일 전송", 
-             "가입하신 이메일로 초기화된 비밀번호를 발송했습니다! 로그인 후 비밀번호를 변경하세요😊", 
-             "success")
+             Swal.fire({
+              title: "이메일 전송", 
+              html: "가입하신 이메일로 초기화된 비밀번호를 발송했습니다! <br>로그인 후 비밀번호를 변경하세요😊", 
+              icon: "success"
+            })
 
              // 로그인 페이지 이동
              navigate('/login', { replace: true });
