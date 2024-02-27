@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { produce } from 'immer';
 import NewProjectForm from '../../components/project/NewProjectForm';
 import createProject from '../../api/project/newProject';
+import Swal from 'sweetalert2';
 
 const NewProjectContainer = () => {
   const [form, setForm] = useState({});
@@ -31,9 +32,15 @@ const NewProjectContainer = () => {
 
       createProject(form)
         .then(() => {
-          alert('새 프로젝트 생성했습니다.');
-
-          window.location.reload();
+          Swal.fire({
+            title: "프로젝트 생성 완료",
+            text: "새 프로젝트 생성했습니다.",
+            icon: "success"
+          }).then((result) => {
+            if (result.isConfirmed || result.isDismissed) {
+              window.location.reload();
+            }
+          })           
         })
         .catch((err) => setErrors(() => err.message));
     },

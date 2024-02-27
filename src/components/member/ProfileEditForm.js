@@ -1,12 +1,12 @@
 import MemberOnly from '../authority/MemberOnly';
-import UserContext from '../../modules/user';
-import { useContext } from 'react';
 import { InputText } from '../commons/InputStyle';
 import styled from 'styled-components';
 import { BigButton } from '../commons/ButtonStyle';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import loadable from '@loadable/component';
+import ImageView from '../commons/ImageView';
+import FileUpload from '../commons/FileUpload';
 
 const ErrorMessages = loadable(() => import('../commons/ErrorMessages'));
 
@@ -43,9 +43,7 @@ const ProfileEditForm = ({
   errors,
   fileUploadCallback,
 }) => {
-  const {
-    state: { isLogin, userInfo },
-  } = useContext(UserContext);
+
 
   const { t } = useTranslation();
 
@@ -56,7 +54,7 @@ const ProfileEditForm = ({
 
         <dl>
           <dt>{t('이메일')}</dt>
-          <dd>{userInfo.email}</dd>
+          <dd>{form.email}</dd>
         </dl>
 
         <dl>
@@ -65,7 +63,7 @@ const ProfileEditForm = ({
             <InputText
               type="text"
               name="name"
-              placeholder={userInfo.name}
+              value={form.name}
               onChange={onChange}
             />
             <ErrorMessages errors={errors} field="name" />
@@ -75,7 +73,10 @@ const ProfileEditForm = ({
         <dl>
           <dt>{t('비밀번호')}</dt>
           <dd>
-            <InputText type="password" name="password" onChange={onChange} />
+            <InputText
+             type="password"
+             name="password"
+             onChange={onChange} />
             <ErrorMessages errors={errors} field="password" />
           </dd>
         </dl>
@@ -98,7 +99,7 @@ const ProfileEditForm = ({
             <InputText
               type="text"
               name="mobile"
-              placeholder={userInfo.mobile}
+              value={form.mobile}
               onChange={onChange}
             />
             <ErrorMessages errors={errors} field="mobile" />
@@ -107,6 +108,20 @@ const ProfileEditForm = ({
 
         <dl>
           <dt>{t('프로필 이미지')}</dt>
+          <dd>
+            {form.profileImage && (
+              <ImageView image={form.profileImage} mode="thumbnail" />
+            )}
+            <FileUpload
+              gid={form.gid}
+              imageOnly={true}
+              singleFile={true}
+              location={'profile_img'}
+              fileUploadCallback={fileUploadCallback}
+              >
+                {t('이미지_업로드')}
+              </FileUpload>
+          </dd>
         </dl>
 
         <BigButton

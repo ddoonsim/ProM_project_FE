@@ -6,7 +6,7 @@ import JoinForm from '../../components/member/JoinForm';
 import requestJoin from '../../api/member/join';
 import { sendVerifyEmail } from '../../api/commons/sendEmail';
 import apiRequest from '../../lib/apiRequest';
-import Swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 const JoinContainer = () => {
   const { t } = useTranslation();
@@ -76,7 +76,11 @@ const JoinContainer = () => {
           // 회원 가입 성공시 처리
           //alert(t('join_ok'));
           setForm(() => {}); // 양식 초기화
-          Swal("가입완료", "환영합니다🤗", "success")
+          Swal.fire({
+            title: "가입완료", 
+            text: "환영합니다🤗", 
+            icon: "success"
+          })
 
           // 메인 페이지 이동
           navigate('/', { replace: true });
@@ -141,7 +145,10 @@ const JoinContainer = () => {
 
     if (target === 'sendCodeBtn') {
       if (!form.email) {
-        alert('이메일을 입력하세요!');
+        Swal.fire({
+          title: "이메일을 입력하세요",
+          icon: "warning",
+        });
         return;
       }
 
@@ -150,7 +157,10 @@ const JoinContainer = () => {
           .then((data) => {
             if (data.data.success) {
               // 중복이메일인 경우
-              alert('❌ 이미 가입된 이메일입니다.');
+              Swal.fire({
+                title: "이미 가입된 이메일입니다.",
+                icon: "warning",
+              });
 
               // 이메일 입력 란에 focus()
               if (emailRef.current) {
@@ -178,8 +188,10 @@ const JoinContainer = () => {
       console.log(authNum.value);
       if (!authNum.value.trim()) {
         // 인증코드를 입력하지 않고 확인을 클릭했을 때
-        alert('인증코드를 입력하세요.');
-        authCount.current.focus();
+        Swal.fire({
+          title: "인증코드를 입력하세요.",
+          icon: "warning",
+        });
       }
 
       // 인증코드 일치 여부 확인
@@ -189,13 +201,19 @@ const JoinContainer = () => {
         apiRequest(`/email/auth_check?authNum=${authNum.value}`, 'GET')
           .then((data) => {
             if (data.data.success) {
-              alert('이메일이 인증되었습니다😁');
+              Swal.fire({
+                title: "이메일이 인증되었습니다😁",
+                icon: "success",
+              });
               if (authCount.intervalId) clearInterval(authCount.intervalId);
               confirmBtnRef.disabled = true;
               reSendBtnRef.disabled = true;
               confirmedMsgRef.classList.remove('dn');
             } else {
-              alert('이메일 인증에 실패했습니다😢');
+              Swal.fire({
+                title: "이메일 인증에 실패했습니다😢",
+                icon: "error",
+              });
             }
           })
           .catch((err) => console.error(err));
