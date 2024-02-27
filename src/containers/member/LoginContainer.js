@@ -59,8 +59,13 @@ const LoginContainer = () => {
           // 로그인 상태(isLogin -> true), userInfo에 회원정보 업데이트
           updateUserInfo();
 
-          // 원래 보고 있던 페이지로 이동
-          navigate(-1);
+          // 프로젝트 초대장 페이지 띄우기
+          if (`${location.pathname}`.includes('/project/invite')) {
+            navigate(-1);
+          }
+
+          // 일반적인 로그인 시 ==> 메인페이지로 이동
+          navigate('/');
         })
         .catch(() => {
           setErrors(() => ({

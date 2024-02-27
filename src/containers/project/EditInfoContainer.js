@@ -1,19 +1,31 @@
-import React, { useCallback, useState } from 'react';
+import EditInfoForm from '../../components/project/EditInfoForm';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { produce } from 'immer';
-import NewProjectForm from '../../components/project/NewProjectForm';
-import createProject from '../../api/project/newProject';
+import { useParams } from 'react-router-dom';
+import getProjectInfo from '../../api/project/ProjectMainView';
+import updateInfo from '../../api/project/updateInfo';
 
-const NewProjectContainer = () => {
-  const [form, setForm] = useState({});
-
+const EditInfoContainer = () => {
   const { t } = useTranslation();
 
   const [errors, setErrors] = useState({});
 
+  const [form, setForm] = useState({});
+
+  const param = useParams();
+  const projectSeq = param.projectSeq;
+
+  useEffect(() => {
+    getProjectInfo(projectSeq).then((data) => {
+      setForm(() => data);
+    });
+  }, [projectSeq]);
+
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
+
       const _errors = {};
       let hasError = false;
       if (!form.pname) {
@@ -29,9 +41,9 @@ const NewProjectContainer = () => {
         return;
       }
 
-      createProject(form)
+      updateInfo(form)
         .then(() => {
-          alert('새 프로젝트 생성했습니다.');
+          alert('프로젝트 정보를 수정했습니다.');
 
           window.location.reload();
         })
@@ -42,6 +54,7 @@ const NewProjectContainer = () => {
 
   const onChange = useCallback((e) => {
     const target = e.currentTarget;
+
     setForm(
       produce((draft) => {
         draft[target.name] = target.value;
@@ -50,7 +63,7 @@ const NewProjectContainer = () => {
   }, []);
 
   return (
-    <NewProjectForm
+    <EditInfoForm
       form={form}
       onSubmit={onSubmit}
       onChange={onChange}
@@ -59,4 +72,4 @@ const NewProjectContainer = () => {
   );
 };
 
-export default React.memo(NewProjectContainer);
+export default React.memo(EditInfoContainer);

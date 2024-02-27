@@ -5,7 +5,6 @@ import { findIdInfo } from '../../api/member/findid';
 import FindIdForm from '../../components/member/FindIdForm';
 import swal from 'sweetalert';
 
-
 const FindIdContainer = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -48,16 +47,17 @@ const FindIdContainer = () => {
       // 회원정보 일치 확인
       findIdInfo(form)
         .then((res) => {
-          console.log(res.data);
-          if (res.success) {
+          if (res.data) {
             // 회원정보 일치시 처리
             // 가입한 아이디(이메일)가 모달창 또는 알림으로 나오도록 처리
-            swal("아이디", res.data.replace(res.data.substr(2,4), "***"), "success" );
+            swal(
+              '아이디',
+              res.data.replace(res.data.substr(2, 4), '***'),
+              'success',
+            );
 
             // 로그인 페이지 이동
             navigate('/login', { replace: true });
-          } else {
-            alert('등록된 회원이 아님'); // 안나와,,,
           }
         })
         .catch((err) => setErrors(() => err.message));
