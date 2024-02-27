@@ -6,6 +6,7 @@ import JoinForm from '../../components/member/JoinForm';
 import requestJoin from '../../api/member/join';
 import { sendVerifyEmail } from '../../api/commons/sendEmail';
 import apiRequest from '../../lib/apiRequest';
+import Swal from 'sweetalert';
 
 const JoinContainer = () => {
   const { t } = useTranslation();
@@ -73,8 +74,9 @@ const JoinContainer = () => {
       requestJoin(form)
         .then(() => {
           // 회원 가입 성공시 처리
-          alert(t('join_ok'));
+          //alert(t('join_ok'));
           setForm(() => {}); // 양식 초기화
+          Swal("가입완료", "환영합니다🤗", "success")
 
           // 메인 페이지 이동
           navigate('/', { replace: true });
