@@ -1,0 +1,71 @@
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 5;
+    background-color: rgba(0, 0, 0, 0.548);
+  }
+  .todoedit__insert {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+    h2 {
+      box-sizing: border-box;
+      width: 100%;
+      margin: 0;
+      text-align: center;
+      padding: 0.5rem;
+      padding-left: 8.7rem;
+      background-color: #3E768C;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .ExitBtn {
+      outline: none;
+      border: none;
+      background: #7297A6;
+      color: white;
+      margin: auto;
+      margin-left: 69px;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.1s background ease-in;
+      &:hover {
+        background: #226473;
+      }
+    }
+
+    input {
+      margin: 2rem 0;
+      padding: 0.3rem;
+      border: none;
+      outline: none;
+      border-bottom: 1px solid #3E768C;
+    }
+    button {
+      cursor: pointer;
+      background-color: #3E768C;
+      border: none;
+      color: white;
+      padding: 0.5rem 1rem;
+      margin-bottom: 1rem;
+      transition: 0.1s background ease-in;
+      &:hover {
+        background: #226473;
+      }
+    }
+  }
