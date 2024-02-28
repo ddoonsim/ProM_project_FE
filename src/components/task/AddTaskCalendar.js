@@ -7,19 +7,11 @@ const AddTaskCalendar = ({ form, onChange }) => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
 
-  const changeDate = (e) => {
-    const startDateFormat = moment(e[0]).format('YYYY-MM-DD');
-    const endDateFormat = moment(e[1]).format('YYYY-MM-DD');
-
-    setStartDate(startDateFormat);
-    setEndDate(endDateFormat);
-  };
-
   return (
     <>
       <div>
         <Calendar
-          onChange={changeDate}
+          // onChange={changeDate}
           next2Label={null}
           prev2Label={null}
           selectRange={true}

@@ -1,9 +1,15 @@
+import { useState } from 'react';
 import { BigButton, ButtonGroup } from '../commons/ButtonStyle';
 import { InputText } from '../commons/InputStyle';
 import { Container } from '../commons/ModalStyle';
 import Select from 'react-select';
 import ErrorMessages from '../commons/ErrorMessages';
-import AddTaskCalendar from './AddTaskCalendar';
+import Calendar from '../../../node_modules/react-calendar/dist/cjs/Calendar';
+import moment from '../../../node_modules/moment/moment';
+import 'react-calendar/dist/Calendar.css';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import FileUpload from '../commons/FileUpload';
 
 const AddTaskForm = ({
   form,
@@ -12,7 +18,11 @@ const AddTaskForm = ({
   handleChange,
   options,
   errors,
-  onClick,
+  onEditor,
+  setEditor,
+  fileUploadCallback,
+  statusChange,
+  changeDate,
 }) => {
   return (
     <Container>
@@ -34,9 +44,9 @@ const AddTaskForm = ({
         <dl>
           <dt>업무 상태</dt>
           <dd>
-            <ButtonGroup name="status" value={form.status}>
+            <ButtonGroup name="status">
               <input
-                onClick={onChange}
+                onClick={statusChange}
                 type="radio"
                 name="status"
                 id="request"
@@ -44,7 +54,7 @@ const AddTaskForm = ({
               />
               <label for="request">요청</label>
               <input
-                onClick={onChange}
+                onClick={statusChange}
                 type="radio"
                 name="status"
                 id="progress"
@@ -52,7 +62,7 @@ const AddTaskForm = ({
               />
               <label for="progress">진행중</label>
               <input
-                onClick={onChange}
+                onClick={statusChange}
                 type="radio"
                 name="status"
                 id="success"
@@ -60,7 +70,7 @@ const AddTaskForm = ({
               />
               <label for="success">완료</label>
               <input
-                onClick={onChange}
+                onClick={statusChange}
                 type="radio"
                 name="status"
                 id="hold"
@@ -77,6 +87,8 @@ const AddTaskForm = ({
             <Select
               isMulti
               options={options}
+              name="members"
+              value={form.members}
               placeholder="담당자를 선택하세요."
               // getValue={(options) => setSelectedOption(options)}
               onChange={handleChange}
@@ -86,22 +98,42 @@ const AddTaskForm = ({
         <dl>
           <dt>업무 진행 기간</dt>
           <dl>
-            <AddTaskCalendar form={form} onChange={onChange} />
+            <div>
+              <Calendar
+                onChange={changeDate}
+                next2Label={null}
+                prev2Label={null}
+                selectRange={true}
+                formatDay={(locale, date) => moment(date).format('DD')}
+              />
+            </div>
           </dl>
         </dl>
         <dl>
           <dt>업무 내용</dt>
           <dd>
-            <textarea
-              type="text"
+            <CKEditor
               name="description"
-              value={form.description}
-              onChange={onChange}
-              placeholder="업무 내용 상세"
-            ></textarea>
+              editor={ClassicEditor}
+              data={form.description}
+              onReady={(editor) => setEditor(editor)}
+              onChange={onEditor}
+            />
           </dd>
         </dl>
-
+        <dl>
+          <dt>파일 업로드</dt>
+          <dd>
+            <FileUpload
+              gid={form.gid}
+              location={'notice'}
+              imageOnly={true}
+              fileUploadCallback={fileUploadCallback}
+            >
+              이미지 첨부
+            </FileUpload>
+          </dd>
+        </dl>
         <BigButton
           type="submit"
           className="mt10 mb10"
