@@ -70,7 +70,7 @@ const FileUpload = ({
 
   return (
     <>
-      <button type="button" onClick={onClick}>
+      <button className='file_upload_btn' type="button" onClick={onClick}>
         {children}
       </button>
       {message && <MessageBox>{message}</MessageBox>}
