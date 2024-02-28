@@ -15,6 +15,10 @@ const NoticeBox = styled.div`
     display: block;
     font-size: medium;
   }
+
+  .none {
+    color: gray;
+  }
 `;
 
 const NoticeListBox = ({ items }) => {
@@ -43,7 +47,9 @@ const NoticeListBox = ({ items }) => {
           </>
         ))
       ) : (
-        <div>없음</div>
+        <div className="list none">
+          팀원들에게 공유하고자 하는 내용을 공지글로 등록해보세요😊
+        </div>
       )}
 
       {isOpen && (

@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { produce } from 'immer';
 import updateNotice from '../../api/project/updateNotice';
 import getNoticeInfo from '../../api/project/noticeInfo';
+import Swal from 'sweetalert2';
 
 const EditNoticeContainer = ({ seq }) => {
   const { projectSeq } = useParams();
@@ -59,11 +60,16 @@ const EditNoticeContainer = ({ seq }) => {
 
       // 업데이트 컨트롤러 호출
       updateNotice(form)
-        .then((res) => {
-          if (res) {
-            alert('✅공지를 수정했습니다.');
-            window.location.reload();
-          }
+        .then(() => {
+          Swal.fire({
+            title: '공지글 수정 완료',
+            text: '공지글을 수정했습니다.',
+            icon: 'success',
+          }).then((res) => {
+            if (res.isConfirmed || res.isDismissed) {
+              window.location.reload();
+            }
+          });
         })
         .catch((err) => console.error(err));
     },

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { produce } from 'immer';
 import newNotice from '../../api/project/newNotice';
+import Swal from 'sweetalert2';
 
 const AddNoticeContainer = () => {
   const [form, setForm] = useState({
@@ -51,11 +52,16 @@ const AddNoticeContainer = () => {
 
       // 등록 컨트롤러 호출
       newNotice(form)
-        .then((res) => {
-          if (res) {
-            alert('✅새 공지를 등록했습니다.');
-            window.location.reload();
-          }
+        .then(() => {
+          Swal.fire({
+            title: '공지글 등록 완료',
+            text: '새 공지글을 등록했습니다.',
+            icon: 'success',
+          }).then((res) => {
+            if (res.isConfirmed || res.isDismissed) {
+              window.location.reload();
+            }
+          });
         })
         .catch((err) => console.error(err));
     },
