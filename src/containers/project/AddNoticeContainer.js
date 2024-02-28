@@ -35,9 +35,9 @@ const AddNoticeContainer = () => {
       /* 제목 필수 입력 사항 체크 S */
       const _errors = {};
       let hasError = false;
-      if (!form.tName) {
-        _errors.tName = _errors.agree || [];
-        _errors.tName.push(t('NotBlank_tName'));
+      if (!form.tname) {
+        _errors.tname = _errors.agree || [];
+        _errors.tname.push(t('NotBlank_tname'));
 
         hasError = true;
       }
