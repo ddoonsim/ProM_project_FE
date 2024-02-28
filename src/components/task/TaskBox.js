@@ -18,7 +18,7 @@ const TaskBox = ({ tasks }) => {
         </ModalBox>
       )}
 
-      {tasks &&
+      {/* {tasks &&
         tasks.map(({ seq, tname, status }) => (
           <>
             <Link
@@ -32,7 +32,7 @@ const TaskBox = ({ tasks }) => {
               </p>
             </Link>
           </>
-        ))}
+        ))} */}
     </>
   );
 };
