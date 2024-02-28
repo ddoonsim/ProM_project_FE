@@ -24,8 +24,6 @@ const AddTaskContainer = ({ item }) => {
     status: status,
   });
 
-  console.log('startDate == ', startDate);
-  console.log('endDate == ', endDate);
   // 파일 업로드 콜백 함수
   const fileUploadCallback = useCallback(
     (files) => {
@@ -88,7 +86,6 @@ const AddTaskContainer = ({ item }) => {
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      console.log(form);
       const _errors = {};
       let hasError = false;
       if (!form.tName) {
