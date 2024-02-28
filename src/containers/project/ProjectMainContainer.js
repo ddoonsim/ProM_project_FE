@@ -25,6 +25,7 @@ const ProjectMainContainer = () => {
     getTasks(projectSeq)
       .then((item) => {
         setTasks(() => item);
+        console.log(item);
       })
       .catch((err) => console.error(err));
   }, [projectSeq]);
