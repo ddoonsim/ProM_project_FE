@@ -114,7 +114,7 @@ const ProjectMainForm = ({ item }) => {
           <p>{description}</p>
 
           {/* 공지글 박스 */}
-          <NoticeContainer seq={seq} />
+          <NoticeContainer />
         </div>
         {/* 팀 구성원 박스 */}
         <TeamMemberBox item={item} />

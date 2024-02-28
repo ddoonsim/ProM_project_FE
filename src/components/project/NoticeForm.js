@@ -1,13 +1,14 @@
+import NoticeListContainer from '../../containers/project/NoticeListContainer';
 import AddNoticeBtn from './AddNoticeBtn';
 
-const NoticeForm = ({pSeq}) => {
+const NoticeForm = () => {
   return (
     <>
       <h3>
         📣 공지사항
-        <AddNoticeBtn pSeq={pSeq} />
+        <AddNoticeBtn />
       </h3>
-      <div className="notice_box"></div>
+      <NoticeListContainer />
     </>
   );
 };

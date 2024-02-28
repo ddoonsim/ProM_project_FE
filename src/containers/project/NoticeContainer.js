@@ -1,9 +1,9 @@
 import NoticeForm from "../../components/project/NoticeForm";
 
 
-const NoticeContainer = ({seq}) => {
+const NoticeContainer = () => {
     return (
-        <NoticeForm pSeq={seq} />
+        <NoticeForm />
     );
 }
 

@@ -70,7 +70,7 @@ const AddNoticeForm = ({
             <InputText
               type="text"
               name="tName"
-              //   value={form.tName}
+              value={form.tName}
               onChange={onChange}
               placeholder="제목을 입력하세요."
             ></InputText>
@@ -87,7 +87,8 @@ const AddNoticeForm = ({
         />
         {/* <div>{editorHtml}</div> */}
         <FileUpload
-          gid="testgid"
+          gid={form.gid}
+          location={'notice'}
           imageOnly={true}
           fileUploadCallback={fileUploadCallback}
         >

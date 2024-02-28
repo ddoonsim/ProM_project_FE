@@ -1,17 +1,22 @@
 import { useCallback, useState } from 'react';
 import AddNoticeForm from '../../components/project/AddNoticeForm';
 import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router-dom';
 import { produce } from 'immer';
 import newNotice from '../../api/project/newNotice';
 
-const AddNoticeContainer = ({pSeq}) => {
+const AddNoticeContainer = () => {
   const [form, setForm] = useState({
+    gid: '' + Date.now(),
   });
 
   const [errors, setErrors] = useState({});
   const { t } = useTranslation();
   const [editor, setEditor] = useState(null);
 
+  const { projectSeq } = useParams();
+
+  // 파일 업로드 콜백 함수
   const fileUploadCallback = useCallback(
     (files) => {
       let html = '';
@@ -57,16 +62,21 @@ const AddNoticeContainer = ({pSeq}) => {
     [form, t],
   );
 
-  const onChange = useCallback((e) => {
-    const target = e.currentTarget;
-    setForm(
-      produce((draft) => {
-        draft[target.name] = target.value;
-        draft['pSeq'] = pSeq;
-      }),
-    );
-  }, [pSeq]);
+  // 공지 제목 입력 시
+  const onChange = useCallback(
+    (e) => {
+      const target = e.currentTarget;
+      setForm(
+        produce((draft) => {
+          draft[target.name] = target.value;
+          draft['pSeq'] = projectSeq;
+        }),
+      );
+    },
+    [projectSeq],
+  );
 
+  // ckeditor에 조작할 때
   const onEditor = useCallback(() => {
     setForm(
       produce((draft) => {

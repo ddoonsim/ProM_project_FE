@@ -1,13 +1,13 @@
 import apiRequest from '../../lib/apiRequest';
 
-export default function createProject(form) {
+export default function getNoticeList(pSeq) {
   return new Promise((resolve, reject) => {
-    apiRequest('/notice/new', 'POST', form)
+    apiRequest(`/notice/list?pSeq=${pSeq}`, 'GET')
       .then((res) => {
         if (!res.data.success) {
           reject(res.data);
         } else {
-          resolve(true);
+          resolve(res.data.data);
         }
       })
       .catch((err) => reject(err));

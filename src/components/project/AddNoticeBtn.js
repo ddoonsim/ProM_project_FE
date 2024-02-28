@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import ModalBox from '../commons/ModalBox';
 import AddNoticeContainer from '../../containers/project/AddNoticeContainer';
 
-const AddNoticeBtn = ({pSeq}) => {
+const AddNoticeBtn = () => {
   const [isOpen, setIsOpen] = useState(false);
   const onClose = useCallback(() => setIsOpen(false), []);
 
@@ -12,7 +12,7 @@ const AddNoticeBtn = ({pSeq}) => {
       <Link className="btn" onClick={() => setIsOpen(!isOpen)}>새 글 등록</Link>
       {isOpen && (
         <ModalBox isOpen={isOpen} onClose={onClose}>
-          <AddNoticeContainer pSeq={pSeq} />
+          <AddNoticeContainer />
         </ModalBox>
       )}
     </>
