@@ -1,12 +1,11 @@
 import { useCallback, useState } from 'react';
-import classNames from '../../../node_modules/classnames/index';
-import { NavLink } from '../../../node_modules/react-router-dom/dist/index';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import ModalBox from '../commons/ModalBox';
 import EditNoticeContainer from '../../containers/project/EditNoticeContainer';
 
 const NoticeBox = styled.div`
-  min-height: 120px;
+  height: 120px;
   padding: 10px 20px;
   background-color: white;
   border-radius: 20px;
@@ -24,17 +23,24 @@ const NoticeListBox = ({ items }) => {
   const [isOpen, setIsOpen] = useState(false);
   const onClose = useCallback(() => setIsOpen(false), []);
 
+  const [noticeSeq, setNoticeSeq] = useState({});
+
   return (
     <NoticeBox>
       {items.length > 0 ? (
         items.map(({ seq, tname }) => (
-          <NavLink
-            onClick={() => setIsOpen(!isOpen)}
-            className={({ isActive }) => classNames({ on: isActive }) + ' list'}
-            key={seq}
-          >
-            {'📌 ' + tname}
-          </NavLink>
+          <>
+            <Link
+              className=" list"
+              onClick={() => {
+                setNoticeSeq(() => seq);
+                setIsOpen(!isOpen);
+              }}
+              key={seq}
+            >
+              {'📌 ' + tname}
+            </Link>
+          </>
         ))
       ) : (
         <div>없음</div>
@@ -42,7 +48,7 @@ const NoticeListBox = ({ items }) => {
 
       {isOpen && (
         <ModalBox isOpen={isOpen} onClose={onClose}>
-          <EditNoticeContainer />
+          <EditNoticeContainer seq={noticeSeq} />
         </ModalBox>
       )}
     </NoticeBox>

@@ -1,20 +1,28 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import EditNoticeForm from '../../components/project/EditNoticeForm';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { produce } from 'immer';
-import newNotice from '../../api/project/newNotice';
+import updateNotice from '../../api/project/updateNotice';
+import getNoticeInfo from '../../api/project/noticeInfo';
 
-const EditNoticeContainer = () => {
+const EditNoticeContainer = ({ seq }) => {
+  const { projectSeq } = useParams();
   const [form, setForm] = useState({
     gid: '' + Date.now(),
   });
 
   const [errors, setErrors] = useState({});
   const { t } = useTranslation();
-  const [editor, setEditor] = useState(null);
+  const [editor, setEditor] = useState();
 
-  const { projectSeq } = useParams();
+  useEffect(() => {
+    getNoticeInfo(seq)
+      .then((data) => {
+        setForm(() => data);
+      })
+      .catch((err) => console.error(err));
+  }, [seq, editor]);
 
   // 파일 업로드 콜백 함수
   const fileUploadCallback = useCallback(
@@ -35,9 +43,9 @@ const EditNoticeContainer = () => {
       /* 제목 필수 입력 사항 체크 S */
       const _errors = {};
       let hasError = false;
-      if (!form.tName) {
-        _errors.tName = _errors.agree || [];
-        _errors.tName.push(t('NotBlank_tName'));
+      if (!form.tname) {
+        _errors.tname = _errors.agree || [];
+        _errors.tname.push(t('NotBlank_tname'));
 
         hasError = true;
       }
@@ -49,11 +57,11 @@ const EditNoticeContainer = () => {
       }
       /* 제목 필수 입력 사항 체크 E */
 
-      // 등록 컨트롤러 호출
-      newNotice(form)
+      // 업데이트 컨트롤러 호출
+      updateNotice(form)
         .then((res) => {
           if (res) {
-            alert('✅새 공지를 등록했습니다.');
+            alert('✅공지를 수정했습니다.');
             window.location.reload();
           }
         })
@@ -80,10 +88,11 @@ const EditNoticeContainer = () => {
   const onEditor = useCallback(() => {
     setForm(
       produce((draft) => {
-        draft.description = editor.getData();
+        draft.description = editor ? editor.getData() : '';
+        draft['pSeq'] = projectSeq;
       }),
     );
-  }, [editor]);
+  }, [editor, projectSeq]);
 
   return (
     <EditNoticeForm

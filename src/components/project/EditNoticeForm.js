@@ -69,14 +69,14 @@ const EditNoticeForm = ({
           <dd>
             <InputText
               type="text"
-              name="tName"
-              value={form.tName}
+              name="tname"
+              value={form.tname}
               onChange={onChange}
               placeholder="제목을 입력하세요."
             ></InputText>
           </dd>
         </dl>
-        <ErrorMessages errors={errors} field="tName" />
+        <ErrorMessages errors={errors} field="tname" />
 
         <CKEditor
           name="description"
@@ -85,7 +85,7 @@ const EditNoticeForm = ({
           onReady={(editor) => setEditor(editor)}
           onChange={onEditor}
         />
-        
+
         <FileUpload
           gid={form.gid}
           location={'notice'}
