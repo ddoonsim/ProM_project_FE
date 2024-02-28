@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
+import weatherDescKo from "./WeatherDescKo";
+import TodayData from "./TodayData";
+import { FaLocationDot } from "react-icons/fa6";
 
 const Weather = () => {
 const apiKey = process.env.REACT_APP_API_KEY;
 const [coords, saveCoords] = useState();
 const [temp, setTemp] = useState();
-const [weather, setWeather] = useState();
+const [name, setName] = useState();
+const [weatherKo, setWeatherKo] = useState();
+const [weatherIconAdr, setWeatherIconAdr] = useState();
   
  function handleGeoSucc(position) {
   console.log(position);
@@ -31,16 +36,35 @@ function getWeather(lat, lon) {
     .then(res => res.json())
     .then(data => {
       console.log(data);
-      const temp = data.main.temp;
-      const weathers = data.weather[data.weather.length - 1];
+      
+      const temp = Math.round(data.main.temp);
+      const name = data.name;
+      const weathers = data.weather[0];
+      const weatherIcon = data.weather[0].icon;
+      const weatherIconAdr = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
+      const weatherKo = weatherDescKo.find(function(item){return item.id === weathers.id});
+      setName(name);
       setTemp(temp);
-      setWeather(weathers.main);
+      setWeatherKo(weatherKo);
+      setWeatherIconAdr(weatherIconAdr);
     })
 }
 
 useEffect(() => {
   requestCoords();
 }, []);
+
+return (
+  <div>
+    <ul>
+      <li><TodayData /></li>
+      <li><FaLocationDot /><b>{name}</b></li>
+      <li><img src = {weatherIconAdr} width={110} /></li>
+      <li><b>{temp}°</b></li>
+      <li>{weatherKo && weatherKo.desc}</li>
+    </ul>
+  </div>
+)
 };
 
 export default Weather
