@@ -5,6 +5,7 @@ import MyCalendar from '../member/MyCalendar';
 import ChatRoom from '../../pages/chatting/ChatRoom';
 import colorNames from '../../styles/colors';
 import Weather from './Weather';
+import TodayData from './TodayData';
 
 const { primary, info } = colorNames;
 
@@ -82,6 +83,20 @@ const Container = styled.div`
     padding: 10px;
     background-color: white;
   }
+
+  .weather_box {
+    font-size: large;
+    margin: 0 10px;
+    padding: 5px;
+    width: 300px;
+    border: 1px solid #aaa;
+    border-radius: 10px;
+    background-color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const DashboardForm = ({ items }) => {
@@ -117,7 +132,11 @@ const DashboardForm = ({ items }) => {
             <li>예시 2</li>
           </ul>
         </div>
-        <Weather />
+        <div className="weather_box">
+          <SubTitle>날씨</SubTitle>
+          <Weather />
+        </div>
+        
       </div>
       <br />
       <SubTitle>My Tasks</SubTitle>
