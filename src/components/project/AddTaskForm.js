@@ -3,6 +3,7 @@ import { InputText } from '../commons/InputStyle';
 import { Container } from '../commons/ModalStyle';
 import Select from 'react-select';
 import ErrorMessages from '../commons/ErrorMessages';
+import AddTaskCalendar from './AddTaskCalendar';
 
 const AddTaskForm = ({
   form,
@@ -12,6 +13,7 @@ const AddTaskForm = ({
   options,
   errors,
 }) => {
+  const start = new Date();
   return (
     <Container>
       <h1>업무 추가</h1>
@@ -44,7 +46,9 @@ const AddTaskForm = ({
         </dl>
         <dl>
           <dt>업무 진행 기간</dt>
-          <dl>{/* 업무 기간 --> react-calendar 라이브러리 이용(예정) */}</dl>
+          <dl>
+            <AddTaskCalendar form={form} onChange={onChange} />
+          </dl>
         </dl>
         <dl>
           <dt>업무 내용</dt>

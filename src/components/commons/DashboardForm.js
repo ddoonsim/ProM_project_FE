@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import MyCalendar from '../member/MyCalendar';
 import ChatRoom from '../../pages/chatting/ChatRoom';
 import colorNames from '../../styles/colors';
+import Weather from './Weather';
 
 const { primary, info } = colorNames;
 
@@ -45,6 +46,9 @@ const Container = styled.div`
 
     li {
       display: flex;
+      font-size: 1.2rem;
+      color: gray;
+      
       :hover {
         color: ${primary};
         font-weight: 500;
@@ -100,7 +104,9 @@ const DashboardForm = ({ items }) => {
               </ul>
             ))
           ) : (
-            <p>없음</p>
+            <ul>
+                <li>아직 참여 중인 프로젝트가 없습니다. 프로젝트를 만들어보세요!</li>
+            </ul>
           )}
         </div>
 
@@ -111,6 +117,7 @@ const DashboardForm = ({ items }) => {
             <li>예시 2</li>
           </ul>
         </div>
+        <Weather />
       </div>
       <br />
       <SubTitle>My Tasks</SubTitle>
