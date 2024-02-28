@@ -9,6 +9,7 @@ import sizeNames from '../../styles/sizes';
 import AddTask from '../../pages/front/project/AddTask';
 import ModalBox from '../commons/ModalBox';
 import TeamMemberBox from './TeamMemberBox';
+import TaskBox from '../task/TaskBox';
 
 const { primary, info, white } = colorNames;
 const { small, medium, big, exrtaBig } = sizeNames;
@@ -95,7 +96,7 @@ const ProjectDashBoard = styled.div`
   }
 `;
 
-const ProjectMainForm = ({ item }) => {
+const ProjectMainForm = ({ item, tasks }) => {
   const [isOpen, setIsOpen] = useState(false);
   const onClose = useCallback(() => setIsOpen(false), []);
   const { pname, description } = item;
@@ -129,13 +130,15 @@ const ProjectMainForm = ({ item }) => {
       </SubTitle>
       <div className="tasks_progress_box">
         <div className="progress_name">
-          <h3>예정</h3>
+          <h3>요청</h3>
           <h3>진행 중</h3>
           <h3>완료</h3>
           <h3>보류</h3>
         </div>
         <div className="progress_boxes">
-          <div className="inner_box">화면 설계</div>
+          <div className="inner_box">
+            <TaskBox tasks={tasks} />
+          </div>
           <div className="inner_box">로고 디자인</div>
           <div className="inner_box">로그인 및 회원가입</div>
           <div className="inner_box">네이버 로그인 API</div>
