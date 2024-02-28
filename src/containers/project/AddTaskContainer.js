@@ -1,12 +1,13 @@
 import React, { useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { produce } from 'immer';
-import AddTaskForm from '../../components/project/AddTaskForm';
+import AddTaskForm from '../../components/task/AddTaskForm';
 import createTask from '../../api/task/NewTask';
 const AddTaskContainer = ({ item }) => {
   const { t } = useTranslation();
 
   const [member, setMember] = useState([]);
+  const [status, setStatus] = useState('');
   const [form, setForm] = useState({
     member: member,
     tName: '',
@@ -14,6 +15,7 @@ const AddTaskContainer = ({ item }) => {
     sDate: '',
     eDate: '',
     pSeq: 0,
+    status: '',
   });
   const [errors, setErrors] = useState({});
 
@@ -40,13 +42,19 @@ const AddTaskContainer = ({ item }) => {
       setForm(
         produce((draft) => {
           draft[target.name] = target.value;
+
           draft['member'] = member;
           draft['pSeq'] = item.seq;
+          draft['status'] = status
         }),
       );
     },
     [member],
   );
+  const onClick = useCallback((e) => {
+    const target = e.currentTarget;
+    setStatus(target.value);
+  });
 
   const onSubmit = useCallback(
     (e) => {
@@ -65,6 +73,7 @@ const AddTaskContainer = ({ item }) => {
 
         return;
       }
+      console.log(form);
       createTask(form)
         .then(() => {
           alert('새 업무를 생성했습니다.');
@@ -83,6 +92,7 @@ const AddTaskContainer = ({ item }) => {
       onSubmit={onSubmit}
       options={options}
       errors={errors}
+      onClick={onClick}
     />
   );
 };

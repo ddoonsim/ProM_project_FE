@@ -1,4 +1,4 @@
-import { BigButton } from '../commons/ButtonStyle';
+import { BigButton, ButtonGroup } from '../commons/ButtonStyle';
 import { InputText } from '../commons/InputStyle';
 import { Container } from '../commons/ModalStyle';
 import Select from 'react-select';
@@ -12,8 +12,8 @@ const AddTaskForm = ({
   handleChange,
   options,
   errors,
+  onClick,
 }) => {
-  const start = new Date();
   return (
     <Container>
       <h1>업무 추가</h1>
@@ -31,6 +31,45 @@ const AddTaskForm = ({
           </dd>
         </dl>
         <ErrorMessages errors={errors} field="tName" />
+        <dl>
+          <dt>업무 상태</dt>
+          <dd>
+            <ButtonGroup name="status" value={form.status}>
+              <input
+                onClick={onChange}
+                type="radio"
+                name="status"
+                id="request"
+                value="request"
+              />
+              <label for="request">요청</label>
+              <input
+                onClick={onChange}
+                type="radio"
+                name="status"
+                id="progress"
+                value="progress"
+              />
+              <label for="progress">진행중</label>
+              <input
+                onClick={onChange}
+                type="radio"
+                name="status"
+                id="success"
+                value="success"
+              />
+              <label for="success">완료</label>
+              <input
+                onClick={onChange}
+                type="radio"
+                name="status"
+                id="hold"
+                value="hold"
+              />
+              <label for="hold">보류</label>
+            </ButtonGroup>
+          </dd>
+        </dl>
         <dl>
           <dt>담당자</dt>
           <dd>
