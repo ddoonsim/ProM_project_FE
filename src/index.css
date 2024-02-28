@@ -3,11 +3,11 @@
 * { 
   box-sizing: border-box; 
   font-family: 'Noto Sans KR', sans-serif;
-  color: #000;
   outline: none;
 }
 html {
   font-size: 13px;
+  color: #000;
 }
 body {
   margin: 0;
