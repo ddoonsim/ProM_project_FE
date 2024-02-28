@@ -47,13 +47,6 @@ const ProjectDashBoard = styled.div`
         border-radius: 5px;
         color: ${white};
       }
-
-      .notice_box {
-        min-height: 120px;
-        padding: 5px 20px;
-        background-color: ${white};
-        border-radius: 20px;
-      }
     }
   }
 
