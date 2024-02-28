@@ -1,6 +1,5 @@
 import { useCallback, useState } from 'react';
 import styled from 'styled-components';
-import { FiMoreVertical } from 'react-icons/fi';
 import { MainTitle, SubTitle } from '../commons/TitleStyle';
 import { Link } from '../../../node_modules/react-router-dom/dist/index';
 import EditInfoBtn from './EditProjectInfoBtn';
@@ -11,6 +10,7 @@ import ModalBox from '../commons/ModalBox';
 import TeamMemberBox from './TeamMemberBox';
 import NoticeContainer from '../../containers/project/NoticeContainer';
 import TaskBox from '../task/TaskBox';
+import TaskProgressBox from '../../pages/front/task/TaskProgressBox';
 
 const { primary, info, white } = colorNames;
 const { small, medium, big, exrtaBig } = sizeNames;
@@ -47,35 +47,6 @@ const ProjectDashBoard = styled.div`
         border-radius: 5px;
         color: ${white};
       }
-    }
-  }
-
-  .tasks_progress_box {
-    padding: 10px 80px;
-
-    .progress_name {
-      display: flex;
-      padding-left: 160px;
-
-      h3 + h3 {
-        padding-left: 320px;
-      }
-    }
-  }
-
-  .progress_boxes {
-    display: flex;
-
-    .inner_box {
-      width: 350px;
-      height: 400px;
-      padding: 20px;
-      border: 0.5px solid gray;
-      border-radius: 20px;
-    }
-
-    .inner_box + .inner_box {
-      margin-left: 10px;
     }
   }
 
@@ -120,22 +91,9 @@ const ProjectMainForm = ({ item, tasks }) => {
           업무 추가
         </Link>
       </SubTitle>
-      <div className="tasks_progress_box">
-        <div className="progress_name">
-          <h3>요청</h3>
-          <h3>진행 중</h3>
-          <h3>완료</h3>
-          <h3>보류</h3>
-        </div>
-        <div className="progress_boxes">
-          <div className="inner_box">
-            <TaskBox tasks={tasks} />
-          </div>
-          <div className="inner_box">로고 디자인</div>
-          <div className="inner_box">로그인 및 회원가입</div>
-          <div className="inner_box">네이버 로그인 API</div>
-        </div>
-      </div>
+
+      {/* 업무 진행 칸반 보드 */}
+      <TaskProgressBox />
 
       {isOpen && (
         <ModalBox isOpen={isOpen} onClose={onClose}>

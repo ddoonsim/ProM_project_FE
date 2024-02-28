@@ -9,6 +9,7 @@ const AddTaskContainer = ({ item }) => {
   const [member, setMember] = useState([]);
   const [status, setStatus] = useState('');
   const [form, setForm] = useState({
+    gid: '' + Date.now(),
     member: member,
     tName: '',
     description: '',
