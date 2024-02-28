@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import colorNames from '../../styles/colors';
 import sizeNames from '../../styles/sizes';
 import ChatRoom from '../../pages/chatting/ChatRoom';
+import NewTodoList from '../../pages/front/todolist/NewTodoList';
 
 const { primary, info, white } = colorNames;
 const { small, medium, big, exrtaBig } = sizeNames;
@@ -76,6 +77,7 @@ const TeamMemberBox = ({ item }) => {
         </Link>
         {/* 채팅방 */}
         <ChatRoom roomNo={seq + 'p'} />
+        <NewTodoList />
       </div>
     </TeamMember>
   );
