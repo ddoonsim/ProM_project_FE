@@ -51,7 +51,7 @@ const NoticeEditBox = styled.form`
   }
 `;
 
-const AddNoticeForm = ({
+const EditNoticeForm = ({
   form,
   errors,
   onSubmit,
@@ -96,11 +96,11 @@ const AddNoticeForm = ({
         </FileUpload>
         <br />
         <button type="submit" className="ok_btn">
-          공지글 등록
+          공지글 수정
         </button>
       </NoticeEditBox>
     </Container>
   );
 };
 
-export default AddNoticeForm;
+export default EditNoticeForm;

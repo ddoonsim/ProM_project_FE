@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from 'react';
-import AddNoticeForm from '../../components/project/AddNoticeForm';
+import EditNoticeForm from '../../components/project/EditNoticeForm';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { produce } from 'immer';
 import newNotice from '../../api/project/newNotice';
 
-const AddNoticeContainer = () => {
+const EditNoticeContainer = () => {
   const [form, setForm] = useState({
     gid: '' + Date.now(),
   });
@@ -86,7 +86,7 @@ const AddNoticeContainer = () => {
   }, [editor]);
 
   return (
-    <AddNoticeForm
+    <EditNoticeForm
       form={form}
       errors={errors}
       onSubmit={onSubmit}
@@ -99,4 +99,4 @@ const AddNoticeContainer = () => {
   );
 };
 
-export default React.memo(AddNoticeContainer);
+export default React.memo(EditNoticeContainer);

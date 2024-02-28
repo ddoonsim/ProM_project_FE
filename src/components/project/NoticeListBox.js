@@ -1,6 +1,9 @@
+import { useCallback, useState } from 'react';
 import classNames from '../../../node_modules/classnames/index';
 import { NavLink } from '../../../node_modules/react-router-dom/dist/index';
 import styled from 'styled-components';
+import ModalBox from '../commons/ModalBox';
+import EditNoticeContainer from '../../containers/project/EditNoticeContainer';
 
 const NoticeBox = styled.div`
   min-height: 120px;
@@ -18,12 +21,15 @@ const NoticeBox = styled.div`
 const NoticeListBox = ({ items }) => {
   items = items || [];
 
+  const [isOpen, setIsOpen] = useState(false);
+  const onClose = useCallback(() => setIsOpen(false), []);
+
   return (
     <NoticeBox>
       {items.length > 0 ? (
         items.map(({ seq, tname }) => (
           <NavLink
-            //   to={'/project/' + seq}
+            onClick={() => setIsOpen(!isOpen)}
             className={({ isActive }) => classNames({ on: isActive }) + ' list'}
             key={seq}
           >
@@ -32,6 +38,12 @@ const NoticeListBox = ({ items }) => {
         ))
       ) : (
         <div>없음</div>
+      )}
+
+      {isOpen && (
+        <ModalBox isOpen={isOpen} onClose={onClose}>
+          <EditNoticeContainer />
+        </ModalBox>
       )}
     </NoticeBox>
   );
