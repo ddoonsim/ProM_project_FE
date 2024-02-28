@@ -9,6 +9,7 @@ import sizeNames from '../../styles/sizes';
 import AddTask from '../../pages/front/project/AddTask';
 import ModalBox from '../commons/ModalBox';
 import TeamMemberBox from './TeamMemberBox';
+import NoticeContainer from '../../containers/project/NoticeContainer';
 import TaskBox from '../task/TaskBox';
 
 const { primary, info, white } = colorNames;
@@ -99,7 +100,8 @@ const ProjectDashBoard = styled.div`
 const ProjectMainForm = ({ item, tasks }) => {
   const [isOpen, setIsOpen] = useState(false);
   const onClose = useCallback(() => setIsOpen(false), []);
-  const { pname, description } = item;
+  const { seq, pname, description } = item;
+
   return (
     <ProjectDashBoard className="container">
       <div className="project_info_box">
@@ -112,11 +114,8 @@ const ProjectMainForm = ({ item, tasks }) => {
 
           <p>{description}</p>
 
-          <h3>
-            📣 공지사항
-            <Link className="btn">새 글 등록</Link>
-          </h3>
-          <div className="notice_box"></div>
+          {/* 공지글 박스 */}
+          <NoticeContainer />
         </div>
         {/* 팀 구성원 박스 */}
         <TeamMemberBox item={item} />

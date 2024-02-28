@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 const Weather = () => {
+const apiKey = process.env.REACT_APP_API_KEY;
 const [coords, saveCoords] = useState();
 const [temp, setTemp] = useState();
 const [weather, setWeather] = useState();
@@ -26,7 +27,7 @@ function requestCoords() {
 }
 
 function getWeather(lat, lon) {
-  fetch( `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${'3a1455373172f7b70e886937412ed249'}&units=metric`)
+  fetch( `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`)
     .then(res => res.json())
     .then(data => {
       console.log(data);

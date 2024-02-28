@@ -1,0 +1,23 @@
+.TodoTemplate {
+	width: 512px;
+	// width가 주어진 상황에서 좌우 중앙 정렬
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 3rem;
+	border-radius: 4px;
+	overflow: hidden;
+	
+	.app-title {
+		background: #3E768C;
+		color: white;
+		height: 4rem;
+		font-size: 1.75rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	
+	.content {
+		background: white;
+	}
+}
