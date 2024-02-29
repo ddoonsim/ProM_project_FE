@@ -7,6 +7,7 @@ import { Container } from '../commons/ModalStyle';
 import styled from 'styled-components';
 import colorNames from '../../styles/colors';
 import sizeNames from '../../styles/sizes';
+import { ButtonGroup } from '../commons/ButtonStyle';
 
 const { primary, info, white } = colorNames;
 const { big } = sizeNames;
@@ -49,12 +50,26 @@ const NoticeEditBox = styled.form`
       background: ${primary};
     }
   }
+
+  .delete_btn {
+    margin: 30px 0;
+    margin-left: 10px;
+    background: ${white};
+    font-size: ${big};
+    width: 300px;
+    height: 40px;
+    color: black;
+    border: 1px solid #000;
+    cursor: pointer;
+    border-radius: 3px;
+  }
 `;
 
 const EditNoticeForm = ({
   form,
   errors,
   onSubmit,
+  onClick,
   onChange,
   onEditor,
   setEditor,
@@ -95,9 +110,14 @@ const EditNoticeForm = ({
           이미지 첨부
         </FileUpload>
         <br />
+        <ButtonGroup>
         <button type="submit" className="ok_btn">
           공지글 수정
         </button>
+        <button type='button' className='delete_btn' onClick={onClick}>
+          공지글 삭제
+        </button>
+        </ButtonGroup>
       </NoticeEditBox>
     </Container>
   );

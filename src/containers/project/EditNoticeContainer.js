@@ -6,6 +6,7 @@ import { produce } from 'immer';
 import updateNotice from '../../api/project/updateNotice';
 import getNoticeInfo from '../../api/project/noticeInfo';
 import Swal from 'sweetalert2';
+import deleteNotice from '../../api/project/deleteNotice';
 
 const EditNoticeContainer = ({ seq }) => {
   const { projectSeq } = useParams();
@@ -76,6 +77,17 @@ const EditNoticeContainer = ({ seq }) => {
     [form, t],
   );
 
+  // 공지글 삭제
+  const onClick = useCallback(() => {
+    console.log(form.seq);
+    deleteNotice(form)
+      .then(() => {
+        alert('공지글이 삭제되었습니다.');
+        window.location.reload();
+      })
+      .catch((err) => console.error(err));
+  }, [form]);
+
   // 공지 제목 입력 시
   const onChange = useCallback(
     (e) => {
@@ -105,6 +117,7 @@ const EditNoticeContainer = ({ seq }) => {
       form={form}
       errors={errors}
       onSubmit={onSubmit}
+      onClick={onClick}
       onChange={onChange}
       onEditor={onEditor}
       editor={editor}

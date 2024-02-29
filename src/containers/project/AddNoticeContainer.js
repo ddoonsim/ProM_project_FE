@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 const AddNoticeContainer = () => {
   const [form, setForm] = useState({
     gid: '' + Date.now(),
+    description: '상세한 설명을 입력하세요!',
   });
 
   const [errors, setErrors] = useState({});
