@@ -14,6 +14,8 @@ export const getTask = (seq) => processResult(`/task/sub/${seq}`);
  */
 export const getTasks = (seq) => processResult(`/task/${seq}`);
 
+export const getMines = () => processResult('/task/mines');
+
 function processResult(url) {
   return new Promise((resolve, reject) => {
     apiRequest(url)
