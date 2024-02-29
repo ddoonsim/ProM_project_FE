@@ -1,11 +1,12 @@
 import { NavLink } from 'react-router-dom';
-import { MainTitle, SubTitle } from './TitleStyle';
+import { MainTitle, SubTitle } from '../commons/TitleStyle';
 import styled from 'styled-components';
-import MyCalendar from '../member/MyCalendar';
+import MyCalendar from './MyCalendar';
 import ChatRoom from '../../pages/chatting/ChatRoom';
 import colorNames from '../../styles/colors';
 import Weather from './Weather';
-import TodayData from './TodayData';
+import TodayData from '../commons/TodayData';
+import ProverbForm from './ProverbForm';
 
 const { primary, info } = colorNames;
 
@@ -49,7 +50,7 @@ const Container = styled.div`
       display: flex;
       font-size: 1.2rem;
       color: gray;
-      
+
       :hover {
         color: ${primary};
         font-weight: 500;
@@ -68,14 +69,6 @@ const Container = styled.div`
         border-radius: 5px;
       }
     }
-  }
-
-  .myTasks_box {
-    margin: 0 10px;
-    padding: 5px;
-    width: 300px;
-    border: 1px solid #aaa;
-    border-radius: 10px;
   }
 
   .calendar_box {
@@ -120,23 +113,20 @@ const DashboardForm = ({ items }) => {
             ))
           ) : (
             <ul>
-                <li>아직 참여 중인 프로젝트가 없습니다. 프로젝트를 만들어보세요!</li>
+              <li>
+                아직 참여 중인 프로젝트가 없습니다. 프로젝트를 만들어보세요!
+              </li>
             </ul>
           )}
         </div>
 
-        <div className="myTasks_box">
-          <SubTitle>To Do List</SubTitle>
-          <ul>
-            <li>예시 1</li>
-            <li>예시 2</li>
-          </ul>
-        </div>
         <div className="weather_box">
           <SubTitle>날씨</SubTitle>
           <Weather />
         </div>
-        
+
+        {/* 명언 랜덤 위젯 */}
+        <ProverbForm />
       </div>
       <br />
       <SubTitle>My Tasks</SubTitle>
