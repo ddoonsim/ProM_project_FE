@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import ModalBox from '../commons/ModalBox';
 import EditNoticeContainer from '../../containers/project/EditNoticeContainer';
+import moment from 'moment';
 
 const NoticeBox = styled.div`
   height: 120px;
@@ -14,6 +15,16 @@ const NoticeBox = styled.div`
   .list {
     display: block;
     font-size: medium;
+    padding: 5px;
+
+    .createdAt {
+      float: inline-end;
+      color: gray;
+    }
+  }
+
+  .list + .list {
+    border-top: 0.5px dotted #aaa;
   }
 
   .none {
@@ -32,7 +43,7 @@ const NoticeListBox = ({ items }) => {
   return (
     <NoticeBox>
       {items.length > 0 ? (
-        items.map(({ seq, tname }) => (
+        items.map(({ seq, tname, modifiedAt, createdAt }) => (
           <>
             <Link
               className=" list"
@@ -42,7 +53,10 @@ const NoticeListBox = ({ items }) => {
               }}
               key={seq}
             >
-              {'📌 ' + tname}
+              {'📌 ' + tname}{' '}
+              <div className="createdAt">
+                {moment(modifiedAt || createdAt).format('YYYY-MM-DD HH:mm')}
+              </div>
             </Link>
           </>
         ))
