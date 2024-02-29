@@ -11,6 +11,13 @@ import FileUpload from '../commons/FileUpload';
 const ErrorMessages = loadable(() => import('../commons/ErrorMessages'));
 
 const FormBox = styled.form`
+transform: translate(50%, 50%);
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 800px;
+height: 700px;
   dl {
     display: flex;
     padding: 10px 15px;
@@ -34,6 +41,9 @@ const FormBox = styled.form`
     margin-bottom: 15px;
   }
 
+  .upload_button {
+    display: flex;
+    height: 35px;
   }`;
 
 const ProfileEditForm = ({
@@ -48,6 +58,7 @@ const ProfileEditForm = ({
   const { t } = useTranslation();
 
   return (
+    <div className='form_box'>
     <MemberOnly>
       <FormBox onSubmit={onSubmit}>
         <h1>{t('회원정보수정')}</h1>
@@ -112,6 +123,7 @@ const ProfileEditForm = ({
             {form.profileImage && (
               <ImageView image={form.profileImage} mode="thumbnail" />
             )}
+              <div className='upload_button'>
             <FileUpload
               gid={form.gid}
               imageOnly={true}
@@ -121,6 +133,7 @@ const ProfileEditForm = ({
               >
                 {t('이미지_업로드')}
               </FileUpload>
+              </div>
           </dd>
         </dl>
 
@@ -136,6 +149,7 @@ const ProfileEditForm = ({
         </BigButton>
       </FormBox>
     </MemberOnly>
+    </div>
   );
 };
 
