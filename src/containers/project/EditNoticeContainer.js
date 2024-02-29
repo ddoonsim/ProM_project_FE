@@ -82,8 +82,15 @@ const EditNoticeContainer = ({ seq }) => {
     console.log(form.seq);
     deleteNotice(form)
       .then(() => {
-        alert('공지글이 삭제되었습니다.');
-        window.location.reload();
+        Swal.fire({
+          title: '공지글 삭제 완료',
+          text: '공지글이 삭제되었습니다.',
+          icon: 'success',
+        }).then((res) => {
+          if (res.isConfirmed || res.isDismissed) {
+            window.location.reload();
+          }
+        });
       })
       .catch((err) => console.error(err));
   }, [form]);
