@@ -1,6 +1,5 @@
 import { useCallback, useState } from 'react';
 import styled from 'styled-components';
-import { FiMoreVertical } from 'react-icons/fi';
 import { MainTitle, SubTitle } from '../commons/TitleStyle';
 import { Link } from '../../../node_modules/react-router-dom/dist/index';
 import EditInfoBtn from './EditProjectInfoBtn';
@@ -9,6 +8,9 @@ import sizeNames from '../../styles/sizes';
 import AddTask from '../../pages/front/project/AddTask';
 import ModalBox from '../commons/ModalBox';
 import TeamMemberBox from './TeamMemberBox';
+import NoticeContainer from '../../containers/project/NoticeContainer';
+import TaskBox from '../task/TaskBox';
+import TaskProgressBox from '../../pages/front/task/TaskProgressBox';
 
 const { primary, info, white } = colorNames;
 const { small, medium, big, exrtaBig } = sizeNames;
@@ -45,42 +47,6 @@ const ProjectDashBoard = styled.div`
         border-radius: 5px;
         color: ${white};
       }
-
-      .notice_box {
-        min-height: 120px;
-        padding: 5px 20px;
-        background-color: ${white};
-        border-radius: 20px;
-      }
-    }
-  }
-
-  .tasks_progress_box {
-    padding: 10px 80px;
-
-    .progress_name {
-      display: flex;
-      padding-left: 160px;
-
-      h3 + h3 {
-        padding-left: 320px;
-      }
-    }
-  }
-
-  .progress_boxes {
-    display: flex;
-
-    .inner_box {
-      width: 350px;
-      height: 400px;
-      padding: 20px;
-      border: 0.5px solid gray;
-      border-radius: 20px;
-    }
-
-    .inner_box + .inner_box {
-      margin-left: 10px;
     }
   }
 
@@ -95,10 +61,11 @@ const ProjectDashBoard = styled.div`
   }
 `;
 
-const ProjectMainForm = ({ item }) => {
+const ProjectMainForm = ({ item, tasks }) => {
   const [isOpen, setIsOpen] = useState(false);
   const onClose = useCallback(() => setIsOpen(false), []);
-  const { pname, description } = item;
+  const { seq, pname, description } = item;
+
   return (
     <ProjectDashBoard className="container">
       <div className="project_info_box">
@@ -111,11 +78,8 @@ const ProjectMainForm = ({ item }) => {
 
           <p>{description}</p>
 
-          <h3>
-            📣 공지사항
-            <Link className="btn">새 글 등록</Link>
-          </h3>
-          <div className="notice_box"></div>
+          {/* 공지글 박스 */}
+          <NoticeContainer />
         </div>
         {/* 팀 구성원 박스 */}
         <TeamMemberBox item={item} />
@@ -127,20 +91,9 @@ const ProjectMainForm = ({ item }) => {
           업무 추가
         </Link>
       </SubTitle>
-      <div className="tasks_progress_box">
-        <div className="progress_name">
-          <h3>예정</h3>
-          <h3>진행 중</h3>
-          <h3>완료</h3>
-          <h3>보류</h3>
-        </div>
-        <div className="progress_boxes">
-          <div className="inner_box">화면 설계</div>
-          <div className="inner_box">로고 디자인</div>
-          <div className="inner_box">로그인 및 회원가입</div>
-          <div className="inner_box">네이버 로그인 API</div>
-        </div>
-      </div>
+
+      {/* 업무 진행 칸반 보드 */}
+      <TaskProgressBox />
 
       {isOpen && (
         <ModalBox isOpen={isOpen} onClose={onClose}>

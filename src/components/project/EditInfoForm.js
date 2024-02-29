@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { MainTitle } from '../commons/TitleStyle';
 import { InputText } from '../commons/InputStyle';
 import { BigButton } from '../commons/ButtonStyle';
@@ -6,10 +6,6 @@ import { Container } from '../commons/ModalStyle';
 import ErrorMessages from '../commons/ErrorMessages';
 
 const EditInfoForm = ({ form, onSubmit, onChange, errors }) => {
-//   useEffect(() => {
-//     form.pName = item.pname;
-//     console.log(form.pName);
-//   }, [item]);
 
   return (
     <Container>

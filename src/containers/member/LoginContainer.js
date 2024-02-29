@@ -61,7 +61,7 @@ const LoginContainer = () => {
 
           // 프로젝트 초대장 페이지 띄우기
           if (`${location.pathname}`.includes('/project/invite')) {
-            navigate(-1);
+            window.location.reload();
           }
 
           // 일반적인 로그인 시 ==> 메인페이지로 이동
@@ -73,7 +73,7 @@ const LoginContainer = () => {
           }));
         });
     },
-    [form, t, navigate, updateUserInfo],
+    [form, t, navigate, updateUserInfo, location.pathname],
   );
 
   const onChange = useCallback((e) => {

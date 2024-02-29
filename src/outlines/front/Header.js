@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import classNames from '../../../node_modules/classnames/index';
 import colorNames from '../../styles/colors';
 import { BsChat } from 'react-icons/bs';
+import ProM_logo from '../../images/ProM_logo.png';
 
 const { info } = colorNames;
 
@@ -56,7 +57,9 @@ const Header = () => {
   return (
     <OuterBox>
       <div className="left">
-        <NavLink to="/">로고</NavLink>
+        <NavLink to="/">
+          <img src={ProM_logo} width="10%" alt="logo" />
+        </NavLink>
       </div>
       <div className="right">
         {isLogin ? (

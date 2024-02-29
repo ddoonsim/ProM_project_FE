@@ -1,0 +1,26 @@
+.TodoHeadBlock {
+    width: 512px;
+	// width가 주어진 상황에서 좌우 중앙 정렬
+	margin-left: auto;
+	margin-right: auto;
+	overflow: hidden;
+
+    .date {
+        background: #88B0BF;
+		color: #fff;
+		height: 4rem;
+		font-size: 1.125rem;
+		font-weight: bold;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding-left: 2% ;
+		padding-right: 2%;
+    }
+	
+	.tasks-left {
+		color: #fff;
+		font-size: 18px;
+		justify-content: right;
+	}
+}
