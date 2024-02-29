@@ -109,6 +109,7 @@ const EditNoticeForm = ({
         >
           이미지 첨부
         </FileUpload>
+        <ErrorMessages errors={errors} field="description" />
         <br />
         <ButtonGroup>
         <button type="submit" className="ok_btn">

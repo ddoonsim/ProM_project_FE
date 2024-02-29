@@ -9,6 +9,8 @@ const validation = {
   Find_fail: '⚠️이메일 또는 아이디가 일치하지 않습니다.',
   NotBlank_pName: '⚠️프로젝트 제목을 입력하세요.',
   NotBlank_tName: '⚠️업무 제목을 입력하세요.',
+  NotBlank_tname: '⚠️제목을 입력하세요.',
+  NotBlank_description: '⚠️상세 내용을 입력하세요.'
 };
 
 export default validation;
