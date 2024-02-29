@@ -61,7 +61,7 @@ const ProjectDashBoard = styled.div`
   }
 `;
 
-const ProjectMainForm = ({ item, tasks }) => {
+const ProjectMainForm = ({ item }) => {
   const [isOpen, setIsOpen] = useState(false);
   const onClose = useCallback(() => setIsOpen(false), []);
   const { seq, pname, description } = item;
@@ -93,7 +93,7 @@ const ProjectMainForm = ({ item, tasks }) => {
       </SubTitle>
 
       {/* 업무 진행 칸반 보드 */}
-      <TaskProgressBox />
+      <TaskProgressBox item={item} />
 
       {isOpen && (
         <ModalBox isOpen={isOpen} onClose={onClose}>
