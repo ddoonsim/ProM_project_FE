@@ -32,7 +32,11 @@ const Main = () => {
         <title>{t('ProM')}</title>
       </Helmet>
       <Img>
-        <img src={home_ex} width="100%" alt="home" />
+        <img src={home_ex} usemap="#imgmap2024229171326" width="100%" alt="home" />
+        <map id="imgmap2024229171326" name="imgmap2024229171326">
+          <area shape="rect" alt="로그인" title="" coords="1075,762,1402,834" href="/login" target="_self" />
+          <area shape="rect" alt="회원가입" title="" coords="1422,762,1753,836" href="/join" target="_self" />
+          </map>
       </Img>
     </>
   );
