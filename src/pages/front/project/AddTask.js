@@ -1,7 +1,7 @@
 import AddTaskContainer from '../../../containers/project/AddTaskContainer';
 
-const AddTask = ({ item }) => {
-  return <AddTaskContainer item={item} />;
+const AddTask = ({ item, tasks }) => {
+  return <AddTaskContainer item={item} tasks={tasks} />;
 };
 
 export default AddTask;

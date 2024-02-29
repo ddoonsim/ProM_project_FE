@@ -46,8 +46,14 @@ const EditNoticeContainer = ({ seq }) => {
       const _errors = {};
       let hasError = false;
       if (!form.tname) {
-        _errors.tname = _errors.agree || [];
+        _errors.tname = _errors.tname || [];
         _errors.tname.push(t('NotBlank_tname'));
+
+        hasError = true;
+      }
+      if (!form.description) {
+        _errors.description = _errors.description || [];
+        _errors.description.push(t('NotBlank_description'));
 
         hasError = true;
       }

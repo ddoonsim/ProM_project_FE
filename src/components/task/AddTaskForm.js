@@ -13,6 +13,7 @@ import FileUpload from '../commons/FileUpload';
 
 const AddTaskForm = ({
   form,
+  tasks,
   onSubmit,
   onChange,
   handleChange,
@@ -24,9 +25,10 @@ const AddTaskForm = ({
   statusChange,
   changeDate,
 }) => {
+  console.log('addtaskform tasks : ', tasks);
   return (
     <Container>
-      <h1>업무 추가</h1>
+      <h1>{tasks ? tasks.tname : `업무 추가`}</h1>
       <form onSubmit={onSubmit}>
         <dl>
           <dt>업무 제목</dt>

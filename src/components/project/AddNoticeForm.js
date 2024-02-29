@@ -94,6 +94,7 @@ const AddNoticeForm = ({
         >
           이미지 첨부
         </FileUpload>
+        <ErrorMessages errors={errors} field="description" />
         <br />
         <button type="submit" className="ok_btn">
           공지글 등록

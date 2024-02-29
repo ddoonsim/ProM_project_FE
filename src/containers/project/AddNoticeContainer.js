@@ -9,7 +9,6 @@ import Swal from 'sweetalert2';
 const AddNoticeContainer = () => {
   const [form, setForm] = useState({
     gid: '' + Date.now(),
-    description: '상세한 설명을 입력하세요!',
   });
 
   const [errors, setErrors] = useState({});
@@ -38,8 +37,14 @@ const AddNoticeContainer = () => {
       const _errors = {};
       let hasError = false;
       if (!form.tname) {
-        _errors.tname = _errors.agree || [];
+        _errors.tname = _errors.tname || [];
         _errors.tname.push(t('NotBlank_tname'));
+
+        hasError = true;
+      }
+      if (!form.description) {
+        _errors.description = _errors.description || [];
+        _errors.description.push(t('NotBlank_description'));
 
         hasError = true;
       }
