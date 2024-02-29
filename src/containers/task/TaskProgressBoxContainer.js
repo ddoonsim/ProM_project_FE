@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 
 import TaskProgressBoxForm from '../../components/task/TaskProgressBoxForm';
 
-const TaskProgressBoxContainer = () => {
+const TaskProgressBoxContainer = ({ item }) => {
   const param = useParams();
   const projectSeq = param.projectSeq;
   const [tasks, setTasks] = useState({});
@@ -15,7 +15,8 @@ const TaskProgressBoxContainer = () => {
       })
       .catch((err) => console.error(err));
   }, [projectSeq]);
-  return <TaskProgressBoxForm tasks={tasks} />;
+
+  return <TaskProgressBoxForm tasks={tasks} item={item} />;
 };
 
 export default TaskProgressBoxContainer;

@@ -4,7 +4,7 @@ import { produce } from 'immer';
 import moment from '../../../node_modules/moment/moment';
 import AddTaskForm from '../../components/task/AddTaskForm';
 import createTask from '../../api/task/NewTask';
-const AddTaskContainer = ({ item }) => {
+const AddTaskContainer = ({ item, tasks }) => {
   const { t } = useTranslation();
   const [errors, setErrors] = useState({});
   const [editor, setEditor] = useState(null);
@@ -121,6 +121,7 @@ const AddTaskContainer = ({ item }) => {
   return (
     <AddTaskForm
       form={form}
+      tasks={tasks}
       handleChange={handleChange}
       onChange={onChange}
       onSubmit={onSubmit}

@@ -93,7 +93,7 @@ const ProjectMainForm = ({ item }) => {
       </SubTitle>
 
       {/* 업무 진행 칸반 보드 */}
-      <TaskProgressBox />
+      <TaskProgressBox item={item} />
 
       {isOpen && (
         <ModalBox isOpen={isOpen} onClose={onClose}>

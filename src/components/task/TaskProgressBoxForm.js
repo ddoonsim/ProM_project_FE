@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import TaskBox from './TaskBox';
 import styled from 'styled-components';
 
@@ -31,7 +32,7 @@ const TaskProgressForm = styled.div`
   }
 `;
 
-const TaskProgressBoxForm = ({ tasks }) => {
+const TaskProgressBoxForm = ({ tasks, item }) => {
   return (
     <TaskProgressForm>
       <div className="progress_name">
@@ -42,16 +43,16 @@ const TaskProgressBoxForm = ({ tasks }) => {
       </div>
       <div className="progress_boxes">
         <div name="REQUEST" className="inner_box">
-          <TaskBox tasks={tasks} />
+          <TaskBox tasks={tasks} item={item} listStatus="request" />
         </div>
         <div name="PROGRESS" className="inner_box">
-          로고 디자인
+          <TaskBox tasks={tasks} item={item} listStatus="progress" />
         </div>
-        <div name="COMPLETE" className="inner_box">
-          로그인 및 회원가입
+        <div name="SUCCESS" className="inner_box">
+          <TaskBox tasks={tasks} item={item} listStatus="success" />
         </div>
         <div name="HOLD" className="inner_box">
-          네이버 로그인 API
+          <TaskBox tasks={tasks} item={item} listStatus="hold" />
         </div>
       </div>
     </TaskProgressForm>
