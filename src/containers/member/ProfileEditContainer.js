@@ -30,12 +30,13 @@ const ProfileEditContainer = () => {
             title: "수정 완료",
             text: "마이페이지로 이동합니다🤗",
             icon: "success"
-          })
-          setForm(() => {}); // 양식 초기화
-          
-
-          // 마이페이지 이동
-          navigate('/mypage', { replace: true });
+          }).then((result) => {
+            if (result.isConfirmed || result.isDismissed) {
+              // 마이페이지 이동
+              navigate('/mypage', { replace: true });
+              window.location.reload();
+            }
+          })        
         })
         .catch((err) => setErrors(() => err.message));
     },

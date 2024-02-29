@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import loadable from '@loadable/component';
 import { fileUpload } from '../../api/file/file';
+import { Btn } from './ButtonStyle';
 
 const MessageBox = loadable(() => import('./ErrorMsgStyle'));
 
@@ -70,9 +71,9 @@ const FileUpload = ({
 
   return (
     <>
-      <button className='file_upload_btn' type="button" onClick={onClick}>
+      <Btn type='button' onClick={onClick}>
         {children}
-      </button>
+      </Btn>
       {message && <MessageBox>{message}</MessageBox>}
     </>
   );
