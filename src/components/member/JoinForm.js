@@ -56,6 +56,11 @@ const FormBox = styled.form`
     }
   }
 
+  .upload_button {
+    display: flex;
+    height: 35px;
+  }
+
   .count {
     margin-left: 5px;
     font-size: initial;
@@ -221,6 +226,7 @@ const JoinForm = ({
           {form.profileImage && (
             <ImageView image={form.profileImage} mode="thumbnail" />
           )}
+          <div className='upload_button'>
           <FileUpload
             gid={form.gid}
             imageOnly={true}
@@ -228,8 +234,9 @@ const JoinForm = ({
             location={'profile_img'}
             fileUploadCallback={fileUploadCallback}
           >
-            {t('이미지_업로드')}
+            {t('이미지 업로드')}
           </FileUpload>
+          </div>
         </dd>
       </dl>
       <SubTitle align="center" border_width={1}>
