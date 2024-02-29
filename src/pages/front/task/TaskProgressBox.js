@@ -1,9 +1,7 @@
-import TaskProgressBoxContainer from "../../../containers/task/TaskProgressBoxContainer";
+import TaskProgressBoxContainer from '../../../containers/task/TaskProgressBoxContainer';
 
 const TaskProgressBox = () => {
-    return (
-        <TaskProgressBoxContainer />
-    );
-}
+  return <TaskProgressBoxContainer />;
+};
 
 export default TaskProgressBox;

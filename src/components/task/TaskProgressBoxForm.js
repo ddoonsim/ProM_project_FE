@@ -31,7 +31,7 @@ const TaskProgressForm = styled.div`
   }
 `;
 
-const TaskProgressBoxForm = () => {
+const TaskProgressBoxForm = ({ tasks }) => {
   return (
     <TaskProgressForm>
       <div className="progress_name">
@@ -42,7 +42,7 @@ const TaskProgressBoxForm = () => {
       </div>
       <div className="progress_boxes">
         <div name="REQUEST" className="inner_box">
-          <TaskBox />
+          <TaskBox tasks={tasks} />
         </div>
         <div name="PROGRESS" className="inner_box">
           로고 디자인
