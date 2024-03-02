@@ -11,17 +11,17 @@ const TodoEdit = ({ insertToggle, selectedTodo, onUpdate, onInsertToggle }) =>  
 
   const onSubmit = useCallback(
     (e) => {
-      onUpdate(selectedTodo.id, value);
+      onUpdate(selectedTodo.seq, value);
       setValue(''); //value 초기화
       //기본이벤트(새로고침) 방지
       e.preventDefault();
     },
-    [onUpdate, selectedTodo.id, value],
+    [onUpdate, selectedTodo.seq, value],
   );
 
   useEffect(() => {
     if (selectedTodo) {
-      setValue(selectedTodo.text);
+      setValue(selectedTodo.content);
     }
   }, [selectedTodo]);
   

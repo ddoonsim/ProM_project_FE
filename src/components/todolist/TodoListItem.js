@@ -9,14 +9,14 @@ import cn from 'classnames';
 import './TodoListItem.scss';
 
 const TodoListItem = ({ todo, onRemove, onToggle, onChangeSelectedTodo, onInsertToggle, style }) => {
-	const { id, text, checked } = todo;
+	const { seq, content, checked } = todo;
 
 	return (
 		<div className="TodoListItem-virtualized" style={style}>
 			<div className='TodoListItem'>
-				<div className={cn('checkbox', { checked })} onClick={() => onToggle(id)}>
+				<div className={cn('checkbox', { checked })} onClick={() => onToggle(seq)}>
 					{checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank /> }
-					<div className="text">{text}</div>
+					<div className="text">{content}</div>
 				</div>
 				<div className='edit' onClick={() => {
 					onChangeSelectedTodo(todo);
@@ -24,7 +24,7 @@ const TodoListItem = ({ todo, onRemove, onToggle, onChangeSelectedTodo, onInsert
 				}}>
 					<MdEdit />
 				</div>
-				<div className="remove" onClick={() => onRemove(id)}>
+				<div className="remove" onClick={() => onRemove(seq)}>
 					<MdDelete />
 				</div>
 			</div>
