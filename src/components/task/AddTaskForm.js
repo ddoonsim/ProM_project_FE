@@ -110,7 +110,6 @@ const AddTaskForm = ({
                 name="members"
                 value={form.members}
                 placeholder="담당자를 선택하세요."
-                // getValue={(options) => setSelectedOption(options)}
                 onChange={handleChange}
               />
             </dd>
