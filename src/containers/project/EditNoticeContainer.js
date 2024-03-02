@@ -17,6 +17,7 @@ const EditNoticeContainer = ({ seq }) => {
   const [errors, setErrors] = useState({});
   const { t } = useTranslation();
   const [editor, setEditor] = useState();
+  const [attached_file, setAttachedFile] = useState([]);
 
   useEffect(() => {
     getNoticeInfo(seq)
