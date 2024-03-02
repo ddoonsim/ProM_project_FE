@@ -1,16 +1,6 @@
 import React from 'react';
 import './TodoHead.scss';
 
-// const today = new Date();
-//   const dateString = today.toLocaleDateString('ko-KR', {
-//     year: 'numeric',
-//     month: 'long',
-//     day: 'numeric'
-//   });
-//   const dayName = today.toLocaleDateString('ko-KR', { weekday: 'long' });
-
-//   const remainingTasks = todos.filter(todo => !todo.checked).length;
-
 const TodoHead = ({todos}) => {
   const today = new Date();
   const dateString = today.toLocaleDateString('ko-KR', {

@@ -8,30 +8,14 @@ import Confetti from 'react-dom-confetti';
 import Swal from 'sweetalert2';
 
 const TodoContainer = () => {
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      text: '모닝 커피 마시기',
-      checked: true,
-    },
-    {
-      id: 2,
-      text: 'Todo List 만들기',
-      checked: false,
-    },
-    {
-      id: 3,
-      text: '운동가기',
-      checked: false,
-    },
-  ]);
+  const [todos, setTodos] = useState([]);
 
   const [selectedTodo, setSelectedTodo] = useState(null);
   const [insertToggle, setInsertToggle] = useState(false);
 
-  // 고유값으로 사용될 id
+  // 고유값으로 사용될 seq
   // ref를 사용하여 변수 담기
-  const nextId = useRef(4);
+  const nextseq = useRef(4);
 
   const onInsertToggle = useCallback(() => {
     if (selectedTodo) {
@@ -44,18 +28,18 @@ const TodoContainer = () => {
     setSelectedTodo((selectedTodo) => todo);
   };
 
-  const onInsert = useCallback((text) => {
+  const onInsert = useCallback((content) => {
     const todo = {
-      id: nextId.current,
-      text,
+      seq: nextseq.current,
+      content,
       checked: false,
     };
     setTodos((todos) => todos.concat(todo));
     //concat(): 인자로 주어진 배열이나 값들을 기존 배열에 합쳐서 새 배열 반환
-    nextId.current += 1; // nextId 1씩 더하기
+    nextseq.current += 1; // nextseq 1씩 더하기
   }, []);
 
-  const onRemove = useCallback((id) => {
+  const onRemove = useCallback((seq) => {
     Swal.fire({
       title: '정말 삭제하시겠습니까?',
       text: '삭제 후에는 복구가 불가능합니다!',
@@ -67,35 +51,37 @@ const TodoContainer = () => {
       cancelButtonText: '취소',
     }).then((result) => {
       if (result.isConfirmed) {
-        setTodos((todos) => todos.filter((todo) => todo.id !== id));
+        setTodos((todos) => todos.filter((todo) => todo.seq !== seq));
         Swal.fire('삭제되었습니다!', '', 'success');
       }
     });
   }, [setTodos]);
 
   const onUpdate = useCallback(
-    (id, text) => {
+    (seq, content) => {
       onInsertToggle();
       setTodos((todos) =>
-        todos.map((todo) => (todo.id === id ? { ...todo, text } : todo)),
+        todos.map((todo) => (todo.seq === seq ? { ...todo, content } : todo)),
       );
     },
     [onInsertToggle],
   );
 
-  const onToggle = useCallback((id) => {
+  const onToggle = useCallback((seq) => {
     setTodos((todos) =>
       todos.map((todo) =>
-        todo.id === id ? { ...todo, checked: !todo.checked } : todo,
+        todo.seq === seq ? { ...todo, checked: !todo.checked } : todo,
       ),
     );
   }, []);
 
+  // 진행률
   const percentTodo = () => {
     const completedTodos = todos.filter((todo) => todo.checked).length;
     return todos.length ? (completedTodos / todos.length) * 100 : 0;
   };
 
+  // 폭죽 효과
   const confettiConfig = {
     angle: 90,
     spread: 360,
