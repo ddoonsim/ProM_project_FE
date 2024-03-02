@@ -29,7 +29,7 @@ export const customStyles = {
     backgroundColor: '#00000070',
   },
   content: {
-    width: '800px',
+    width: 'fit-content',
     inset: 'unset',
     margin: '50vh auto',
     padding: '0 10px',
