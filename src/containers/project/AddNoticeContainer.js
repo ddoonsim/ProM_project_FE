@@ -14,19 +14,25 @@ const AddNoticeContainer = () => {
   const [errors, setErrors] = useState({});
   const { t } = useTranslation();
   const [editor, setEditor] = useState(null);
+  const [attached_file, setAttachedFile] = useState([]);
 
   const { projectSeq } = useParams();
 
   // 파일 업로드 콜백 함수
   const fileUploadCallback = useCallback(
     (files) => {
-      let html = '';
+      let html = editor ? editor.getData() : '';
       for (const file of files) {
-        html += `<img src='${file.fileUrl}' />`;
+        console.log(file);
+        if (file.fileType.indexOf('image/') !== -1) {
+          html += `<img src='${file.fileUrl}' />`;
+        } else {
+          attached_file.push(file);
+        }
       }
       editor.setData(html);
     },
-    [editor],
+    [editor, attached_file],
   );
 
   const onSubmit = useCallback(
@@ -92,7 +98,7 @@ const AddNoticeContainer = () => {
   const onEditor = useCallback(() => {
     setForm(
       produce((draft) => {
-        draft.description = editor.getData();
+        draft.description = editor ? editor.getData() : '';
       }),
     );
   }, [editor]);
@@ -107,6 +113,7 @@ const AddNoticeContainer = () => {
       editor={editor}
       setEditor={setEditor}
       fileUploadCallback={fileUploadCallback}
+      attached_file={attached_file}
     />
   );
 };
