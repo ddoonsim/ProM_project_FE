@@ -249,7 +249,7 @@ const TaskDetailContainer = ({ seq, pSeq, members }) => {
 
   // 진행률;
   const percentTodo = () => {
-    if (!Object.values(task).seq) return;
+    if (!Object.keys(task).length > 1) return;
     const completedTodos = task.todos
       ? task.todos.filter((todo) => todo.done).length
       : 0;
