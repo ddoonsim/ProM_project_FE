@@ -94,7 +94,6 @@ const EditNoticeContainer = ({ seq }) => {
 
   // 공지글 삭제
   const onClick = useCallback(() => {
-    console.log(form.seq);
     deleteNotice(form)
       .then(() => {
         Swal.fire({
