@@ -5,11 +5,10 @@ import { Link } from '../../../node_modules/react-router-dom/dist/index';
 import EditInfoBtn from './EditProjectInfoBtn';
 import colorNames from '../../styles/colors';
 import sizeNames from '../../styles/sizes';
-import AddTask from '../../pages/front/project/AddTask';
 import ModalBox from '../commons/ModalBox';
 import TeamMemberBox from './TeamMemberBox';
 import NoticeContainer from '../../containers/project/NoticeContainer';
-import TaskBox from '../task/TaskBox';
+import TaskDetailContainer from '../../containers/task/TaskDetailContainer';
 import TaskProgressBox from '../../pages/front/task/TaskProgressBox';
 
 const { primary, info, white } = colorNames;
@@ -97,7 +96,7 @@ const ProjectMainForm = ({ item }) => {
 
       {isOpen && (
         <ModalBox isOpen={isOpen} onClose={onClose}>
-          <AddTask item={item} />
+          <TaskDetailContainer pSeq={item.seq} />
         </ModalBox>
       )}
     </ProjectDashBoard>
