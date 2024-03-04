@@ -19,7 +19,7 @@ const TaskProgressForm = styled.div`
 
     .inner_box {
       width: 350px;
-      height: 400px;
+      min-height: 400px;
       padding: 20px;
       background-color: #eee;
       border: 0.5px solid #ddd;
