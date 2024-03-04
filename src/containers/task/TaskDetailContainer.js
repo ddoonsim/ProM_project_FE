@@ -188,8 +188,7 @@ const TaskDetailContainer = ({ seq, pSeq, members }) => {
       }
 
       saveTask(task, pSeq);
-      console.log('task========', task);
-      // window.location.reload();
+      window.location.reload();
     },
     [task, pSeq, validateTask],
   );
