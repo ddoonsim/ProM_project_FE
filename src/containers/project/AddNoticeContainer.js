@@ -28,6 +28,7 @@ const AddNoticeContainer = () => {
           html += `<img src='${file.fileUrl}' />`;
         }
         attached_file.push(file);
+        html += `${file.fileName} 파일 업로드`;
       }
       editor.setData(html);
     },
