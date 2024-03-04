@@ -108,7 +108,7 @@ const AddNoticeContainer = () => {
     console.log(target)
 
     deleteFile(target.value)
-      .then((data) => console.log(target.index))
+      .then((data) => console.log(data, "파일 삭제"))
       .catch((err) => console.error(err));
   }, []);
 
