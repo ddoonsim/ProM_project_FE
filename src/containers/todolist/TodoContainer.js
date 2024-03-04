@@ -2,7 +2,6 @@ import { useState, useRef, useCallback } from 'react';
 import TodoTemplate from '../../components/todolist/TodoTemplate';
 import TodoInsert from '../../components/todolist/TodoInsert';
 import TodoList from '../../components/todolist/TodoList';
-import TodoHead from '../../components/todolist/TodoHead';
 import TodoEdit from '../../components/todolist/TodoEdit';
 import Confetti from 'react-dom-confetti';
 import Swal from 'sweetalert2';
@@ -32,7 +31,7 @@ const TodoContainer = () => {
     const todo = {
       seq: nextseq.current,
       content,
-      checked: false,
+      done: false,
     };
     setTodos((todos) => todos.concat(todo));
     //concat(): 인자로 주어진 배열이나 값들을 기존 배열에 합쳐서 새 배열 반환
@@ -70,14 +69,15 @@ const TodoContainer = () => {
   const onToggle = useCallback((seq) => {
     setTodos((todos) =>
       todos.map((todo) =>
-        todo.seq === seq ? { ...todo, checked: !todo.checked } : todo,
+        todo.seq === seq ? { ...todo, done: !todo.done } : todo,
       ),
     );
-  }, []);
+  }, [setTodos],
+  );
 
   // 진행률
   const percentTodo = () => {
-    const completedTodos = todos.filter((todo) => todo.checked).length;
+    const completedTodos = todos.filter((todo) => todo.done).length;
     return todos.length ? (completedTodos / todos.length) * 100 : 0;
   };
 
@@ -111,7 +111,6 @@ const TodoContainer = () => {
 
   return (
     <TodoTemplate>
-      <TodoHead todos={todos} />
       <div>
         <div
           style={{
@@ -120,7 +119,6 @@ const TodoContainer = () => {
             paddingLeft: '10px',
           }}
         >
-          {/* <strong>진행률</strong> {percentTodo()}% */}
         </div>
         <div
           style={{

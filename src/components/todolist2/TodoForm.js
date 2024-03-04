@@ -2,23 +2,28 @@ import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import loadable from '@loadable/component';
-const FormBox = styled.form``;
+import './TodoForm.scss';
+
 const ErrorMessages = loadable(() => import('../commons/ErrorMessages'));
+
 
 const TodoForm = ({ onChange, onSubmit, form, errors }) => {
   const { t } = useTranslation();
 
   return (
-    <FormBox onSubmit={onSubmit}>
+    <>
+    <form className='TodoForm' onSubmit={onSubmit}>
       <input
         type="text"
         name="content"
+        placeholder="할 일을 입력하세요"
         value={form.content}
         onChange={onChange}
       />
       <button type="submit">{t('등록')}</button>
-      <ErrorMessages errors={errors} field="content" />
-    </FormBox>
+    </form>
+    <ErrorMessages errors={errors} field="content" />
+    </>
   );
 };
 
