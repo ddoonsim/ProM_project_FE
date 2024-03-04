@@ -13,7 +13,6 @@ const ProjectMainContainer = () => {
     getProjectInfo(projectSeq)
       .then((item) => {
         setItem(() => item);
-        // console.log(item.member[0]);
       })
       .catch((err) => console.error(err));
   }, [projectSeq]);

@@ -9,6 +9,7 @@ import loadable from '@loadable/component';
 import React from 'react';
 import FileUpload from '../commons/FileUpload';
 import ImageView from '../commons/ImageView';
+import TermsContent from './TermsContent';
 
 const ErrorMessages = loadable(() => import('../commons/ErrorMessages'));
 
@@ -109,7 +110,7 @@ const JoinForm = ({
   return (
     <FormBox onSubmit={onSubmit}>
       <dl>
-        <dt>{t('이메일')}</dt>
+        <dt>{t('이메일(필수)')}</dt>
         <dd>
           <div className="email_box">
             <InputText
@@ -173,7 +174,7 @@ const JoinForm = ({
         </dd>
       </dl>
       <dl>
-        <dt>{t('비밀번호')}</dt>
+        <dt>{t('비밀번호(필수)')}</dt>
         <dd>
           <InputText
             type="password"
@@ -185,7 +186,7 @@ const JoinForm = ({
         </dd>
       </dl>
       <dl>
-        <dt>{t('비밀번호 확인')}</dt>
+        <dt>{t('비밀번호 확인(필수)')}</dt>
         <dd>
           <InputText
             type="password"
@@ -197,7 +198,7 @@ const JoinForm = ({
         </dd>
       </dl>
       <dl>
-        <dt>{t('회원명')}</dt>
+        <dt>{t('회원명(필수)')}</dt>
         <dd>
           <InputText
             type="text"
@@ -226,26 +227,26 @@ const JoinForm = ({
           {form.profileImage && (
             <ImageView image={form.profileImage} mode="thumbnail" />
           )}
-          <div className='upload_button'>
-          <FileUpload
-            gid={form.gid}
-            imageOnly={true}
-            singleFile={true}
-            location={'profile_img'}
-            fileUploadCallback={fileUploadCallback}
-          >
-            {t('이미지 업로드')}
-          </FileUpload>
+          <div className="upload_button">
+            <FileUpload
+              gid={form.gid}
+              imageOnly={true}
+              singleFile={true}
+              location={'profile_img'}
+              fileUploadCallback={fileUploadCallback}
+            >
+              {t('이미지 업로드')}
+            </FileUpload>
           </div>
         </dd>
       </dl>
       <SubTitle align="center" border_width={1}>
         {t('회원가입 약관')}
       </SubTitle>
-      <pre className="terms">회원 가입약관....</pre>
+      <TermsContent />
       <div className="agree_terms" onClick={onToggle}>
         {form.agree ? <FiCheckSquare /> : <FiSquare />}
-        {t('회원 약관에 동의합니다.')}
+        {t('(필수) 회원 약관에 동의합니다.')}
       </div>
       <ErrorMessages errors={errors} field="agree" />
 

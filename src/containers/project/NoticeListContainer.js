@@ -11,7 +11,6 @@ const NoticeListContainer = () => {
     // 공지글 목록 가져오기
     getNoticeList(projectSeq)
       .then((items) => {
-        console.log(items);
         setItems(() => items);
       })
       .catch((err) => console.error(err));

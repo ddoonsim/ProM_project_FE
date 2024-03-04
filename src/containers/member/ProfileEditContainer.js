@@ -32,8 +32,8 @@ const ProfileEditContainer = () => {
             icon: "success"
           }).then((result) => {
             if (result.isConfirmed || result.isDismissed) {
-              // 마이페이지 이동
-              navigate('/mypage', { replace: true });
+              // 메인으로 이동
+              navigate('/', { replace: true });
               window.location.reload();
             }
           })        

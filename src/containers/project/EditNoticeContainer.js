@@ -7,6 +7,7 @@ import updateNotice from '../../api/project/updateNotice';
 import getNoticeInfo from '../../api/project/noticeInfo';
 import Swal from 'sweetalert2';
 import deleteNotice from '../../api/project/deleteNotice';
+import { deleteFile, getFiles } from '../../api/file/file';
 
 const EditNoticeContainer = ({ seq }) => {
   const { projectSeq } = useParams();
@@ -25,18 +26,25 @@ const EditNoticeContainer = ({ seq }) => {
         setForm(() => data);
       })
       .catch((err) => console.error(err));
-  }, [seq, editor]);
+
+    getFiles(form.gid, 'notice')
+      .then((items) => attached_file.push(...items))
+      .catch((err) => console.error(err));
+  }, [seq, editor, form.gid, attached_file]);
 
   // 파일 업로드 콜백 함수
   const fileUploadCallback = useCallback(
     (files) => {
-      let html = '';
+      let html = editor ? editor.getData() : '';
       for (const file of files) {
-        html += `<img src='${file.fileUrl}' />`;
+        if (file.fileType.indexOf('image/') !== -1) {
+          html += `<img src='${file.fileUrl}' />`;
+        }
+        attached_file.push(file);
       }
       editor.setData(html);
     },
-    [editor],
+    [editor, attached_file],
   );
 
   const onSubmit = useCallback(
@@ -86,7 +94,6 @@ const EditNoticeContainer = ({ seq }) => {
 
   // 공지글 삭제
   const onClick = useCallback(() => {
-    console.log(form.seq);
     deleteNotice(form)
       .then(() => {
         Swal.fire({
@@ -126,6 +133,15 @@ const EditNoticeContainer = ({ seq }) => {
     );
   }, [editor, projectSeq]);
 
+  // 파일 삭제
+  const onDelete = useCallback((e) => {
+    const target = e.currentTarget;
+
+    deleteFile(target.value)
+      .then((data) => console.log(data, "파일 삭제"))
+      .catch((err) => console.error(err));
+  }, []);
+
   return (
     <EditNoticeForm
       form={form}
@@ -133,10 +149,12 @@ const EditNoticeContainer = ({ seq }) => {
       onSubmit={onSubmit}
       onClick={onClick}
       onChange={onChange}
+      onDelete={onDelete}
       onEditor={onEditor}
       editor={editor}
       setEditor={setEditor}
       fileUploadCallback={fileUploadCallback}
+      attached_file={attached_file}
     />
   );
 };
