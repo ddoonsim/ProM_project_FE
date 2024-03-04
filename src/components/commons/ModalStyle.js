@@ -30,6 +30,7 @@ export const customStyles = {
   },
   content: {
     width: 'fit-content',
+    maxHeight: '850px',
     inset: 'unset',
     margin: '50vh auto',
     padding: '0 10px',
@@ -57,6 +58,7 @@ export const closeSvg = {
 export const Container = styled.div`
 margin: 0 50px 10px;
 display: inline-block;
+max-width: 1200px;
 
   dl {
     display: flex;
