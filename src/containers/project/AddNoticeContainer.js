@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { produce } from 'immer';
 import newNotice from '../../api/project/newNotice';
 import Swal from 'sweetalert2';
+import { deleteFile } from '../../api/file/file';
 
 const AddNoticeContainer = () => {
   const [form, setForm] = useState({
@@ -23,12 +24,10 @@ const AddNoticeContainer = () => {
     (files) => {
       let html = editor ? editor.getData() : '';
       for (const file of files) {
-        console.log(file);
         if (file.fileType.indexOf('image/') !== -1) {
           html += `<img src='${file.fileUrl}' />`;
-        } else {
-          attached_file.push(file);
         }
+        attached_file.push(file);
       }
       editor.setData(html);
     },
@@ -103,12 +102,23 @@ const AddNoticeContainer = () => {
     );
   }, [editor]);
 
+  // 파일 삭제_미완ㅠㅠㅠㅠ
+  const onDelete = useCallback((e) => {
+    const target = e.currentTarget;
+    console.log(target)
+
+    deleteFile(target.value)
+      .then((data) => console.log(target.index))
+      .catch((err) => console.error(err));
+  }, []);
+
   return (
     <AddNoticeForm
       form={form}
       errors={errors}
       onSubmit={onSubmit}
       onChange={onChange}
+      onDelete={onDelete}
       onEditor={onEditor}
       editor={editor}
       setEditor={setEditor}

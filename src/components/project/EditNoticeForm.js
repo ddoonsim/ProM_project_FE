@@ -4,6 +4,7 @@ import ErrorMessages from '../commons/ErrorMessages';
 import FileUpload from '../commons/FileUpload';
 import { InputText } from '../commons/InputStyle';
 import { Container } from '../commons/ModalStyle';
+import { CgClose } from 'react-icons/cg';
 import styled from 'styled-components';
 import colorNames from '../../styles/colors';
 import sizeNames from '../../styles/sizes';
@@ -51,6 +52,20 @@ const NoticeEditBox = styled.form`
     }
   }
 
+  .files {
+    background-color: #ddd;
+    margin: 5px;
+    padding: 3px 5px;
+    border-radius: 5px;
+    display: table;
+  }
+
+  .close_btn {
+    background-color: #ddd;
+    border: none;
+    cursor: pointer;
+  }
+
   .delete_btn {
     margin: 30px 0;
     margin-left: 10px;
@@ -71,9 +86,11 @@ const EditNoticeForm = ({
   onSubmit,
   onClick,
   onChange,
+  onDelete,
   onEditor,
   setEditor,
   fileUploadCallback,
+  attached_file,
 }) => {
   return (
     <Container>
@@ -100,14 +117,32 @@ const EditNoticeForm = ({
           onReady={(editor) => setEditor(editor)}
           onChange={onEditor}
         />
+        <br />
+        {attached_file.length !== 0
+          ? attached_file.map(({ seq, fileName }) => (
+            <div className="files">
+            <a
+              href={`http://localhost:2000/api/v1/file/download/${seq}`}
+              key={seq}
+            >
+              {fileName}
+            </a>
+            <button type='button' onClick={onDelete} value={seq}
+              className="close_btn"
+            >
+              <CgClose />
+            </button>
+          </div>
+            ))
+          : ''}
 
         <FileUpload
           gid={form.gid}
           location={'notice'}
-          imageOnly={true}
+          imageOnly={false}
           fileUploadCallback={fileUploadCallback}
         >
-          이미지 첨부
+          파일 첨부
         </FileUpload>
         <ErrorMessages errors={errors} field="description" />
         <br />
