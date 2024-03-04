@@ -46,14 +46,14 @@ const TaskBox = ({ tasks, listStatus, item }) => {
         tasks.length > 0 &&
         tasks
           .filter(({ status }) => status === listStatus.toUpperCase())
-          .map(({ seq, tname, sdate, edate }) => (
+          .map(({ seq, tname, sdate, edate, member }) => (
             <Tasks key={seq} onClick={() => onClick(seq)}>
               {tname}
               <div className="date">
                 진행기간 : {sdate} ~ {edate}
               </div>
               {/* 담당자 목록 출력(가능하면) */}
-              <div className="managers">ddoonsim</div>
+              <div className="managers">user01</div>
             </Tasks>
           ))}
       {open && (
