@@ -40,6 +40,8 @@ const TaskBox = ({ tasks, listStatus, item }) => {
     setOpen(true);
     setTaskSeq(seq);
   }, []);
+  const onClose = useCallback(() => setOpen(false), []);
+
   return (
     <>
       {tasks &&
@@ -57,7 +59,7 @@ const TaskBox = ({ tasks, listStatus, item }) => {
             </Tasks>
           ))}
       {open && (
-        <ModalBox isOpen={open}>
+        <ModalBox isOpen={open} onClose={onClose}>
           <TaskDetailContainer seq={taskSeq} pSeq={item.seq} />
         </ModalBox>
       )}
