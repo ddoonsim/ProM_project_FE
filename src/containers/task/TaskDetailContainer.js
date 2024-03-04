@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 import { getTask } from '../../api/task/TaskInfo';
+import apiRequest from '../../lib/apiRequest';
 import { produce } from 'immer';
 import { useTranslation } from 'react-i18next';
 import TodoForm from '../../components/todolist2/TodoForm';
 import TodoList from '../../components/todolist2/TodoList';
 import TaskForm from '../../components/task/TaskForm';
 import saveTask from '../../api/task/SaveTask';
+import { Link } from '../../../node_modules/react-router-dom/dist/index';
 
 function dateFormat(date) {
   return `${date.getFullYear()}-${('' + (date.getMonth() + 1)).padStart(
@@ -22,14 +24,16 @@ const MainBox = styled.div`
 
 const SubBox = styled.div``;
 
-const TaskDetailContainer = ({ seq, pSeq }) => {
+const TaskDetailContainer = ({ seq, pSeq, members }) => {
   const [task, setTask] = useState({
     gid: Date.now(),
   });
   const [errors, setErrors] = useState({});
   const [form, setForm] = useState({});
   const [editor, setEditor] = useState(null);
-
+  const [item, setItem] = useState({});
+  const [_members, setMembers] = useState(members);
+  const [selectedMembers, setSelectedMembers] = useState([]);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -37,26 +41,69 @@ const TaskDetailContainer = ({ seq, pSeq }) => {
 
     getTask(seq).then((task) => {
       setTask(task);
+
+      setSelectedMembers(
+        task.members
+          ? task.members.map((m) => ({ label: m.name, value: m.seq }))
+          : [],
+      );
     });
-  }, [seq]);
+
+    apiRequest(`/project?projectSeq=${pSeq}`).then((res) => {
+      if (res.data.success) {
+        setItem(res.data.data);
+        setMembers(res.data.data.member);
+      }
+    });
+  }, [seq, pSeq]);
+
+  const validateTask = useCallback(() => {
+    const _errors = {};
+    let hasErrors = false;
+    const requiredField = {
+      tname: t('업무_제목을_입력하세요.'),
+      status: t('업무_상태를_선택하세요.'),
+      members: t('담당자를_선택하세요.'),
+      sdate: t('업무기간을_선택하세요.'),
+      edate: t('업무기간을_선택하세요.'),
+    };
+
+    for (const [key, value] of Object.entries(requiredField)) {
+      _errors[key] = _errors[key] || [];
+      if (key === 'members') {
+        if (!task.members || !task.members.value) {
+          _errors[key].push(value);
+        }
+        continue;
+      }
+
+      if (!task || !task[key] || !task[key].trim()) {
+        _errors[key].push(value);
+        hasErrors = true;
+      }
+
+      setErrors(_errors);
+      return hasErrors;
+    }
+  }, [t, task]);
 
   const onChange = useCallback(
     (e) =>
       setForm((form) => ({ ...form, [e.target.name]: e.target.value.trim() })),
     [],
   );
-  const onEditor = useCallback(
-    () => {
-      setForm(
-        produce((draft) => {
-          draft.description = editor ? editor.getData() : ' ';
-        }),
-      );
-    },
-    [editor],
-    form,
-  );
+  const onEditor = useCallback(() => {
+    setForm(
+      produce((draft) => {
+        draft.description = editor ? editor.getData() : ' ';
+      }),
+    );
+  }, [editor]);
 
+  /* 태스크 참여 멤버 가공 */
+  /*
+  selectedMembers = 
+*/
   /** todo 리스트 체크 토글  */
   const onTodoToggle = useCallback(
     (seq) =>
@@ -70,7 +117,7 @@ const TaskDetailContainer = ({ seq, pSeq }) => {
 
         return { ...task };
       }),
-    [],
+    [pSeq],
   );
 
   /**
@@ -96,6 +143,11 @@ const TaskDetailContainer = ({ seq, pSeq }) => {
   const onTodoSubmit = useCallback(
     (e) => {
       e.preventDefault();
+
+      if (validateTask()) {
+        return;
+      }
+
       if (!form.content || !form.content.trim()) {
         setErrors(
           produce((draft) => {
@@ -107,21 +159,22 @@ const TaskDetailContainer = ({ seq, pSeq }) => {
       }
 
       setTask((task) => {
-        task.todos = task.todos || [];
-        task.todos = task.todos.concat({
+        const task2 = { ...task };
+        task2.todos = task2.todos || [];
+        task2.todos = task2.todos.concat({
           ...form,
           seq: Date.now(),
           done: false,
         });
 
-        saveTask(task, pSeq);
+        saveTask(task2, pSeq);
 
-        return { ...task };
+        return task2;
       });
 
       setForm({ content: '' });
     },
-    [form, t, pSeq, [editor]],
+    [form, t, pSeq, validateTask],
   );
 
   /* 서브 태스크 S */
@@ -129,39 +182,14 @@ const TaskDetailContainer = ({ seq, pSeq }) => {
     (e) => {
       e.preventDefault();
 
-      const _errors = {};
-      let hasErrors = false;
-      const requiredField = {
-        tname: t('업무_제목을_입력하세요.'),
-        status: t('업무_상태를_선택하세요.'),
-        members: t('담당자를_선택하세요.'),
-        sdate: t('업무기간을_선택하세요.'),
-        edate: t('업무기간을_선택하세요.'),
-      };
-
-      for (const [key, value] of Object.entries(requiredField)) {
-        _errors[key] = _errors[key] || [];
-        if (key === 'members') {
-          if (!task.members || !task.members.value) {
-            _errors[key].push(value);
-          }
-          continue;
-        }
-
-        if (!task || !task[key] || !task[key].trim()) {
-          _errors[key].push(value);
-          hasErrors = true;
-        }
-      }
-
-      if (hasErrors) {
-        setErrors(_errors);
+      if (validateTask()) {
         return;
       }
 
       saveTask(task, pSeq);
+      window.location.reload();
     },
-    [t, task, pSeq],
+    [task, pSeq, validateTask],
   );
 
   const onTaskChange = useCallback((e) => {
@@ -184,9 +212,11 @@ const TaskDetailContainer = ({ seq, pSeq }) => {
   const onSelectMembers = useCallback((selectedOptions) => {
     setTask(
       produce((draft) => {
-        draft.members = selectedOptions;
+        draft.memberSeqs = selectedOptions.map((m) => m.value).join(',');
       }),
     );
+
+    setSelectedMembers(selectedOptions);
   }, []);
 
   const onChangeDate = useCallback((dates) => {
@@ -227,11 +257,8 @@ const TaskDetailContainer = ({ seq, pSeq }) => {
           onChangeDate={onChangeDate}
           setEditor={setEditor}
           fileUploadCallback={fileUploadCallback}
-          members={
-            task && task.project && task.project.member
-              ? task.project.member
-              : []
-          }
+          members={_members ? _members : []}
+          selectedMembers={selectedMembers}
         />
       </SubBox>
       <SubBox>
