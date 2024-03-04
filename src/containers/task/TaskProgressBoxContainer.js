@@ -10,9 +10,7 @@ const TaskProgressBoxContainer = ({ item }) => {
   const [tasks, setTasks] = useState({});
   useEffect(() => {
     getTasks(projectSeq)
-      .then((item) => {
-        setTasks(() => item);
-      })
+      .then((item) => setTasks(item))
       .catch((err) => console.error(err));
   }, [projectSeq]);
 
