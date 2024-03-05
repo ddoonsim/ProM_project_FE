@@ -33,7 +33,7 @@ const InviteMemberContainer = ({projectSeq}) => {
       /* 이메일 입력란 필수 체크 E */
 
       // 초대 링크 이메일 전송!
-      sendInvitation(form.email, `http://localhost:3000/project/invite/${projectSeq}`);
+      sendInvitation(form.email, `http://13.124.132.111:3000/project/invite/${projectSeq}`);
     },
     [form, t],
   );
