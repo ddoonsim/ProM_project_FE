@@ -24,12 +24,14 @@ const Tasks = styled.div`
   }
 
   .managers {
+    display: inline;
     padding: 2px 5px;
     border-radius: 5px;
     background-color: #68898559;
     font-size: ${normal};
     font-weight: 400;
     width: fit-content;
+    margin-left: 55px;
   }
 `;
 
@@ -48,14 +50,20 @@ const TaskBox = ({ tasks, listStatus, item }) => {
         tasks.length > 0 &&
         tasks
           .filter(({ status }) => status === listStatus.toUpperCase())
-          .map(({ seq, tname, sdate, edate, member }) => (
+          .map(({ seq, tname, sdate, edate, members }) => (
             <Tasks key={seq} onClick={() => onClick(seq)}>
               {tname}
               <div className="date">
                 진행기간 : {sdate} ~ {edate}
               </div>
               {/* 담당자 목록 출력(가능하면) */}
-              <div className="managers">user01</div>
+              {members &&
+                members.length > 0 &&
+                members.map((m) => (
+                  <div className="managers" key={m.seq}>
+                    {m.name}
+                  </div>
+                ))}
             </Tasks>
           ))}
       {open && (
