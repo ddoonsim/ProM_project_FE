@@ -28,7 +28,6 @@ const MyCalendar = () => {
               }),
             );
           });
-        console.log(events);
       })
       .catch((err) => console.error(err));
   }, []);
@@ -46,11 +45,11 @@ const MyCalendar = () => {
         style={{ height: '95vh' }}
         eventPropGetter={(events) => {
           const backgroundColor =
-            events.status === 'request'
+            events.status === 'REQUEST'
               ? '#1E5959'
-              : events.status === 'progress'
+              : events.status === 'PROGRESS'
               ? '#7b9eb5'
-              : events.status === 'success'
+              : events.status === 'SUCCESS'
               ? '#164773'
               : 'gray';
           const color = 'white';
