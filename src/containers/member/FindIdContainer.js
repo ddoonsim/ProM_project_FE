@@ -42,7 +42,6 @@ const FindIdContainer = () => {
         return;
       }
 
-      console.log('버튼 클릭!!');
 
       // 회원정보 일치 확인
       findIdInfo(form)

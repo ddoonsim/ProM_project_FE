@@ -54,7 +54,6 @@ const TaskForm = ({
     ['SUCCESS', t('완료')],
     ['HOLD', t('보류')],
   ];
-  console.log('selectedMembers', selectedMembers);
 
   /* 프로젝트 참여중인 멤버 */
   const options = members
