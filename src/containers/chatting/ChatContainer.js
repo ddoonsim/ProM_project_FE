@@ -41,11 +41,9 @@ const ChatContainer = ({ roomNo }) => {
   useEffect(() => {
     webSocket = new WebSocket(process.env.REACT_APP_WS_URL);
     webSocket.onopen = (e) => {
-      console.log('연결 성공');
     };
 
     webSocket.onclose = (e) => {
-      console.log('연결 종료');
     };
 
     getRoom(roomNo)
@@ -135,7 +133,6 @@ const ChatContainer = ({ roomNo }) => {
     inputEl.current.value = '';
     inputEl.current.focus();
     registerMessage(chatData); // 채팅 기록 서버 DB에 기록
-    console.log('messages.length ', messages.length);
   }, [chatData]);
   const lis = messages.map((m, index) => (
     <>

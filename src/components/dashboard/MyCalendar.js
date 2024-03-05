@@ -28,7 +28,6 @@ const MyCalendar = () => {
               }),
             );
           });
-        console.log(events);
       })
       .catch((err) => console.error(err));
   }, []);

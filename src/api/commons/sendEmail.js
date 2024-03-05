@@ -42,7 +42,6 @@ export const sendInvitation = function (email, link) {
             }
           })
         } else {
-          console.log(data);
           Swal.fire({
             title: "초대장 발송 실패📨",
             html: "이미 우리 팀 팀원이네요!<br>이메일을 확인해주세요😊",

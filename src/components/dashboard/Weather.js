@@ -12,7 +12,6 @@ const Weather = () => {
   const [weatherIconAdr, setWeatherIconAdr] = useState();
 
   function handleGeoSucc(position) {
-    console.log(position);
     const latitude = position.coords.latitude; // 경도
     const longitude = position.coords.longitude; // 위도
     const coordsObj = {
@@ -37,7 +36,6 @@ const Weather = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
 
         const temp = Math.round(data.main.temp);
         const name = data.name;

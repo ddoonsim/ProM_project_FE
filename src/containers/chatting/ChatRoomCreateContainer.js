@@ -10,7 +10,6 @@ const ChatRoomCreateContainer = () => {
     (e) => {
       e.preventDefault();
       registerRoom(form).then(navigate('/chatlist'));
-      console.log(form);
     },
     [form],
   );

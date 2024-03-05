@@ -29,7 +29,6 @@ const ChatRoomListContainer = () => {
   if (rooms && rooms.length > 0) {
     lis = rooms.map((r) => {
       // const link = `/chatroom/${r.roomNo}`;
-      console.log(r);
 
       return (
         <div key={r.roomNo}>

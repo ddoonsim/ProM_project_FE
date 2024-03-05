@@ -141,7 +141,6 @@ const JoinContainer = () => {
   const onClick = useCallback((e) => {
     // 버튼을 클릭했을 때
     const target = e.currentTarget.name;
-    console.log(target, '버튼 클릭!!');
 
     if (target === 'sendCodeBtn') {
       if (!form.email) {
@@ -185,7 +184,6 @@ const JoinContainer = () => {
       authCount.start();
     } else if (target === 'confirmBtn') {
       // 확인버튼을 클릭했을 때
-      console.log(authNum.value);
       if (!authNum.value.trim()) {
         // 인증코드를 입력하지 않고 확인을 클릭했을 때
         Swal.fire({
@@ -195,7 +193,6 @@ const JoinContainer = () => {
       }
 
       // 인증코드 일치 여부 확인
-      console.log(authNum.value);
       // sendEmailVerifyCheck(authNum.value);
       new Promise(() => {
         apiRequest(`/email/auth_check?authNum=${authNum.value}`, 'GET')
