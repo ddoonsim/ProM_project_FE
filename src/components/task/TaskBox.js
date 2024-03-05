@@ -31,7 +31,7 @@ const Tasks = styled.div`
     font-size: ${normal};
     font-weight: 400;
     width: fit-content;
-    margin-left: 55px;
+    margin-left: 5px;
   }
 `;
 
