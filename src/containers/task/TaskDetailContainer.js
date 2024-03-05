@@ -248,12 +248,11 @@ const TaskDetailContainer = ({ seq, pSeq, members }) => {
 
   // 진행률;
   const percentTodo = () => {
-    if (!Object.values(task).seq) return;
-    const completedTodos = task.todos
-      ? task.todos.filter((todo) => todo.done).length
-      : 0;
-    return task.todos.length ? (completedTodos / task.todos.length) * 100 : 0;
+    // task가 정의되지 않았을 경우 빈 배열을 사용하도록 기본값 설정
+    const completedTodos = (task.todos || []).filter((todo) => todo.done).length;
+    return task.todos && task.todos.length ? (completedTodos / task.todos.length) * 100 : 0;
   };
+  
 
   // 폭죽 효과
   const confettiConfig = {
