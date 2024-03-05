@@ -26,7 +26,7 @@ const SubBox = styled.div``;
 
 const TaskDetailContainer = ({ seq, pSeq, members }) => {
   const [task, setTask] = useState({
-    gid: Date.now(),
+    gid: '' + Date.now(),
   });
   const [errors, setErrors] = useState({});
   const [form, setForm] = useState({});
@@ -88,7 +88,6 @@ const TaskDetailContainer = ({ seq, pSeq, members }) => {
   }, [t, task]);
 
   const onChange = useCallback(
-    console.log(task),
     (e) =>
       setForm((form) => ({ ...form, [e.target.name]: e.target.value.trim() })),
     [],
@@ -167,15 +166,15 @@ const TaskDetailContainer = ({ seq, pSeq, members }) => {
           seq: Date.now(),
           done: false,
         });
-
-        saveTask(task2, pSeq);
+        task2.description = editor.getData();
+        saveTask(task2, pSeq).then((task) => setTask(task));
 
         return task2;
       });
 
       setForm({ content: '' });
     },
-    [form, t, pSeq, validateTask],
+    [form, t, pSeq, validateTask, editor],
   );
 
   /* 서브 태스크 S */
@@ -187,10 +186,11 @@ const TaskDetailContainer = ({ seq, pSeq, members }) => {
         return;
       }
 
-      saveTask(task, pSeq);
+      const params = { ...task, description: editor.getData() };
+      saveTask(params, pSeq).then((task) => setTask(task));
       window.location.reload();
     },
-    [task, pSeq, validateTask],
+    [task, pSeq, validateTask, editor],
   );
 
   const onTaskChange = useCallback((e) => {
@@ -211,7 +211,6 @@ const TaskDetailContainer = ({ seq, pSeq, members }) => {
     [],
   );
   const onSelectMembers = useCallback((selectedOptions) => {
-    console.log('ssssss', selectedOptions);
     setTask(
       produce((draft) => {
         draft.memberSeqs = selectedOptions.map((m) => m.value).join(',');
@@ -236,7 +235,7 @@ const TaskDetailContainer = ({ seq, pSeq, members }) => {
   // 파일 업로드 콜백 함수
   const fileUploadCallback = useCallback(
     (files) => {
-      let html = '';
+      let html = editor.getData();
       for (const file of files) {
         html += `<img src='${file.fileUrl}' />`;
       }
@@ -249,7 +248,7 @@ const TaskDetailContainer = ({ seq, pSeq, members }) => {
 
   // 진행률;
   const percentTodo = () => {
-    if (!Object.keys(task).length > 1) return;
+    if (!Object.values(task).seq) return;
     const completedTodos = task.todos
       ? task.todos.filter((todo) => todo.done).length
       : 0;
